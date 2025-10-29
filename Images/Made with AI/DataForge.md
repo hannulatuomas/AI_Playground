@@ -1,16 +1,11 @@
 # DataForge 🔨
 
-<div align="center">
-
-![DataForge Logo](https://img.shields.io/badge/DataForge-Database%20Management-06b6d4?style=for-the-badge)
-![Version](https://img.shields.io/badge/version-1.0.0-green?style=for-the-badge)
-![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)
-
 **A comprehensive, web-based database management tool inspired by Azure Data Studio**
 
-[Features](#core-features) • [Getting Started](#getting-started) • [Documentation](#documentation) • [Architecture](#codebase-structure)
-
-</div>
+[Features](#core-features) 
+[Getting Started](#getting-started) 
+[Documentation](#documentation) 
+[Architecture](#codebase-structure)
 
 ---
 
