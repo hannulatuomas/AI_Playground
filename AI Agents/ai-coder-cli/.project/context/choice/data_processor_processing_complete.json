@@ -1,0 +1,11 @@
+{
+  "type": "choice",
+  "name": "data_processor_processing_complete",
+  "data": {
+    "input_size": 5,
+    "output_size": 5
+  },
+  "metadata": {},
+  "created_at": "2025-10-13T18:34:27.006240",
+  "updated_at": "2025-10-13T18:34:27.022295"
+}

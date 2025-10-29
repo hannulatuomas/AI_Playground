@@ -1,0 +1,57 @@
+{
+  "deepseek-r1-8b-0528-qwen3-q8_0": {
+    "name": "deepseek-r1-8b-0528-qwen3-q8_0",
+    "path": "data\\models\\deepseek-r1-8b-0528-qwen3-q8_0.gguf",
+    "size_mb": 8441.043029785156,
+    "type": "llm",
+    "description": "Q8_0",
+    "parameters": null,
+    "quantization": "Q8_0",
+    "context_size": null,
+    "is_available": true
+  },
+  "dolphin3-8b": {
+    "name": "dolphin3-8b",
+    "path": "data\\models\\dolphin3-8b.gguf",
+    "size_mb": 4692.7921142578125,
+    "type": "llm",
+    "description": "LLM model",
+    "parameters": null,
+    "quantization": null,
+    "context_size": null,
+    "is_available": true
+  },
+  "all-MiniLM-L6-v2": {
+    "name": "all-MiniLM-L6-v2",
+    "path": "huggingface",
+    "size_mb": 80,
+    "type": "embedding",
+    "description": "Fast, 80MB, good quality",
+    "parameters": null,
+    "quantization": null,
+    "context_size": 256,
+    "is_available": true
+  },
+  "all-mpnet-base-v2": {
+    "name": "all-mpnet-base-v2",
+    "path": "huggingface",
+    "size_mb": 420,
+    "type": "embedding",
+    "description": "Balanced, 420MB, better quality",
+    "parameters": null,
+    "quantization": null,
+    "context_size": 384,
+    "is_available": true
+  },
+  "microsoft/codebert-base": {
+    "name": "microsoft/codebert-base",
+    "path": "huggingface",
+    "size_mb": 500,
+    "type": "embedding",
+    "description": "Code-optimized, 500MB",
+    "parameters": null,
+    "quantization": null,
+    "context_size": 512,
+    "is_available": true
+  }
+}

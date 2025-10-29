@@ -1,0 +1,52 @@
+/* Reset default body margin and box-sizing for the whole app */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+#root {
+  height: 100vh;
+  background: var(--color-bg);
+}
+
+/* === Custom Scrollbars (theme-aware) === */
+/* Webkit browsers */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background: var(--color-bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 8px;
+  border: 2px solid var(--color-bg-secondary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-light);
+}
+::-webkit-scrollbar-corner {
+  background: var(--color-bg-secondary);
+}
+
+/* Firefox */
+html {
+  scrollbar-color: var(--color-border) var(--color-bg-secondary);
+  scrollbar-width: thin;
+}
+
+/* Ensure high contrast and accessibility */
+@media (forced-colors: active) {
+  ::-webkit-scrollbar-thumb {
+    background: CanvasText !important;
+  }
+  ::-webkit-scrollbar {
+    background: Canvas !important;
+  }
+  html {
+    scrollbar-color: CanvasText Canvas !important;
+  }
+}
+

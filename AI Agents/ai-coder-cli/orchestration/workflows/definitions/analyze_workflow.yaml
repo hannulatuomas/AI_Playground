@@ -1,0 +1,155 @@
+
+# Analyze Workflow
+# Runs comprehensive code analysis and generates reports
+
+workflow_id: analyze_workflow
+name: Code Analysis
+description: Run comprehensive code analysis and generate quality reports
+version: 1.0.0
+tags:
+  - analysis
+  - quality
+  - metrics
+
+steps:
+  - step_id: analyze_structure
+    name: Analyze Project Structure
+    agent: code_analyzer
+    action: analyze_project_structure
+    params:
+      project_path: "{{ project_path }}"
+    dependencies: []
+    on_error: continue
+
+  - step_id: analyze_code_quality
+    name: Analyze Code Quality
+    agent: code_analyzer
+    action: analyze_code_quality
+    params:
+      project_path: "{{ project_path }}"
+      include_style: true
+      include_best_practices: true
+    dependencies: []
+    on_error: continue
+
+  - step_id: analyze_complexity
+    name: Analyze Code Complexity
+    agent: code_analyzer
+    action: analyze_complexity
+    params:
+      project_path: "{{ project_path }}"
+      detailed: true
+    dependencies: []
+    on_error: continue
+
+  - step_id: analyze_security
+    name: Security Analysis
+    agent: code_analyzer
+    action: analyze_security
+    params:
+      project_path: "{{ project_path }}"
+      deep_scan: true
+    dependencies: []
+    on_error: continue
+
+  - step_id: analyze_performance
+    name: Performance Analysis
+    agent: code_analyzer
+    action: analyze_performance
+    params:
+      project_path: "{{ project_path }}"
+    dependencies: []
+    on_error: continue
+
+  - step_id: analyze_dependencies
+    name: Analyze Dependencies
+    agent: code_analyzer
+    action: analyze_dependencies
+    params:
+      project_path: "{{ project_path }}"
+      check_vulnerabilities: true
+      check_updates: true
+    dependencies: []
+    on_error: continue
+
+  - step_id: analyze_test_coverage
+    name: Analyze Test Coverage
+    agent: code_analyzer
+    action: analyze_test_coverage
+    params:
+      project_path: "{{ project_path }}"
+    dependencies: []
+    on_error: continue
+
+  - step_id: identify_code_smells
+    name: Identify Code Smells
+    agent: code_analyzer
+    action: identify_code_smells
+    params:
+      project_path: "{{ project_path }}"
+    dependencies:
+      - analyze_code_quality
+      - analyze_complexity
+    on_error: continue
+
+  - step_id: identify_duplication
+    name: Detect Code Duplication
+    agent: code_analyzer
+    action: detect_duplication
+    params:
+      project_path: "{{ project_path }}"
+      threshold: 0.8
+    dependencies: []
+    on_error: continue
+
+  - step_id: generate_summary
+    name: Generate Analysis Summary
+    agent: code_analyzer
+    action: generate_analysis_summary
+    params:
+      analyses:
+        structure: "{{ step_analyze_structure_result }}"
+        quality: "{{ step_analyze_code_quality_result }}"
+        complexity: "{{ step_analyze_complexity_result }}"
+        security: "{{ step_analyze_security_result }}"
+        performance: "{{ step_analyze_performance_result }}"
+        dependencies: "{{ step_analyze_dependencies_result }}"
+        coverage: "{{ step_analyze_test_coverage_result }}"
+        smells: "{{ step_identify_code_smells_result }}"
+        duplication: "{{ step_identify_duplication_result }}"
+    dependencies:
+      - analyze_structure
+      - analyze_code_quality
+      - analyze_complexity
+      - analyze_security
+      - analyze_performance
+      - analyze_dependencies
+      - analyze_test_coverage
+      - identify_code_smells
+      - identify_duplication
+    on_error: fail
+
+  - step_id: generate_recommendations
+    name: Generate Improvement Recommendations
+    agent: code_planner
+    action: generate_improvement_recommendations
+    params:
+      analysis_summary: "{{ step_generate_summary_result }}"
+      priority: "{{ priority | default('high') }}"
+    dependencies:
+      - generate_summary
+    on_error: continue
+
+  - step_id: create_report
+    name: Create Analysis Report
+    agent: documentation_generator
+    action: generate_analysis_report
+    params:
+      summary: "{{ step_generate_summary_result }}"
+      recommendations: "{{ step_generate_recommendations_result }}"
+      output_format: "{{ output_format | default('markdown') }}"
+      output_path: "{{ output_path | default('analysis_report.md') }}"
+    dependencies:
+      - generate_summary
+      - generate_recommendations
+    on_error: continue

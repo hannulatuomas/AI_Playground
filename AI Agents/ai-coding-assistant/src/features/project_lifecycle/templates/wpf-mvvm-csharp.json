@@ -1,0 +1,45 @@
+{
+  "name": "wpf-mvvm-csharp",
+  "description": "C# WPF application with MVVM pattern, modern design, and best practices",
+  "version": "1.0.0",
+  "variables": {
+    "PROJECT_NAME": {
+      "type": "string",
+      "required": true,
+      "description": "Project name (PascalCase recommended)"
+    },
+    "AUTHOR": {
+      "type": "string",
+      "default": "",
+      "description": "Project author name"
+    },
+    "DESCRIPTION": {
+      "type": "string",
+      "default": "A WPF application",
+      "description": "Project description"
+    },
+    "NAMESPACE": {
+      "type": "string",
+      "default": "{{PROJECT_NAME}}",
+      "description": "Root namespace"
+    }
+  },
+  "files": {
+    "{{PROJECT_NAME}}.sln": "Microsoft Visual Studio Solution File, Format Version 12.00\nProject(\"{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}\") = \"{{PROJECT_NAME}}\", \"{{PROJECT_NAME}}\\{{PROJECT_NAME}}.csproj\", \"{GUID}\"\nEndProject",
+    "{{PROJECT_NAME}}/{{PROJECT_NAME}}.csproj": "<Project Sdk=\"Microsoft.NET.Sdk\">\n  <PropertyGroup>\n    <OutputType>WinExe</OutputType>\n    <TargetFramework>net8.0-windows</TargetFramework>\n    <UseWPF>true</UseWPF>\n    <Nullable>enable</Nullable>\n    <Authors>{{AUTHOR}}</Authors>\n    <Description>{{DESCRIPTION}}</Description>\n  </PropertyGroup>\n\n  <ItemGroup>\n    <PackageReference Include=\"CommunityToolkit.Mvvm\" Version=\"8.2.2\" />\n  </ItemGroup>\n</Project>",
+    "{{PROJECT_NAME}}/App.xaml": "<Application x:Class=\"{{NAMESPACE}}.App\"\n             xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"\n             xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"\n             StartupUri=\"Views/MainWindow.xaml\">\n    <Application.Resources>\n         \n    </Application.Resources>\n</Application>",
+    "{{PROJECT_NAME}}/App.xaml.cs": "using System.Windows;\n\nnamespace {{NAMESPACE}};\n\npublic partial class App : Application\n{\n    protected override void OnStartup(StartupEventArgs e)\n    {\n        base.OnStartup(e);\n    }\n}",
+    "{{PROJECT_NAME}}/Views/MainWindow.xaml": "<Window x:Class=\"{{NAMESPACE}}.Views.MainWindow\"\n        xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"\n        xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"\n        xmlns:vm=\"clr-namespace:{{NAMESPACE}}.ViewModels\"\n        Title=\"{{PROJECT_NAME}}\" Height=\"450\" Width=\"800\">\n    <Window.DataContext>\n        <vm:MainViewModel/>\n    </Window.DataContext>\n    \n    <Grid Margin=\"20\">\n        <Grid.RowDefinitions>\n            <RowDefinition Height=\"Auto\"/>\n            <RowDefinition Height=\"Auto\"/>\n            <RowDefinition Height=\"*\"/>\n        </Grid.RowDefinitions>\n        \n        <TextBlock Grid.Row=\"0\" Text=\"{{PROJECT_NAME}}\" FontSize=\"24\" FontWeight=\"Bold\" Margin=\"0,0,0,20\"/>\n        \n        <StackPanel Grid.Row=\"1\" Orientation=\"Horizontal\" Margin=\"0,0,0,20\">\n            <TextBlock Text=\"Counter: \" VerticalAlignment=\"Center\" Margin=\"0,0,10,0\"/>\n            <TextBlock Text=\"{Binding Counter}\" VerticalAlignment=\"Center\" FontWeight=\"Bold\"/>\n            <Button Content=\"Increment\" Command=\"{Binding IncrementCommand}\" Margin=\"20,0,0,0\" Padding=\"10,5\"/>\n        </StackPanel>\n        \n        <TextBlock Grid.Row=\"2\" Text=\"{{DESCRIPTION}}\" TextWrapping=\"Wrap\"/>\n    </Grid>\n</Window>",
+    "{{PROJECT_NAME}}/Views/MainWindow.xaml.cs": "using System.Windows;\n\nnamespace {{NAMESPACE}}.Views;\n\npublic partial class MainWindow : Window\n{\n    public MainWindow()\n    {\n        InitializeComponent();\n    }\n}",
+    "{{PROJECT_NAME}}/ViewModels/MainViewModel.cs": "using CommunityToolkit.Mvvm.ComponentModel;\nusing CommunityToolkit.Mvvm.Input;\n\nnamespace {{NAMESPACE}}.ViewModels;\n\npublic partial class MainViewModel : ObservableObject\n{\n    [ObservableProperty]\n    private int counter = 0;\n\n    [RelayCommand]\n    private void Increment()\n    {\n        Counter++;\n    }\n}",
+    "{{PROJECT_NAME}}/Models/.gitkeep": "",
+    "{{PROJECT_NAME}}/Services/.gitkeep": "",
+    ".gitignore": "bin/\nobj/\n.vs/\n*.user\n*.suo\n*.cache\n*.log",
+    "README.md": "# {{PROJECT_NAME}}\n\n{{DESCRIPTION}}\n\n## Requirements\n\n- .NET 8.0 SDK\n- Visual Studio 2022 or Rider\n\n## Build\n\n```bash\ndotnet restore\ndotnet build\n```\n\n## Run\n\n```bash\ndotnet run --project {{PROJECT_NAME}}\n```\n\n## Architecture\n\n- MVVM pattern with CommunityToolkit.Mvvm\n- ViewModels in ViewModels/\n- Views in Views/\n- Models in Models/\n- Services in Services/\n\n## Author\n\n{{AUTHOR}}"
+  },
+  "commands": [
+    "dotnet restore",
+    "dotnet build",
+    "dotnet run --project {{PROJECT_NAME}}"
+  ]
+}

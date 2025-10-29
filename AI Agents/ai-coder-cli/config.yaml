@@ -1,0 +1,1396 @@
+# ============================================================================
+# AI Agent Console - YAML Configuration File
+# ============================================================================
+#
+# This file contains all configuration settings for the AI Agent Console.
+# YAML format is used for its readability and support for complex nested structures.
+#
+# Legacy TOML Support: The system will automatically detect and load legacy config.toml
+# if config.yaml is not found, but a deprecation warning will be shown.
+#
+# Environment Variable Overrides:
+# You can override any setting using environment variables with the prefix
+# AI_AGENT_ followed by the setting path with double underscores.
+#
+# Examples:
+#   export AI_AGENT_OLLAMA__HOST="http://192.168.1.100"
+#   export AI_AGENT_OPENAI__API_KEY="sk-..."
+#   export AI_AGENT_LOGGING__LEVEL="DEBUG"
+#   export AI_AGENT_UI__COLOR_SCHEME="dark"
+#   export AI_AGENT_SECURITY__REQUIRE_FILE_CONFIRMATION="true"
+#
+
+
+# ============================================================================
+# Ollama LLM Provider Settings
+# ============================================================================
+# Configuration for the Ollama local LLM provider.
+# Ollama runs models locally without requiring API keys.
+ollama:
+  # Ollama server host URL
+  # Can include protocol (http:// or https://)
+  # Default: "http://localhost"
+  host: "http://localhost"
+  
+  # Ollama server port
+  # Standard Ollama installation uses port 11434
+  # Default: 11434
+  # Range: 1-65535
+  port: 11434
+  
+  # Request timeout in seconds
+  # How long to wait for Ollama responses before timing out
+  # Default: 120
+  # Minimum: 1
+  timeout: 120
+
+
+# ============================================================================
+# OpenAI LLM Provider Settings
+# ============================================================================
+# Configuration for OpenAI and OpenAI-compatible services.
+# Requires an API key for authentication.
+openai:
+  # OpenAI API key
+  # IMPORTANT: Keep this secure! Do not commit API keys to version control.
+  # Recommended: Set via environment variable AI_AGENT_OPENAI__API_KEY
+  # Default: null (not configured)
+  api_key: null
+  
+  # OpenAI API base URL
+  # Change this if using OpenAI-compatible services (e.g., Azure OpenAI, LocalAI)
+  # For Azure OpenAI: "https://<your-resource>.openai.azure.com"
+  # For LocalAI: "http://localhost:8080/v1"
+  # Default: "https://api.openai.com/v1"
+  base_url: "https://api.openai.com/v1"
+  
+  # Request timeout in seconds
+  # How long to wait for API responses before timing out
+  # Default: 120
+  # Minimum: 1
+  timeout: 120
+  
+  # Maximum tokens in response
+  # Leave as null to use model defaults
+  # Set to a specific number to limit response length
+  # Default: null
+  # Minimum: 1 (if set)
+  max_tokens: null
+
+
+# ============================================================================
+# Llama.cpp LLM Provider Settings
+# ============================================================================
+# Configuration for Llama.cpp local LLM provider.
+# Llama.cpp runs GGUF format models locally without requiring API keys.
+llamacpp:
+  # Path to specific GGUF model file
+  # If null, will look for models in models_dir
+  # Example: "./models/llama-2-7b-chat.Q4_K_M.gguf"
+  # Default: null (not configured)
+  model_path: null
+  
+  # Directory containing GGUF model files
+  # Models will be searched in this directory
+  # Default: "./models"
+  models_dir: "./models"
+  
+  # Context window size (in tokens)
+  # Larger values allow longer conversations but use more memory
+  # Default: 2048
+  # Range: 128-32768
+  context_size: 2048
+  
+  # Number of CPU threads to use
+  # null = auto-detect based on available CPU cores
+  # Default: null (auto-detect)
+  # Minimum: 1 (if set)
+  n_threads: null
+  
+  # Number of layers to offload to GPU
+  # 0 = CPU only, higher values = more GPU usage
+  # Requires llama.cpp compiled with GPU support
+  # Default: 0
+  # Minimum: 0
+  n_gpu_layers: 0
+  
+  # Enable verbose logging for llama.cpp
+  # Useful for debugging model loading and inference
+  # Default: false
+  verbose: false
+
+
+# ============================================================================
+# Model Settings
+# ============================================================================
+# Default models and generation parameters for LLM providers.
+models:
+  # Default model to use with Ollama
+  # Common options:
+  #   - llama2: Meta's Llama 2 model
+  #   - llama3: Meta's Llama 3 model (newer, better)
+  #   - mistral: Mistral AI's efficient model
+  #   - codellama: Code-specialized Llama model
+  #   - phi3: Microsoft's compact efficient model
+  # Default: "llama2"
+  ollama_default: "llama2"
+  
+  # Default model to use with OpenAI
+  # Common options:
+  #   - gpt-3.5-turbo: Fast and cost-effective
+  #   - gpt-4: More capable, higher cost
+  #   - gpt-4-turbo: Latest GPT-4 with better performance
+  #   - gpt-4o: Optimized GPT-4 variant
+  # Default: "gpt-3.5-turbo"
+  openai_default: "gpt-3.5-turbo"
+  
+  # Default model file to use with Llama.cpp
+  # Should be a GGUF model file name in the models_dir
+  # Common options:
+  #   - llama-2-7b-chat.Q4_K_M.gguf: Llama 2 7B quantized
+  #   - mistral-7b-instruct-v0.2.Q4_K_M.gguf: Mistral 7B quantized
+  #   - codellama-7b-instruct.Q4_K_M.gguf: CodeLlama 7B quantized
+  # Default: "default.gguf"
+  llamacpp_default: "default.gguf"
+  
+  # Temperature for response generation
+  # Controls randomness in model outputs
+  # 0.0 = Deterministic, focused responses
+  # 1.0 = Balanced creativity and consistency
+  # 2.0 = Very random, creative responses
+  # Default: 0.7
+  # Range: 0.0-2.0
+  temperature: 0.7
+
+
+# ============================================================================
+# Logging Configuration
+# ============================================================================
+# Controls how the application logs information, warnings, and errors.
+logging:
+  # Logging level
+  # Determines which messages are logged
+  # Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  # Default: "INFO"
+  level: "INFO"
+  
+  # Log message format
+  # Python logging format string
+  # Default: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # Enable file logging
+  # Whether to write logs to a file
+  # Default: true
+  file_enabled: true
+  
+  # Log file path
+  # Path relative to project root or absolute path
+  # Directory will be created if it doesn't exist
+  # Default: "logs/app.log"
+  file_path: "logs/app.log"
+  
+  # Enable console logging
+  # Whether to print logs to stdout/stderr
+  # Default: true
+  console_enabled: true
+
+
+# ============================================================================
+# Retry Policy
+# ============================================================================
+# Configuration for automatic retries on failed LLM requests.
+# Uses exponential backoff strategy.
+retry:
+  # Maximum number of retry attempts
+  # How many times to retry a failed request
+  # Default: 3
+  # Range: 0-10
+  max_retries: 3
+  
+  # Initial delay between retries (in seconds)
+  # Starting delay before first retry
+  # Default: 1.0
+  # Minimum: 0.1
+  initial_delay: 1.0
+  
+  # Maximum delay between retries (in seconds)
+  # Cap on exponential backoff delay
+  # Default: 60.0
+  # Minimum: 1.0
+  max_delay: 60.0
+  
+  # Exponential backoff base multiplier
+  # Each retry delay = previous_delay * exponential_base
+  # Default: 2.0 (delays: 1s, 2s, 4s, 8s, ...)
+  # Minimum: 1.0
+  exponential_base: 2.0
+
+
+# ============================================================================
+# Fallback Preferences
+# ============================================================================
+# Configuration for provider fallback on failures.
+# Allows automatic switching between ollama, llamacpp, and openai providers.
+fallback:
+  # Enable automatic fallback to secondary provider
+  # When primary provider fails, try fallback provider
+  # Default: true
+  enabled: true
+  
+  # Primary LLM provider to use
+  # Options: "ollama", "llamacpp", or "openai"
+  # Default: "ollama"
+  primary_provider: "ollama"
+  
+  # Fallback LLM provider (used when primary fails)
+  # Options: "ollama", "llamacpp", or "openai"
+  # Must be different from primary_provider when fallback is enabled
+  # Default: "llamacpp"
+  fallback_provider: "llamacpp"
+  
+  # Secondary fallback LLM provider (tertiary option, used when both primary and fallback fail)
+  # Options: "ollama", "openai", "llamacpp", or null to disable
+  # Must be different from primary_provider and fallback_provider when set
+  # Default: "openai"
+  secondary_fallback_provider: "openai"
+
+
+# ============================================================================
+# UI (User Interface) Settings
+# ============================================================================
+# Configuration for Rich console output and visual preferences.
+ui:
+  # Use Rich library for enhanced console output
+  # Provides colors, tables, progress bars, and formatting
+  # Default: true
+  use_rich_console: true
+  
+  # Console color scheme
+  # Options: "dark", "light", "auto"
+  # "auto" detects terminal background
+  # Default: "auto"
+  color_scheme: "auto"
+  
+  # Show progress bars for long operations
+  # Displays progress indicators during file processing, etc.
+  # Default: true
+  show_progress_bars: true
+  
+  # Show panels for structured output
+  # Uses bordered panels for better visual organization
+  # Default: true
+  show_panels: true
+  
+  # Show tables for tabular data
+  # Formats lists and data in table format
+  # Default: true
+  show_tables: true
+  
+  # Enable animations and spinners
+  # Shows loading spinners during operations
+  # Default: true
+  animate: true
+  
+  # Enable emoji in console output
+  # Adds visual icons to messages (✓, ✗, ⚠, etc.)
+  # Default: true
+  emoji_enabled: true
+
+
+# ============================================================================
+# Security Settings
+# ============================================================================
+# Confirmation requirements and sandboxing for safe operation.
+security:
+  # Require confirmation before file operations
+  # Prompts user before creating, modifying, or deleting files
+  # Default: true
+  require_file_confirmation: true
+  
+  # Require confirmation before git operations
+  # Prompts user before git commits, pushes, etc.
+  # Default: true
+  require_git_confirmation: true
+  
+  # Require confirmation before shell command execution
+  # Prompts user before running shell commands
+  # Default: true
+  require_shell_confirmation: true
+  
+  # Sandboxing level for tool execution
+  # Options:
+  #   - "none": No sandboxing (fastest, least safe)
+  #   - "basic": Basic path and command validation
+  #   - "strict": Strict sandboxing with whitelists
+  # Default: "basic"
+  sandboxing_level: "basic"
+  
+  # Allowed file extensions for file operations
+  # Whitelist of file extensions that can be created/modified
+  # Empty list = all extensions allowed
+  # Default: Common development file types
+  allowed_file_extensions:
+    - ".py"
+    - ".js"
+    - ".ts"
+    - ".jsx"
+    - ".tsx"
+    - ".html"
+    - ".css"
+    - ".scss"
+    - ".json"
+    - ".yaml"
+    - ".yml"
+    - ".toml"
+    - ".md"
+    - ".txt"
+    - ".sh"
+    - ".bash"
+    - ".sql"
+    - ".xml"
+  
+  # Blocked paths for file operations
+  # Absolute paths that are off-limits for file operations
+  # Prevents accidental system file modifications
+  # Default: Critical system directories
+  blocked_paths:
+    - "/etc"
+    - "/sys"
+    - "/proc"
+    - "/boot"
+    - "/dev"
+    - "/root"
+
+
+# ============================================================================
+# Shell Execution Settings
+# ============================================================================
+# Configuration for shell command execution safety and limits.
+shell_execution:
+  # Whitelist of allowed shell commands
+  # Empty list = all commands allowed (use blocked_commands for safety)
+  # Non-empty list = only listed commands can run
+  # Default: Common safe commands
+  allowed_commands:
+    - "ls"
+    - "cd"
+    - "pwd"
+    - "echo"
+    - "cat"
+    - "grep"
+    - "find"
+    - "git"
+    - "python"
+    - "python3"
+    - "pip"
+    - "pip3"
+    - "node"
+    - "npm"
+    - "npx"
+    - "yarn"
+    - "pnpm"
+    - "docker"
+    - "kubectl"
+  
+  # Blacklist of dangerous shell commands
+  # Commands that should never be executed
+  # Always checked, even if allowed_commands is empty
+  # Default: Destructive and dangerous commands
+  blocked_commands:
+    - "rm -rf /"
+    - "mkfs"
+    - "dd"
+    - ":(){ :|:& };:"  # Fork bomb
+    - "chmod -R 777 /"
+    - "chown -R"
+  
+  # Default timeout for shell commands (in seconds)
+  # Maximum time allowed for a command to run
+  # Default: 300 (5 minutes)
+  # Minimum: 1
+  timeout: 300
+  
+  # Maximum output size in bytes
+  # Limits memory usage from command output
+  # Default: 10485760 (10 MB)
+  # Minimum: 1024 (1 KB)
+  max_output_size: 10485760
+  
+  # Allow sudo commands
+  # ⚠️ WARNING: Enabling this allows elevated privilege commands
+  # Only enable in trusted, controlled environments
+  # Default: false
+  enable_sudo: false
+
+
+# ============================================================================
+# Agent System Configuration
+# ============================================================================
+# Configuration for the agent orchestration system.
+agents:
+  # List of enabled agents
+  # Available agents:
+  #   - code_planner: Plans code implementations
+  #   - code_editor: Edits and creates code files
+  #   - git_agent: Handles git operations
+  #   - web_data: Fetches and processes web data
+  #   - web_search: Multi-engine web search
+  #   - database: Multi-database support (SQL and NoSQL)
+  #   - data_analysis: Data analysis with pandas
+  #   - cybersecurity: Security analysis and testing
+  #   - windows_admin: Windows system administration
+  #   - linux_admin: Linux system administration
+  # Default: Core agents enabled
+  enabled_agents:
+    - "code_planner"
+    - "code_editor"
+    - "git_agent"
+    - "web_data"
+    - "web_search"
+    - "database"
+  
+  # Auto-confirm all agent actions without user prompts
+  # ⚠️ WARNING: Setting this to true will execute file operations and git
+  # commands without confirmation. Use with extreme caution!
+  # Overrides security.require_*_confirmation settings
+  # Default: false
+  auto_confirm: false
+  
+  # Maximum iterations for agent orchestration
+  # Prevents infinite loops in agent chains
+  # Default: 10
+  # Range: 1-50
+  max_iterations: 10
+  
+  # Default editor agents for each programming language
+  # Allows customizing which agent handles each file type
+  # Use language-specific editors for better code generation
+  language_editors:
+    python: "code_editor_python"
+    csharp: "code_editor_csharp"
+    cs: "code_editor_csharp"
+    shell: "code_editor_shell"
+    sh: "code_editor_shell"
+    bash: "code_editor_shell"
+    zsh: "code_editor_shell"
+    javascript: "code_editor_webdev"
+    typescript: "code_editor_webdev"
+    jsx: "code_editor_webdev"
+    tsx: "code_editor_webdev"
+    html: "code_editor_webdev"
+    css: "code_editor_webdev"
+    powershell: "code_editor_powershell"
+    ps1: "code_editor_powershell"
+    batch: "code_editor_batch"
+    cmd: "code_editor_batch"
+    cpp: "code_editor_cpp"
+    c: "code_editor_cpp"
+    # Fallback for unspecified types
+    default: "code_editor"
+  
+  # ============================================================================
+  # Model Assignments for Each Agent
+  # ============================================================================
+  # Configures which LLM model each agent uses based on task complexity.
+  # See MODEL_ASSIGNMENTS.md for detailed reasoning behind assignments.
+  # 
+  # Each agent can specify:
+  #   - primary: Main model to use (required)
+  #   - fallback: Backup model if primary unavailable (optional)
+  #   - temperature: Generation temperature 0.0-2.0 (optional, defaults to 0.7)
+  #   - max_tokens: Maximum response tokens (optional)
+  model_assignments:
+    # -------------------------------------------------------------------------
+    # Core Planning & Architecture Agents
+    # -------------------------------------------------------------------------
+    code_planner:
+      primary: "deepseek-r1:32b"        # Best for complex reasoning and planning
+      fallback: "gemma3:27b"            # Good general-purpose fallback
+      temperature: 0.7                   # Balanced creativity for planning
+    
+    prompt_refiner:
+      primary: "gemma3:27b"             # Good for text refinement
+      fallback: "mistral-nemo:12b"      # Fast fallback
+      temperature: 0.8                   # Slightly creative for refinement
+    
+    # -------------------------------------------------------------------------
+    # Code Editing & Generation Agents
+    # -------------------------------------------------------------------------
+    code_editor:
+      primary: "qwen3-coder:30b"        # Best code generation model
+      fallback: "codellama:13b"         # Code-specialized fallback
+      temperature: 0.3                   # Low temp for consistent code
+    
+    code_editor_python:
+      primary: "qwen3-coder:30b"        # Excellent Python generation
+      fallback: "codellama:13b"         # Good Python understanding
+      temperature: 0.3
+    
+    code_editor_csharp:
+      primary: "qwen3-coder:30b"        # Strong C# capabilities
+      fallback: "codellama:13b"         # Reasonable C# support
+      temperature: 0.3
+    
+    code_editor_shell:
+      primary: "qwen3-coder:30b"        # Good shell scripting
+      fallback: "mistral-nemo:12b"      # Fast for simple scripts
+      temperature: 0.2                   # Very consistent for shell
+    
+    code_editor_webdev:
+      primary: "qwen3-coder:30b"        # Great for web technologies
+      fallback: "codellama:13b"         # Decent web support
+      temperature: 0.3
+    
+    code_editor_powershell:
+      primary: "qwen3-coder:30b"        # Good PowerShell knowledge
+      fallback: "mistral-nemo:12b"      # Fast for simple scripts
+      temperature: 0.2
+    
+    code_editor_batch:
+      primary: "mistral-nemo:12b"       # Fast for simple batch scripts
+      fallback: "mistral:7b"            # Very fast fallback
+      temperature: 0.2
+    
+    code_editor_cpp:
+      primary: "qwen3-coder:30b"        # C++ complexity needs large model
+      fallback: "codellama:13b"         # Good C++ support
+      temperature: 0.3
+    
+    # -------------------------------------------------------------------------
+    # Debug Agents
+    # -------------------------------------------------------------------------
+    python_debug:
+      primary: "qwen3-coder:30b"        # Deep code understanding needed
+      fallback: "codellama:13b"         # Good Python debugging
+      temperature: 0.4                   # Slightly creative for debugging insights
+    
+    csharp_debug:
+      primary: "qwen3-coder:30b"        # Strong C#/.NET knowledge
+      fallback: "codellama:13b"         # Reasonable C# support
+      temperature: 0.4
+    
+    cpp_debug:
+      primary: "qwen3-coder:30b"        # Complex memory debugging
+      fallback: "codellama:13b"         # Good C++ understanding
+      temperature: 0.4
+    
+    shell_debug:
+      primary: "qwen3-coder:30b"        # Shell script intricacies
+      fallback: "mistral-nemo:12b"      # Fast for simpler debugging
+      temperature: 0.3
+    
+    powershell_debug:
+      primary: "qwen3-coder:30b"        # PowerShell-specific knowledge
+      fallback: "mistral-nemo:12b"      # Fast fallback
+      temperature: 0.3
+    
+    batch_debug:
+      primary: "mistral-nemo:12b"       # Fast for batch script debugging
+      fallback: "mistral:7b"            # Very fast fallback
+      temperature: 0.3
+    
+    webdev_debug:
+      primary: "qwen3-coder:30b"        # Complex web stack debugging
+      fallback: "codellama:13b"         # Good web technologies support
+      temperature: 0.4
+    
+    # -------------------------------------------------------------------------
+    # Build Agents
+    # -------------------------------------------------------------------------
+    python_build:
+      primary: "qwen2.5-coder:7b"       # Good for build system understanding
+      fallback: "llama3.3:latest"       # General purpose fallback
+      temperature: 0.3                   # Consistent for build operations
+    
+    csharp_build:
+      primary: "qwen2.5-coder:7b"       # Good C# and .NET knowledge
+      fallback: "llama3.3:latest"       # General purpose fallback
+      temperature: 0.3
+    
+    cpp_build:
+      primary: "qwen2.5-coder:7b"       # Good for CMake and build systems
+      fallback: "llama3.3:latest"       # General purpose fallback
+      temperature: 0.3
+    
+    shell_build:
+      primary: "qwen2.5-coder:7b"       # Good for shell scripting
+      fallback: "llama3.3:latest"       # General purpose fallback
+      temperature: 0.2                   # Very consistent for shell
+    
+    powershell_build:
+      primary: "qwen2.5-coder:7b"       # Good PowerShell knowledge
+      fallback: "llama3.3:latest"       # General purpose fallback
+      temperature: 0.2
+    
+    batch_build:
+      primary: "mistral:latest"         # Fast for batch scripts
+      fallback: "llama3.3:latest"       # General purpose fallback
+      temperature: 0.2
+    
+    webdev_build:
+      primary: "qwen2.5-coder:7b"       # Great for web build tools
+      fallback: "llama3.3:latest"       # General purpose fallback
+      temperature: 0.3
+    
+    # -------------------------------------------------------------------------
+    # Testing & Quality Agents
+    # -------------------------------------------------------------------------
+    code_tester:
+      primary: "qwen3-coder:30b"        # Needs to understand code deeply
+      fallback: "codellama:13b"         # Good test generation
+      temperature: 0.4                   # Slightly creative for test cases
+    
+    # -------------------------------------------------------------------------
+    # Security & Administration Agents
+    # -------------------------------------------------------------------------
+    cybersecurity:
+      primary: "deepseek-r1:32b"        # Security needs deep reasoning
+      fallback: "gemma3:27b"            # Good general reasoning
+      temperature: 0.5                   # Balanced for security analysis
+    
+    windows_admin:
+      primary: "mistral-nemo:12b"       # Fast for admin tasks
+      fallback: "mistral:7b"            # Very fast fallback
+      temperature: 0.2                   # Consistent for admin commands
+    
+    linux_admin:
+      primary: "mistral-nemo:12b"       # Fast for admin tasks
+      fallback: "mistral:7b"            # Very fast fallback
+      temperature: 0.2
+    
+    # -------------------------------------------------------------------------
+    # Data & Analysis Agents
+    # -------------------------------------------------------------------------
+    data_analysis:
+      primary: "qwen3:30b-a3b"          # Specialized for data analysis
+      fallback: "gemma3:27b"            # Good general reasoning
+      temperature: 0.4                   # Balanced for data interpretation
+    
+    # -------------------------------------------------------------------------
+    # Web & Search Agents
+    # -------------------------------------------------------------------------
+    web_data:
+      primary: "gemma3:27b"             # Good for web parsing
+      fallback: "mistral-nemo:12b"      # Fast fallback
+      temperature: 0.5
+    
+    web_search:
+      primary: "mistral-nemo:12b"       # Fast for search operations
+      fallback: "mistral:7b"            # Very fast fallback
+      temperature: 0.3                   # Consistent search queries
+    
+    # -------------------------------------------------------------------------
+    # Database Agents
+    # -------------------------------------------------------------------------
+    database:
+      primary: "qwen3:30b-a3b"          # Complex query generation
+      fallback: "qwen3-coder:30b"       # Also good at SQL
+      temperature: 0.2                   # Very consistent for SQL
+    
+    # -------------------------------------------------------------------------
+    # Version Control Agents
+    # -------------------------------------------------------------------------
+    git_agent:
+      primary: "mistral-nemo:12b"       # Fast for git operations
+      fallback: "mistral:7b"            # Very fast fallback
+      temperature: 0.3
+    
+    # -------------------------------------------------------------------------
+    # API Integration Agent
+    # -------------------------------------------------------------------------
+    api_agent:
+      primary: "gemma3:27b"             # Good for API understanding
+      fallback: "mistral-nemo:12b"      # Fast fallback
+      temperature: 0.4                   # Balanced for API operations
+    
+    # -------------------------------------------------------------------------
+    # Project Initialization Agents
+    # -------------------------------------------------------------------------
+    project_init:
+      primary: "qwen3-coder:30b"        # Best for project structure
+      fallback: "gemma3:27b"            # Good general fallback
+      temperature: 0.5                   # Creative for project setup
+    
+    project_init_python:
+      primary: "qwen3-coder:30b"        # Excellent Python project knowledge
+      fallback: "codellama:13b"         # Good Python understanding
+      temperature: 0.5
+    
+    project_init_csharp:
+      primary: "qwen3-coder:30b"        # Strong C#/.NET project setup
+      fallback: "codellama:13b"         # Reasonable C# support
+      temperature: 0.5
+    
+    project_init_webdev:
+      primary: "qwen3-coder:30b"        # Great for web project structures
+      fallback: "codellama:13b"         # Decent web support
+      temperature: 0.5
+    
+    project_init_shell:
+      primary: "qwen3-coder:30b"        # Good shell project setup (bash/zsh/sh)
+      fallback: "mistral-nemo:12b"      # Fast for simple projects
+      temperature: 0.4
+    
+    project_init_powershell:
+      primary: "qwen3-coder:30b"        # Good PowerShell project knowledge
+      fallback: "mistral-nemo:12b"      # Fast fallback
+      temperature: 0.4
+    
+    project_init_cpp:
+      primary: "qwen3-coder:30b"        # C++ project complexity needs large model
+      fallback: "codellama:13b"         # Good C++ support
+      temperature: 0.5
+    
+    project_init_batch:
+      primary: "mistral-nemo:12b"       # Fast for batch script projects
+      fallback: "mistral:7b"            # Very fast fallback
+      temperature: 0.4
+    
+    # Task orchestrator model configuration
+    task_orchestrator:
+      primary: "qwen3-coder:30b"        # Best for complex task decomposition
+      fallback: "gemma3:27b"            # Good reasoning abilities
+      temperature: 0.3                   # Low for consistent planning
+
+
+# ============================================================================
+# Web Search Configuration
+# ============================================================================
+# Configuration for the web search agent with multi-provider support.
+# Supports intelligent fallback to free providers when API keys are missing.
+web_search:
+  # Provider preference order (searched in this order)
+  # Free providers (no API key needed): duckduckgo
+  # Paid/API providers: langsearch, google, bing
+  # Default: ["duckduckgo", "langsearch", "google", "bing"]
+  provider_preference:
+    - "duckduckgo"    # Free, privacy-friendly, no API key
+    - "langsearch"    # May require API key
+    - "google"        # Requires API key
+    - "bing"          # Requires API key
+  
+  # DuckDuckGo settings (no configuration needed - always available)
+  duckduckgo:
+    enabled: true
+  
+  # Langsearch settings
+  langsearch:
+    # API key for Langsearch (optional for basic use)
+    # Set via environment variable: AI_AGENT_WEB_SEARCH__LANGSEARCH__API_KEY
+    api_key: ""
+    
+    # Langsearch API endpoint
+    endpoint: "https://api.langsearch.io/v1/search"
+    
+    # Request timeout (seconds)
+    timeout: 30
+  
+  # Google Custom Search settings
+  google:
+    # Google Custom Search API key
+    # Get from: https://developers.google.com/custom-search/v1/overview
+    # Set via environment variable: AI_AGENT_WEB_SEARCH__GOOGLE__API_KEY
+    api_key: ""
+    
+    # Custom Search Engine ID
+    # Create at: https://programmablesearchengine.google.com/
+    # Set via environment variable: AI_AGENT_WEB_SEARCH__GOOGLE__SEARCH_ENGINE_ID
+    search_engine_id: ""
+    
+    # Request timeout (seconds)
+    timeout: 30
+  
+  # Bing Search settings
+  bing:
+    # Bing Search API key
+    # Get from: https://www.microsoft.com/en-us/bing/apis/bing-web-search-api
+    # Set via environment variable: AI_AGENT_WEB_SEARCH__BING__API_KEY
+    api_key: ""
+    
+    # Request timeout (seconds)
+    timeout: 30
+
+
+# ============================================================================
+# Tool System Configuration
+# ============================================================================
+# Configuration for the tool system and external integrations.
+tools:
+  # List of enabled tools
+  # Available tools:
+  #   - web_fetch: Fetch data from web URLs
+  #   - git: Git repository operations
+  #   - ollama_manager: Ollama LLM server management
+  #   - mcp: Model Context Protocol integration
+  #   - file_operations: Comprehensive file operations (read, write, edit, move, delete)
+  # Default: web_fetch, git, ollama_manager, and file_operations enabled
+  enabled_tools:
+    - "web_fetch"
+    - "git"
+    - "ollama_manager"
+    - "file_operations"
+  
+  # Use gitpython library if available
+  # Falls back to subprocess git commands if false or not installed
+  # Default: true
+  use_gitpython: true
+  
+  # Default timeout for web requests (in seconds)
+  # Maximum time to wait for web fetches
+  # Default: 30
+  # Minimum: 1
+  web_timeout: 30
+  
+  # Enable sandboxing for tool execution
+  # Applies additional safety checks to tool operations
+  # Default: true
+  enable_sandboxing: true
+  
+  # Working directory for sandboxed tool execution
+  # null = use system temporary directory
+  # Set to a specific path for persistent sandbox
+  # Default: null
+  sandbox_working_directory: null
+  
+  # Maximum file size for file operations (in bytes)
+  # Limits size of files that can be created/modified
+  # Default: 104857600 (100 MB)
+  # Minimum: 1024 (1 KB)
+  max_file_size: 104857600
+
+
+# ============================================================================
+# Testing Configuration
+# ============================================================================
+# Configuration for code testing agent and test execution.
+testing:
+  # Enable automatic test detection
+  # When true, the code_tester agent will automatically detect test frameworks
+  # Default: true
+  auto_detect_framework: true
+  
+  # Default test timeout (in seconds)
+  # Maximum time allowed for test suite execution
+  # Default: 300 (5 minutes)
+  # Minimum: 10
+  test_timeout: 300
+  
+  # Preferred test frameworks by language
+  # Used when multiple frameworks are available
+  preferred_frameworks:
+    python: "pytest"     # pytest or unittest
+    javascript: "jest"   # jest, mocha, or vitest
+    typescript: "jest"   # jest, mocha, or vitest
+    csharp: "xunit"      # xunit or nunit
+  
+  # Run tests automatically after code generation
+  # ⚠️ WARNING: This will execute test commands automatically
+  # Default: false
+  auto_run_tests: false
+
+
+# ============================================================================
+# MCP (Model Context Protocol) Configuration
+# ============================================================================
+# Configuration for MCP integration to connect to external tool servers.
+# MCP allows extending the agent with custom tools and capabilities.
+mcp:
+  # Enable MCP integration
+  # Must be true to connect to MCP servers
+  # Default: false
+  enabled: false
+  
+  # Timeout for tool discovery from MCP servers (in seconds)
+  # How long to wait when discovering tools from a new server
+  # Default: 10
+  # Minimum: 1
+  discovery_timeout: 10
+  
+  # MCP Server configurations
+  # List of MCP servers to connect to
+  # Each server requires:
+  #   - server_id: Unique identifier for the server
+  #   - transport: Communication method (stdio, sse, http)
+  #   - endpoint: Connection endpoint (command path or URL)
+  #   - auto_connect: Whether to connect on startup
+  #   - timeout: Connection timeout in seconds (default: 30)
+  #   - retry_count: Number of retry attempts (default: 3)
+  #   - auth: (optional) Authentication credentials
+  # Default: Empty list (no servers configured)
+  servers: []
+  
+  # Example MCP server configurations (commented out):
+  
+  # Example 1: Local MCP server via stdio (spawns a process)
+  # - server_id: "local_tools"
+  #   transport: "stdio"
+  #   endpoint: "/usr/local/bin/mcp-server"
+  #   auto_connect: true
+  #   timeout: 30
+  #   retry_count: 3
+  
+  # Example 2: Remote MCP server via HTTP with authentication
+  # - server_id: "remote_api"
+  #   transport: "http"
+  #   endpoint: "https://api.example.com/mcp"
+  #   auto_connect: false
+  #   timeout: 60
+  #   retry_count: 5
+  #   auth:
+  #     token: "your-auth-token-here"
+  #     # or use environment variable:
+  #     # token: "${MCP_AUTH_TOKEN}"
+  
+  # Example 3: MCP server via SSE (Server-Sent Events)
+  # - server_id: "sse_server"
+  #   transport: "sse"
+  #   endpoint: "https://sse.example.com/events"
+  #   auto_connect: false
+  #   timeout: 45
+  #   retry_count: 3
+  #   auth:
+  #     api_key: "your-api-key-here"
+  
+  # Example 4: Multiple servers for different capabilities
+  # - server_id: "database_tools"
+  #   transport: "http"
+  #   endpoint: "http://localhost:8080/mcp"
+  #   auto_connect: true
+  #   timeout: 30
+  #   retry_count: 2
+  # 
+  # - server_id: "cloud_tools"
+  #   transport: "http"
+  #   endpoint: "https://cloud-tools.example.com/mcp"
+  #   auto_connect: false
+  #   timeout: 90
+  #   retry_count: 5
+  #   auth:
+  #     bearer_token: "your-bearer-token"
+
+
+# ============================================================================
+# Vector Database Configuration (ChromaDB)
+# ============================================================================
+# Configuration for ChromaDB vector database integration.
+# Used for semantic search, document storage, and code retrieval.
+vector_db:
+  # Enable vector database functionality
+  # Set to false to disable vector DB features
+  # Default: true
+  enabled: true
+  
+  # Database provider (currently only chromadb is supported)
+  # Default: "chromadb"
+  provider: "chromadb"
+  
+  # Persistent storage directory for ChromaDB
+  # All collections and embeddings will be stored here
+  # Path can be relative or absolute
+  # Default: "./data/chroma_db"
+  persist_directory: "./data/chroma_db"
+  
+  # Embedding model configuration
+  embedding:
+    # Ollama model for generating embeddings
+    # nomic-embed-text is optimized for text embeddings
+    # Alternatives: mxbai-embed-large, all-minilm
+    # Default: "nomic-embed-text:latest"
+    model: "nomic-embed-text:latest"
+    
+    # Ollama server for embedding generation
+    # Should match ollama.host configuration
+    # Default: "http://localhost:11434"
+    host: "http://localhost:11434"
+    
+    # Request timeout for embedding generation (seconds)
+    # Default: 120
+    timeout: 120
+    
+    # Normalize embeddings to unit length
+    # Recommended for cosine similarity
+    # Default: true
+    normalize: true
+  
+  # Collection settings
+  collections:
+    # Default collection for code snippets
+    code_snippets:
+      # Auto-create on startup
+      auto_create: true
+      
+      # Collection metadata
+      metadata:
+        description: "Code snippets and examples"
+        version: "1.0"
+    
+    # Default collection for documentation
+    documentation:
+      auto_create: true
+      metadata:
+        description: "Project and API documentation"
+        version: "1.0"
+    
+    # Default collection for conversation history
+    # (if memory system uses vector DB)
+    conversations:
+      auto_create: false
+      metadata:
+        description: "Agent conversation history"
+        version: "1.0"
+  
+  # Search settings
+  search:
+    # Default number of results to return
+    # Default: 10
+    default_n_results: 10
+    
+    # Similarity metric (cosine or euclidean)
+    # Default: "cosine"
+    similarity_metric: "cosine"
+    
+    # Minimum similarity score threshold (0.0 to 1.0)
+    # Results below this threshold are filtered out
+    # Default: 0.5
+    min_similarity: 0.5
+  
+  # Performance settings
+  performance:
+    # Batch size for bulk embedding operations
+    # Larger batches are faster but use more memory
+    # Default: 32
+    batch_size: 32
+    
+    # Enable caching of embeddings
+    # Default: true
+    cache_embeddings: true
+    
+    # Maximum cache size (number of embeddings)
+    # Default: 1000
+    max_cache_size: 1000
+
+
+# ============================================================================
+# Migration Notes from Legacy TOML Format
+# ============================================================================
+# If you're migrating from legacy config.toml to config.yaml:
+#
+# 1. YAML uses indentation (2 spaces) instead of TOML's [sections]
+# 2. YAML uses 'key: value' instead of TOML's 'key = value'
+# 3. YAML lists use '- item' syntax instead of TOML's ['item1', 'item2']
+# 4. Comments in YAML use # (same as TOML)
+# 5. Strings in YAML can be unquoted (unless they contain special characters)
+#
+# The application will automatically load legacy config.toml as a fallback if
+# config.yaml is not found, but will show a deprecation warning.
+#
+# To migrate: Simply copy your values from legacy config.toml to this file,
+# following the YAML syntax shown in the examples above.
+# ============================================================================
+
+
+
+# ============================================================================
+# Memory Management Configuration
+# ============================================================================
+memory:
+  # Enable memory management system
+  enabled: true
+  
+  # Storage path for memory persistence
+  storage_path: "./memory"
+  
+  # Enable vector-enhanced memory
+  use_vector_memory: true
+  
+  # Vector database path for memory embeddings
+  vector_db_path: "./memory_vector_db"
+  
+  # Default context window size (in tokens)
+  default_max_context_window: 4096
+  
+  # Auto-save sessions after updates
+  auto_save: true
+  
+  # Enable automatic memory summarization
+  enable_summarization: true
+  
+  # Number of recent messages to keep after summarization
+  summarization_keep_count: 5
+  
+  # Embedding model for memory operations
+  embedding_model: "nomic-embed-text:latest"
+  
+  # Semantic search settings
+  search:
+    # Default number of semantic search results
+    default_n_results: 10
+    
+    # Minimum similarity threshold for search results
+    min_similarity: 0.6
+
+
+# ============================================================================
+# Development Tools Configuration
+# ============================================================================
+development_tools:
+  # Enable development tools integration
+  enabled: true
+  
+  # Linter configuration
+  linter:
+    # Enable automatic linting
+    auto_lint: false
+    
+    # Preferred linters by language
+    preferred_linters:
+      python: "pylint"      # pylint, flake8, or ruff
+      javascript: "eslint"  # eslint
+      typescript: "eslint"  # eslint
+      cpp: "cppcheck"       # cppcheck or cpplint
+      shell: "shellcheck"   # shellcheck
+      go: "golint"          # golint
+    
+    # Fail build on lint errors
+    fail_on_errors: false
+    
+    # Fail build on lint warnings
+    fail_on_warnings: false
+  
+  # Formatter configuration
+  formatter:
+    # Enable automatic formatting
+    auto_format: false
+    
+    # Preferred formatters by language
+    preferred_formatters:
+      python: "black"         # black, autopep8, or yapf
+      javascript: "prettier"  # prettier
+      typescript: "prettier"  # prettier
+      cpp: "clang-format"     # clang-format
+      go: "gofmt"             # gofmt
+      rust: "rustfmt"         # rustfmt
+    
+    # Format on save (when integrated with editors)
+    format_on_save: false
+  
+  # Static analyzer configuration
+  analyzer:
+    # Enable static analysis
+    enabled: true
+    
+    # Preferred analyzers by language
+    preferred_analyzers:
+      python: "mypy"       # mypy (type checking)
+      javascript: "tsc"    # tsc (TypeScript compiler)
+      typescript: "tsc"    # tsc (TypeScript compiler)
+      cpp: "cppcheck"      # cppcheck or clang-tidy
+    
+    # Analysis types to run
+    analysis_types:
+      - "types"            # Type checking
+      - "security"         # Security analysis
+      - "complexity"       # Complexity analysis
+    
+    # Fail on analysis errors
+    fail_on_errors: false
+  
+  # Code quality configuration
+  quality:
+    # Enable quality metrics
+    enabled: true
+    
+    # Minimum quality score (0-100)
+    min_quality_score: 60
+    
+    # Maximum cyclomatic complexity
+    max_complexity: 10
+    
+    # Minimum maintainability index
+    min_maintainability: 40
+    
+    # Maximum code duplication percentage
+    max_duplication: 10
+    
+    # Minimum code comment ratio (comments/code)
+    min_comment_ratio: 0.05
+    
+    # Generate quality reports
+    generate_reports: true
+    
+    # Report output format
+    report_format: "markdown"  # text, markdown, or json
+    
+    # Report output directory
+    report_output_dir: "./quality_reports"
+
+# ============================================================================
+# Task Orchestration Configuration
+# ============================================================================
+orchestrator:
+  # Enable task orchestration system
+  enabled: true
+  
+  # Context storage path for workflows
+  context_storage_path: "./workflow_context"
+  
+  # Maximum number of subtasks per main task
+  max_subtasks_per_task: 20
+  
+  # LLM settings for orchestrator operations
+  llm:
+    # Model for task decomposition
+    decomposition_model: "qwen3-coder:30b"
+    
+    # Model for specification extraction
+    extraction_model: "qwen3-coder:30b"
+    
+    # Model for context refinement
+    context_model: "qwen3-coder:30b"
+    
+    # Temperature for orchestrator operations
+    temperature: 0.3
+  
+  # Task execution settings
+  execution:
+    # Enable parallel task execution (when dependencies allow)
+    enable_parallel: false
+    
+    # Maximum concurrent tasks
+    max_concurrent_tasks: 3
+    
+    # Retry failed tasks
+    retry_failed_tasks: true
+    
+    # Maximum retry attempts
+    max_retries: 2
+  
+  # Context management settings
+  context:
+    # Maximum tokens for context summaries
+    max_context_tokens: 2000
+    
+    # Include recent messages in context
+    include_recent_messages: true
+    
+    # Number of recent messages to include
+    recent_message_count: 10
+    
+    # Include similar past tasks in context
+    include_similar_tasks: true
+    
+    # Number of similar tasks to include
+    similar_task_count: 5
+  
+  # Agent selection settings
+  agent_selection:
+    # Use LLM for agent selection (vs rule-based)
+    use_llm: false
+    
+    # Default agent when none matches
+    default_agent: "code_editor"
+
+
+# ============================================================================
+# Workflow Automation Configuration
+# ============================================================================
+workflows:
+  # Enable workflow automation system
+  enabled: true
+  
+  # Workflow definitions directory
+  workflows_dir: "./orchestration/workflows/definitions"
+  
+  # Auto-select workflows based on task description
+  auto_select: true
+  
+  # Prompt user when workflow selection is ambiguous
+  prompt_on_ambiguous: true
+  
+  # Use LLM for workflow selection (vs keyword matching)
+  use_llm_selection: false
+  
+  # Auto-confirm workflow execution (bypasses user prompts)
+  auto_confirm_execution: false
+  
+  # Workflow execution settings
+  execution:
+    # Maximum workflow execution time (in seconds)
+    max_execution_time: 3600
+    
+    # Save workflow state on failure
+    save_state_on_failure: true
+    
+    # Workflow state storage directory
+    state_storage_dir: "./workflow_states"
+    
+    # Enable workflow logging
+    enable_logging: true
+    
+    # Workflow log directory
+    log_dir: "./logs/workflows"
+  
+  # Available workflow types
+  available_workflows:
+    - new_project_workflow
+    - new_feature_workflow
+    - refactor_workflow
+    - extend_project_workflow
+    - debug_workflow
+    - test_workflow
+    - analyze_workflow
+    - build_workflow
+
+
+
+
+# ============================================================================
+# Plugin System Configuration
+# ============================================================================
+plugins:
+  # Enable plugin system
+  enabled: true
+  
+  # Auto-discover plugins in plugins/ directory
+  auto_discover: true
+  
+  # Explicitly enabled plugins (if auto_discover is false)
+  enabled_plugins:
+    - example_plugin
+  
+  # Plugin directory
+  plugin_dir: "./plugins"
+  
+  # Plugin loading settings
+  loading:
+    # Continue loading other plugins if one fails
+    continue_on_error: true
+    
+    # Validate plugin metadata
+    validate_metadata: true
+    
+    # Check plugin dependencies
+    check_dependencies: true
+    
+    # Load plugins in parallel (experimental)
+    parallel_loading: false
+  
+  # Plugin-specific configurations
+  example_plugin:
+    # Enable debug mode for the example plugin
+    debug_mode: true
+    
+    # Custom settings
+    custom_setting: "example_value"
+  
+  # Security settings
+  security:
+    # Verify plugin signatures (not implemented yet)
+    verify_signatures: false
+    
+    # Allow only trusted plugins
+    trusted_only: false
+    
+    # Sandbox plugins (isolate plugin execution)
+    sandbox_plugins: false

@@ -1,0 +1,48 @@
+{
+  "name": "cli-python",
+  "description": "Professional Python CLI application with argparse, logging, and best practices",
+  "version": "1.0.0",
+  "variables": {
+    "PROJECT_NAME": {
+      "type": "string",
+      "required": true,
+      "description": "Project name (snake_case recommended)"
+    },
+    "AUTHOR": {
+      "type": "string",
+      "default": "",
+      "description": "Project author name"
+    },
+    "EMAIL": {
+      "type": "string",
+      "default": "",
+      "description": "Author email"
+    },
+    "DESCRIPTION": {
+      "type": "string",
+      "default": "A Python CLI application",
+      "description": "Project description"
+    },
+    "VERSION": {
+      "type": "string",
+      "default": "0.1.0",
+      "description": "Initial version"
+    }
+  },
+  "files": {
+    "setup.py": "from setuptools import setup, find_packages\n\nsetup(\n    name=\"{{PROJECT_NAME}}\",\n    version=\"{{VERSION}}\",\n    author=\"{{AUTHOR}}\",\n    author_email=\"{{EMAIL}}\",\n    description=\"{{DESCRIPTION}}\",\n    packages=find_packages(where=\"src\"),\n    package_dir={\"\": \"src\"},\n    python_requires=\">=3.8\",\n    install_requires=[\n        \"colorama>=0.4.6\",\n        \"rich>=13.7.0\",\n    ],\n    entry_points={\n        \"console_scripts\": [\n            \"{{PROJECT_NAME}}={{PROJECT_NAME}}.cli:main\",\n        ],\n    },\n)",
+    "requirements.txt": "colorama>=0.4.6\nrich>=13.7.0",
+    ".gitignore": "__pycache__/\n*.py[cod]\n*.so\ndist/\nbuild/\n*.egg-info/\nvenv/\n.pytest_cache/\n.coverage",
+    "README.md": "# {{PROJECT_NAME}}\n\n{{DESCRIPTION}}\n\n## Installation\n\n```bash\npython -m venv venv\nsource venv/bin/activate\npip install -e .\n```\n\n## Usage\n\n```bash\n{{PROJECT_NAME}} --help\n{{PROJECT_NAME}} hello --name World\n```\n\n## Author\n\n{{AUTHOR}} <{{EMAIL}}>",
+    "src/{{PROJECT_NAME}}/__init__.py": "__version__ = \"{{VERSION}}\"\n__author__ = \"{{AUTHOR}}\"\n__email__ = \"{{EMAIL}}\"",
+    "src/{{PROJECT_NAME}}/cli.py": "import argparse\nimport sys\nfrom rich.console import Console\nfrom . import __version__\n\nconsole = Console()\n\ndef main():\n    parser = argparse.ArgumentParser(\n        prog=\"{{PROJECT_NAME}}\",\n        description=\"{{DESCRIPTION}}\"\n    )\n    parser.add_argument(\"--version\", action=\"version\", version=f\"%(prog)s {__version__}\")\n    \n    subparsers = parser.add_subparsers(dest=\"command\")\n    \n    hello_parser = subparsers.add_parser(\"hello\", help=\"Say hello\")\n    hello_parser.add_argument(\"--name\", default=\"World\", help=\"Name to greet\")\n    \n    args = parser.parse_args()\n    \n    if args.command == \"hello\":\n        console.print(f\"[bold green]Hello, {args.name}![/bold green]\")\n    else:\n        parser.print_help()\n    \n    return 0\n\nif __name__ == \"__main__\":\n    sys.exit(main())",
+    "tests/__init__.py": "",
+    "tests/test_cli.py": "from {{PROJECT_NAME}}.cli import main\n\ndef test_import():\n    import {{PROJECT_NAME}}\n    assert hasattr({{PROJECT_NAME}}, \"__version__\")"
+  },
+  "commands": [
+    "python -m venv venv",
+    "source venv/bin/activate (Linux/macOS) or venv\\Scripts\\activate (Windows)",
+    "pip install -e .",
+    "{{PROJECT_NAME}} --help"
+  ]
+}

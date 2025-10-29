@@ -1,0 +1,59 @@
+# WindSurf Rules Configuration
+# Development Guidelines and Project Standards
+
+[Code Familiarity]
+1. Analyze the code thoroughly before making changes
+2. Understand codebase structure, features, gaps, and goals before starting
+3. Analyze and review the full codebase before working
+4. Check existing files and code before adding new ones
+
+[Dependencies]
+5. Use existing dependencies if possible
+6. Do not add new dependencies unless absolutely necessary
+
+[DatabaseAndDataFlow]
+7. Use Dapper to access the databases
+8. Try not to change data models
+9. Only add new model files if they don’t already exist
+10. Keep models compatible with DB/XML/IFS formats
+
+[CodingPrinciples]
+11. Avoid breaking existing functionality
+12. Focus on scoped improvements only
+13. Apply Single Responsibility Principle
+14. Keep code clean and maintainable
+15. Remove unused legacy code
+16. Align new classes with the structure and style of existing ones
+17. Keep using statements clean and up to date
+
+[Versioning]
+18. Do not change language version
+19. IFS API DLLs must use .NET Framework 4.6.1
+
+[Documentation]
+20. Use clear, relevant XML documentation comments
+21. Remove outdated or irrelevant comments
+22. Maintain README.md with current app, codebase, settings, and UI details
+23. Do not fabricate details—verify before documenting
+24. Exclude Collaboration and License sections from README
+25. Include Contents section in README
+26. Document codebase as tree structure with descriptions
+27. Update order:
+    - XML code comments
+    - TODO.md
+    - UI updates
+    - README.md
+28. Ensure project file has no legacy or missing files before documentation
+
+[TODOManagement]
+29. Maintain TODO.md for tracking tasks
+30. Mark completed tasks as done—do not delete them
+31. Keep TODO file current and organized
+
+[Misc]
+32. Keep ConsoleUI in sync with changes
+33. XML examples:
+    - Input: Templates/Invoices/
+    - Output: Templates/Output/
+34. IFS API usage example in Templates/IfsApiTemplate.cs
+35. Remember what we are trying to achieve: a well organized, clean and easy to use app that moves data from xml file to IFS API

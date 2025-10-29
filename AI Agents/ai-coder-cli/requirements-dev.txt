@@ -1,0 +1,142 @@
+
+# AI Agent Console - Development Dependencies
+#
+# Install with: pip install -r requirements-dev.txt
+# This will also install production dependencies from requirements.txt
+
+# Include production dependencies
+-r requirements.txt
+
+# ============================================================================
+# Testing Framework
+# ============================================================================
+
+# Core testing framework
+pytest==7.4.3
+pytest-asyncio==0.21.1  # For async test support
+pytest-cov==4.1.0       # Code coverage plugin
+pytest-mock==3.12.0     # Mocking utilities
+pytest-timeout==2.2.0   # Test timeout support
+pytest-xdist==3.5.0     # Parallel test execution
+
+# Coverage reporting
+coverage[toml]==7.4.0
+
+# Test fixtures and utilities
+faker==22.0.0           # For generating test data
+factory-boy==3.3.0      # For creating test fixtures
+freezegun==1.4.0        # For mocking datetime
+responses==0.24.1       # For mocking HTTP requests
+pytest-httpx==0.28.0    # For mocking httpx requests
+
+# ============================================================================
+# Code Quality and Linting
+# ============================================================================
+
+# Code formatting
+black==23.12.1          # Code formatter
+isort==5.13.2           # Import sorting
+
+# Linting
+flake8==7.0.0           # Style guide enforcement
+pylint==3.0.3           # Code analysis
+pep8-naming==0.13.3     # PEP 8 naming conventions
+flake8-docstrings==1.7.0 # Docstring linting
+flake8-bugbear==23.12.2 # Bug pattern detection
+flake8-comprehensions==3.14.0 # Comprehension linting
+flake8-simplify==0.21.0 # Code simplification suggestions
+
+# ============================================================================
+# Type Checking
+# ============================================================================
+
+# Type checking (already in requirements.txt but ensuring latest)
+mypy==1.8.0
+mypy-extensions==1.0.0
+
+# Stubs for type checking
+types-pyyaml==6.0.12.12
+types-requests==2.31.0.20240125
+types-toml==0.10.8.20240310
+
+# ============================================================================
+# Documentation
+# ============================================================================
+
+# Documentation generation
+sphinx==7.2.6
+sphinx-rtd-theme==2.0.0  # Read the Docs theme
+sphinx-autodoc-typehints==1.25.2
+myst-parser==2.0.0       # Markdown support for Sphinx
+
+# ============================================================================
+# Development Utilities
+# ============================================================================
+
+# Interactive debugging
+ipython==8.20.0
+ipdb==0.13.13
+
+# Performance profiling
+memory-profiler==0.61.0
+line-profiler==4.1.1
+
+# Pre-commit hooks
+pre-commit==3.6.0
+
+# Project management
+bump2version==1.0.1      # Version bumping
+twine==4.0.2            # Package publishing
+
+# ============================================================================
+# Additional Testing Utilities
+# ============================================================================
+
+# Hypothesis for property-based testing
+hypothesis==6.98.0
+
+# VCR.py for recording HTTP interactions
+vcrpy==5.1.0
+
+# For testing CLI applications
+pytest-click==1.1.0
+
+# For testing Rich console output
+pytest-rich==0.1.1
+
+# ============================================================================
+# Security
+# ============================================================================
+
+# Security vulnerability scanning
+bandit==1.7.6
+safety==3.0.1
+
+# ============================================================================
+# Notes
+# ============================================================================
+# 
+# Installation:
+# 1. Install development dependencies:
+#    pip install -r requirements-dev.txt
+#
+# 2. Set up pre-commit hooks:
+#    pre-commit install
+#
+# 3. Run tests:
+#    pytest
+#
+# 4. Run tests with coverage:
+#    pytest --cov
+#
+# 5. Run linters:
+#    black .
+#    isort .
+#    flake8
+#    pylint agents tools core orchestration
+#    mypy agents tools core orchestration
+#
+# 6. Run security checks:
+#    bandit -r agents tools core orchestration
+#    safety check
+#

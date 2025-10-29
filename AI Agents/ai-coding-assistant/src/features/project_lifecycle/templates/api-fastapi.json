@@ -1,0 +1,49 @@
+{
+  "name": "api-fastapi",
+  "description": "FastAPI REST API with async support, SQLAlchemy, and best practices",
+  "version": "1.0.0",
+  "variables": {
+    "PROJECT_NAME": {
+      "type": "string",
+      "required": true,
+      "description": "Project name (snake_case recommended)"
+    },
+    "AUTHOR": {
+      "type": "string",
+      "default": "",
+      "description": "Project author name"
+    },
+    "DESCRIPTION": {
+      "type": "string",
+      "default": "A FastAPI application",
+      "description": "Project description"
+    },
+    "VERSION": {
+      "type": "string",
+      "default": "0.1.0",
+      "description": "Initial version"
+    }
+  },
+  "files": {
+    "requirements.txt": "fastapi==0.109.0\nuvicorn[standard]==0.27.0\nsqlalchemy==2.0.25\npydantic==2.5.3\npydantic-settings==2.1.0\npython-dotenv==1.0.0",
+    ".env.example": "APP_NAME={{PROJECT_NAME}}\nAPP_VERSION={{VERSION}}\nDEBUG=True\nHOST=0.0.0.0\nPORT=8000\nDATABASE_URL=sqlite:///./{{PROJECT_NAME}}.db",
+    ".gitignore": "__pycache__/\n*.py[cod]\n*.so\n.env\n*.db\n*.sqlite\nvenv/\n.pytest_cache/\n.coverage\nlogs/",
+    "README.md": "# {{PROJECT_NAME}}\n\n{{DESCRIPTION}}\n\n## Installation\n\n```bash\npython -m venv venv\nsource venv/bin/activate  # or venv\\Scripts\\activate on Windows\npip install -r requirements.txt\ncp .env.example .env\n```\n\n## Run\n\n```bash\nuvicorn app.main:app --reload\n```\n\nAPI docs: http://localhost:8000/docs\n\n## Author\n\n{{AUTHOR}}",
+    "app/__init__.py": "",
+    "app/main.py": "from fastapi import FastAPI\nfrom fastapi.middleware.cors import CORSMiddleware\nfrom app.core.config import settings\n\napp = FastAPI(\n    title=settings.APP_NAME,\n    version=settings.APP_VERSION,\n    description=\"{{DESCRIPTION}}\"\n)\n\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],\n    allow_credentials=True,\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],\n)\n\[email protected](\"/\")\nasync def root():\n    return {\n        \"message\": \"Welcome to {{PROJECT_NAME}} API\",\n        \"version\": settings.APP_VERSION,\n        \"docs\": \"/docs\"\n    }\n\[email protected](\"/health\")\nasync def health_check():\n    return {\"status\": \"healthy\"}",
+    "app/core/__init__.py": "",
+    "app/core/config.py": "from pydantic_settings import BaseSettings\n\nclass Settings(BaseSettings):\n    APP_NAME: str = \"{{PROJECT_NAME}}\"\n    APP_VERSION: str = \"{{VERSION}}\"\n    DEBUG: bool = True\n    HOST: str = \"0.0.0.0\"\n    PORT: int = 8000\n    DATABASE_URL: str = \"sqlite:///./{{PROJECT_NAME}}.db\"\n    \n    class Config:\n        env_file = \".env\"\n        case_sensitive = True\n\nsettings = Settings()",
+    "app/api/__init__.py": "",
+    "app/models/__init__.py": "",
+    "app/schemas/__init__.py": "",
+    "tests/__init__.py": "",
+    "tests/test_main.py": "from fastapi.testclient import TestClient\nfrom app.main import app\n\nclient = TestClient(app)\n\ndef test_root():\n    response = client.get(\"/\")\n    assert response.status_code == 200\n    data = response.json()\n    assert \"message\" in data\n\ndef test_health_check():\n    response = client.get(\"/health\")\n    assert response.status_code == 200\n    assert response.json()[\"status\"] == \"healthy\""
+  },
+  "commands": [
+    "python -m venv venv",
+    "source venv/bin/activate (Linux/macOS) or venv\\Scripts\\activate (Windows)",
+    "pip install -r requirements.txt",
+    "cp .env.example .env",
+    "uvicorn app.main:app --reload"
+  ]
+}

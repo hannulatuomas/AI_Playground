@@ -1,0 +1,54 @@
+# UI is now fully responsive and consistent across all forms, cards, and main flows. All user-facing pages have loading and empty states.
+# Backend error handling/validation is now robust and consistent (centralized error handler, validation middleware on all major routes/controllers).
+
+saas-template/
+├── client/                   # Frontend (React, TypeScript, Vite, Tailwind)
+│   ├── public/
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── components/
+│   │   ├── features/
+│   │   │   ├── auth/         # Login, signup, Google login, password reset, etc.
+│   │   │   ├── billing/      # Stripe integration, plans, invoices
+│   │   │   ├── dashboard/    # Main app features
+│   │   │   ├── profile/      # User profile mgmt
+│   │   ├── hooks/
+│   │   ├── layouts/
+│   │   ├── pages/            # Route-based components
+│   │   ├── routes/           # (If using file-based routing)
+│   │   ├── services/         # API clients, Stripe, Google auth helpers
+│   │   ├── store/            # State management (e.g., Redux, Zustand)
+│   │   ├── styles/           # Tailwind config, global styles
+│   │   ├── utils/
+│   │   ├── App.tsx
+│   │   └── main.tsx
+│   ├── tailwind.config.js
+│   ├── tsconfig.json
+│   └── vite.config.ts
+├── server/                   # Backend (Express, TypeScript)
+│   ├── config/               # Env, database, Stripe, Google, subscriptionTiers.json
+│   │   └── subscriptionTiers.json   # Subscription tiers config
+│   ├── src/
+│   │   ├── api/              # Route handlers
+│   │   │   ├── auth/
+│   │   │   ├── billing/
+│   │   │   ├── users/
+│   │   │   ├── teams/
+│   │   │   └── webhooks/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── models/           # ORM/DB models (User, Subscription, etc.)
+│   │   ├── services/         # Business logic, Stripe, Google
+│   │   ├── utils/
+│   │   ├── app.ts
+│   │   └── server.ts
+│   ├── tests/
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── .env.example
+├── docs/                     # Documentation, API docs, onboarding
+├── scripts/                  # Dev/ops scripts
+├── .env.example              # Example env vars for root
+├── README.md
+├── LICENSE
+└── package.json              # Root scripts (optional)

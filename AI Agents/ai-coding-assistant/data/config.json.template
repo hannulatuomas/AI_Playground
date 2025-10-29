@@ -1,0 +1,24 @@
+{
+  "_comment": "Sample configuration file - DO NOT commit with real paths",
+  "model_path": "data/models/your-model.Q4_K_M.gguf",
+  "executable_path": "path/to/llama-cli",
+  "context_size": 4096,
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 40,
+  "repeat_penalty": 1.1,
+  "threads": 4,
+  "gpu_layers": 0,
+  
+  "_notes": {
+    "model_path": "Path to your GGUF model file",
+    "executable_path": "Path to llama-cli or main executable",
+    "context_size": "Model context window (2048-8192, lower = faster)",
+    "temperature": "Randomness (0.1-1.0, higher = more creative)",
+    "top_p": "Nucleus sampling (0.1-1.0)",
+    "top_k": "Top-k sampling (1-100)",
+    "repeat_penalty": "Penalize repetition (1.0-1.5)",
+    "threads": "CPU threads to use",
+    "gpu_layers": "GPU layers to offload (0 = CPU only)"
+  }
+}

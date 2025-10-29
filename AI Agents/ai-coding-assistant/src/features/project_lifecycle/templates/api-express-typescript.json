@@ -1,0 +1,47 @@
+{
+  "name": "api-express-typescript",
+  "description": "Express REST API with TypeScript, MongoDB, and JWT authentication",
+  "version": "1.0.0",
+  "variables": {
+    "PROJECT_NAME": {
+      "type": "string",
+      "required": true,
+      "description": "Project name (kebab-case)"
+    },
+    "AUTHOR": {
+      "type": "string",
+      "default": "",
+      "description": "Project author"
+    },
+    "DESCRIPTION": {
+      "type": "string",
+      "default": "An Express API",
+      "description": "Project description"
+    },
+    "PORT": {
+      "type": "string",
+      "default": "3000",
+      "description": "Server port"
+    }
+  },
+  "files": {
+    "package.json": "{\n  \"name\": \"{{PROJECT_NAME}}\",\n  \"version\": \"1.0.0\",\n  \"description\": \"{{DESCRIPTION}}\",\n  \"author\": \"{{AUTHOR}}\",\n  \"main\": \"dist/index.js\",\n  \"type\": \"module\",\n  \"scripts\": {\n    \"dev\": \"tsx watch src/index.ts\",\n    \"build\": \"tsc\",\n    \"start\": \"node dist/index.js\",\n    \"test\": \"jest\"\n  },\n  \"dependencies\": {\n    \"express\": \"^4.18.2\",\n    \"cors\": \"^2.8.5\",\n    \"dotenv\": \"^16.3.1\",\n    \"mongoose\": \"^8.0.3\",\n    \"bcryptjs\": \"^2.4.3\",\n    \"jsonwebtoken\": \"^9.0.2\",\n    \"express-validator\": \"^7.0.1\"\n  },\n  \"devDependencies\": {\n    \"@types/express\": \"^4.17.21\",\n    \"@types/cors\": \"^2.8.17\",\n    \"@types/node\": \"^20.10.6\",\n    \"@types/bcryptjs\": \"^2.4.6\",\n    \"@types/jsonwebtoken\": \"^9.0.5\",\n    \"typescript\": \"^5.3.3\",\n    \"tsx\": \"^4.7.0\"\n  }\n}",
+    "tsconfig.json": "{\n  \"compilerOptions\": {\n    \"target\": \"ES2022\",\n    \"module\": \"ESNext\",\n    \"moduleResolution\": \"bundler\",\n    \"outDir\": \"./dist\",\n    \"rootDir\": \"./src\",\n    \"strict\": true,\n    \"esModuleInterop\": true,\n    \"skipLibCheck\": true\n  },\n  \"include\": [\"src/**/*\"],\n  \"exclude\": [\"node_modules\"]\n}",
+    ".env.example": "PORT={{PORT}}\nMONGODB_URI=mongodb://localhost:27017/{{PROJECT_NAME}}\nJWT_SECRET=your-secret-key-change-in-production\nNODE_ENV=development",
+    ".gitignore": "node_modules/\ndist/\n.env\n*.log\n.DS_Store",
+    "README.md": "# {{PROJECT_NAME}}\n\n{{DESCRIPTION}}\n\n## Setup\n\n```bash\nnpm install\ncp .env.example .env\n# Edit .env with your settings\n```\n\n## Development\n\n```bash\nnpm run dev\n```\n\n## Production\n\n```bash\nnpm run build\nnpm start\n```\n\n## API Documentation\n\n- GET /api/health - Health check\n- POST /api/auth/register - Register user\n- POST /api/auth/login - Login user\n\n## Author\n\n{{AUTHOR}}",
+    "src/index.ts": "import express from 'express'\nimport cors from 'cors'\nimport dotenv from 'dotenv'\nimport { connectDB } from './config/database'\nimport authRoutes from './routes/auth'\nimport { errorHandler } from './middleware/errorHandler'\n\ndotenv.config()\n\nconst app = express()\nconst PORT = process.env.PORT || {{PORT}}\n\napp.use(cors())\napp.use(express.json())\n\nconnectDB()\n\napp.get('/api/health', (req, res) => {\n  res.json({ status: 'healthy', service: '{{PROJECT_NAME}}' })\n})\n\napp.use('/api/auth', authRoutes)\n\napp.use(errorHandler)\n\napp.listen(PORT, () => {\n  console.log(`Server running on http://localhost:${PORT}`)\n})",
+    "src/config/database.ts": "import mongoose from 'mongoose'\n\nexport const connectDB = async () => {\n  try {\n    const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/{{PROJECT_NAME}}'\n    await mongoose.connect(uri)\n    console.log('MongoDB connected')\n  } catch (error) {\n    console.error('MongoDB connection error:', error)\n    process.exit(1)\n  }\n}",
+    "src/models/User.ts": "import mongoose, { Document, Schema } from 'mongoose'\nimport bcrypt from 'bcryptjs'\n\nexport interface IUser extends Document {\n  email: string\n  password: string\n  name: string\n  comparePassword(password: string): Promise<boolean>\n}\n\nconst userSchema = new Schema<IUser>({\n  email: { type: String, required: true, unique: true },\n  password: { type: String, required: true },\n  name: { type: String, required: true }\n}, { timestamps: true })\n\nuserSchema.pre('save', async function(next) {\n  if (!this.isModified('password')) return next()\n  this.password = await bcrypt.hash(this.password, 10)\n  next()\n})\n\nuserSchema.methods.comparePassword = async function(password: string) {\n  return bcrypt.compare(password, this.password)\n}\n\nexport default mongoose.model<IUser>('User', userSchema)",
+    "src/routes/auth.ts": "import { Router } from 'express'\nimport { register, login } from '../controllers/authController'\nimport { validateRegister, validateLogin } from '../middleware/validators'\n\nconst router = Router()\n\nrouter.post('/register', validateRegister, register)\nrouter.post('/login', validateLogin, login)\n\nexport default router",
+    "src/controllers/authController.ts": "import { Request, Response } from 'express'\nimport jwt from 'jsonwebtoken'\nimport User from '../models/User'\n\nexport const register = async (req: Request, res: Response) => {\n  try {\n    const { email, password, name } = req.body\n    \n    const existingUser = await User.findOne({ email })\n    if (existingUser) {\n      return res.status(400).json({ message: 'User already exists' })\n    }\n    \n    const user = new User({ email, password, name })\n    await user.save()\n    \n    const token = jwt.sign(\n      { userId: user._id },\n      process.env.JWT_SECRET || 'secret',\n      { expiresIn: '7d' }\n    )\n    \n    res.status(201).json({ token, user: { id: user._id, email, name } })\n  } catch (error) {\n    res.status(500).json({ message: 'Server error' })\n  }\n}\n\nexport const login = async (req: Request, res: Response) => {\n  try {\n    const { email, password } = req.body\n    \n    const user = await User.findOne({ email })\n    if (!user || !(await user.comparePassword(password))) {\n      return res.status(401).json({ message: 'Invalid credentials' })\n    }\n    \n    const token = jwt.sign(\n      { userId: user._id },\n      process.env.JWT_SECRET || 'secret',\n      { expiresIn: '7d' }\n    )\n    \n    res.json({ token, user: { id: user._id, email: user.email, name: user.name } })\n  } catch (error) {\n    res.status(500).json({ message: 'Server error' })\n  }\n}",
+    "src/middleware/auth.ts": "import { Request, Response, NextFunction } from 'express'\nimport jwt from 'jsonwebtoken'\n\nexport interface AuthRequest extends Request {\n  userId?: string\n}\n\nexport const authenticate = (req: AuthRequest, res: Response, next: NextFunction) => {\n  try {\n    const token = req.header('Authorization')?.replace('Bearer ', '')\n    \n    if (!token) {\n      return res.status(401).json({ message: 'No token provided' })\n    }\n    \n    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { userId: string }\n    req.userId = decoded.userId\n    next()\n  } catch (error) {\n    res.status(401).json({ message: 'Invalid token' })\n  }\n}",
+    "src/middleware/validators.ts": "import { body } from 'express-validator'\n\nexport const validateRegister = [\n  body('email').isEmail().withMessage('Invalid email'),\n  body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),\n  body('name').notEmpty().withMessage('Name is required')\n]\n\nexport const validateLogin = [\n  body('email').isEmail().withMessage('Invalid email'),\n  body('password').notEmpty().withMessage('Password is required')\n]",
+    "src/middleware/errorHandler.ts": "import { Request, Response, NextFunction } from 'express'\n\nexport const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {\n  console.error(err.stack)\n  res.status(err.status || 500).json({\n    message: err.message || 'Internal server error'\n  })\n}"
+  },
+  "commands": [
+    "npm install",
+    "cp .env.example .env",
+    "npm run dev"
+  ]
+}

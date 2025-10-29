@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="frost" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2ec4f1"/>
+      <stop offset="100%" stop-color="#b4e0fc"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="28" fill="url(#frost)" stroke="#1a4c6e" stroke-width="4"/>
+  <path d="M32 14 L38 32 L32 50 L26 32 Z" fill="#fff" stroke="#1a4c6e" stroke-width="2"/>
+  <text x="32" y="38" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#1a4c6e" font-weight="bold">FP</text>
+</svg>

@@ -1,0 +1,138 @@
+
+# Debug Workflow
+# Analyzes issue, debugs, fixes, tests, and commits fix
+
+workflow_id: debug_workflow
+name: Debug and Fix Issues
+description: Analyze issue, debug code, implement fix, test, and commit
+version: 1.0.0
+tags:
+  - debug
+  - bugfix
+  - troubleshooting
+
+steps:
+  - step_id: analyze_issue
+    name: Analyze Issue Description
+    agent: code_planner
+    action: analyze_issue
+    params:
+      issue_description: "{{ issue_description }}"
+      error_logs: "{{ error_logs | default('') }}"
+    dependencies: []
+    on_error: fail
+
+  - step_id: locate_problem
+    name: Locate Problem in Code
+    agent: code_analyzer
+    action: locate_issue
+    params:
+      issue_analysis: "{{ step_analyze_issue_result }}"
+      project_path: "{{ project_path }}"
+    dependencies:
+      - analyze_issue
+    on_error: fail
+
+  - step_id: analyze_code_context
+    name: Analyze Code Context
+    agent: code_analyzer
+    action: analyze_code
+    params:
+      target_files: "{{ step_locate_problem_result.files }}"
+      focus: "debugging"
+    dependencies:
+      - locate_problem
+    on_error: continue
+
+  - step_id: debug_code
+    name: Debug and Diagnose
+    agent: debug_agent
+    action: debug
+    params:
+      issue: "{{ step_analyze_issue_result }}"
+      code_location: "{{ step_locate_problem_result }}"
+      code_context: "{{ step_analyze_code_context_result }}"
+    dependencies:
+      - analyze_code_context
+    on_error: fail
+
+  - step_id: plan_fix
+    name: Plan Fix Strategy
+    agent: code_planner
+    action: plan_fix
+    params:
+      debug_results: "{{ step_debug_code_result }}"
+      issue: "{{ step_analyze_issue_result }}"
+    dependencies:
+      - debug_code
+    on_error: fail
+
+  - step_id: implement_fix
+    name: Implement Fix
+    agent: code_editor
+    action: implement_fix
+    params:
+      fix_plan: "{{ step_plan_fix_result }}"
+      target_files: "{{ step_locate_problem_result.files }}"
+    dependencies:
+      - plan_fix
+    on_error: fail
+
+  - step_id: verify_fix
+    name: Verify Fix with Tests
+    agent: code_tester
+    action: run_tests
+    params:
+      test_path: "tests/"
+      focus_on: "{{ step_analyze_issue_result.affected_functionality }}"
+    dependencies:
+      - implement_fix
+    on_error: fail
+
+  - step_id: regression_test
+    name: Run Full Regression Tests
+    agent: code_tester
+    action: run_tests
+    params:
+      test_path: "tests/"
+      full_suite: true
+    dependencies:
+      - verify_fix
+    on_error: continue
+
+  - step_id: update_documentation
+    name: Document Fix
+    agent: documentation_writer
+    action: document_fix
+    params:
+      issue: "{{ issue_description }}"
+      fix: "{{ step_implement_fix_result }}"
+      root_cause: "{{ step_debug_code_result.root_cause }}"
+    dependencies:
+      - implement_fix
+    on_error: continue
+
+  - step_id: git_commit
+    name: Commit Fix
+    agent: git_agent
+    action: commit
+    params:
+      message: "fix: {{ issue_description | truncate(50) }}"
+      description: |
+        Fixed: {{ issue_description }}
+        
+        Root Cause: {{ step_debug_code_result.root_cause }}
+        
+        Solution:
+        {{ step_plan_fix_result.solution_summary }}
+        
+        Files Modified:
+        {% for file in step_implement_fix_result.files %}
+        - {{ file }}
+        {% endfor %}
+        
+        Tests: {{ 'All Passed' if step_regression_test_result.success else 'Some Failed' }}
+    dependencies:
+      - verify_fix
+      - update_documentation
+    on_error: continue

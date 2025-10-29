@@ -1,0 +1,24 @@
+[
+  {
+    "key": "free",
+    "label": "Free",
+    "priceId": "",
+    "features": ["Basic features"],
+    "buttonText": "Start Free"
+  },
+  {
+    "key": "basic",
+    "label": "Basic",
+    "priceId": "price_basic",
+    "features": ["Everything in Free", "Feature X", "Feature Y"],
+    "buttonText": "Buy Now"
+  },
+  {
+    "key": "pro",
+    "label": "Pro",
+    "priceId": "price_pro",
+    "features": ["Everything in Basic", "Feature Z"],
+    "buttonText": "Buy Now",
+    "primary": true
+  }
+]

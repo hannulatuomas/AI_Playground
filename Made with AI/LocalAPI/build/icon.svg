@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f2027;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#203a43;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2c5364;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="peakGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#B0E0E6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ADD8E6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="snowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E0F6FF;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="256" cy="256" r="256" fill="url(#bgGradient)"/>
+  
+  <!-- Mountain peaks -->
+  <g filter="url(#glow)">
+    <!-- Back peak (left) -->
+    <path d="M 100 400 L 180 220 L 260 400 Z" 
+          fill="url(#peakGradient)" 
+          opacity="0.6"/>
+    
+    <!-- Main peak (center) -->
+    <path d="M 160 400 L 256 140 L 352 400 Z" 
+          fill="url(#peakGradient)"/>
+    
+    <!-- Front peak (right) -->
+    <path d="M 252 400 L 332 220 L 412 400 Z" 
+          fill="url(#peakGradient)" 
+          opacity="0.8"/>
+    
+    <!-- Snow caps -->
+    <path d="M 256 140 L 230 200 L 282 200 Z" 
+          fill="url(#snowGradient)"/>
+    <path d="M 180 220 L 165 250 L 195 250 Z" 
+          fill="url(#snowGradient)" 
+          opacity="0.8"/>
+    <path d="M 332 220 L 317 250 L 347 250 Z" 
+          fill="url(#snowGradient)" 
+          opacity="0.9"/>
+  </g>
+  
+  <!-- API symbol overlay (stylized brackets) -->
+  <g fill="#87CEEB" opacity="0.3">
+    <path d="M 140 280 L 120 280 L 120 320 L 140 320 L 140 310 L 130 310 L 130 290 L 140 290 Z" 
+          transform="scale(1.5) translate(50, 50)"/>
+    <path d="M 180 280 L 200 280 L 200 320 L 180 320 L 180 310 L 190 310 L 190 290 L 180 290 Z" 
+          transform="scale(1.5) translate(50, 50)"/>
+  </g>
+  
+  <!-- Subtle stars/sparkles for frozen effect -->
+  <circle cx="380" cy="150" r="3" fill="#E0F6FF" opacity="0.8"/>
+  <circle cx="420" cy="180" r="2" fill="#E0F6FF" opacity="0.6"/>
+  <circle cx="130" cy="170" r="2.5" fill="#E0F6FF" opacity="0.7"/>
+  <circle cx="90" cy="200" r="2" fill="#E0F6FF" opacity="0.5"/>
+</svg>

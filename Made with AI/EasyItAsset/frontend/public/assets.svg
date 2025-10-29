@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Server rack base -->
+  <rect x="6" y="4" width="20" height="24" rx="2" fill="#4F46E5"/>
+  <!-- Server slots -->
+  <rect x="8" y="8" width="16" height="2" rx="1" fill="white"/>
+  <rect x="8" y="12" width="16" height="2" rx="1" fill="white"/>
+  <rect x="8" y="16" width="16" height="2" rx="1" fill="white"/>
+  <rect x="8" y="20" width="16" height="2" rx="1" fill="white"/>
+  <!-- Status lights -->
+  <circle cx="10" cy="9" r="1" fill="#10B981"/>
+  <circle cx="10" cy="13" r="1" fill="#10B981"/>
+  <circle cx="10" cy="17" r="1" fill="#10B981"/>
+  <circle cx="10" cy="21" r="1" fill="#10B981"/>
+</svg> 

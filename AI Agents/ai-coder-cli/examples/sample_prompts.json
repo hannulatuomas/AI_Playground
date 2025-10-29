@@ -1,0 +1,212 @@
+{
+  "version": "1.0",
+  "exported_at": "2025-10-14T12:00:00",
+  "description": "Sample prompts and snippets for the AI Agent Console",
+  "prompts": [
+    {
+      "prompt_id": "sample-1",
+      "name": "code-review-template",
+      "description": "Template for comprehensive code reviews",
+      "content": "Review the following {{language}} code:\n\nFocus Areas:\n1. Best practices and conventions\n2. Potential bugs and edge cases\n3. Performance optimization\n4. Security vulnerabilities\n5. Code readability and maintainability\n\nSpecific concerns: {{concerns}}\n\nProvide detailed feedback with specific line references and suggested improvements.",
+      "prompt_type": "prompt",
+      "scope": "global",
+      "tags": ["code-review", "template", "quality"],
+      "variables": ["language", "concerns"],
+      "created_at": "2025-10-14T12:00:00",
+      "updated_at": "2025-10-14T12:00:00",
+      "usage_count": 0,
+      "metadata": {
+        "author": "AI Agent Console",
+        "category": "code-quality"
+      }
+    },
+    {
+      "prompt_id": "sample-2",
+      "name": "debug-assistant",
+      "description": "Step-by-step debugging guide",
+      "content": "Help me debug the following issue in {{language}}:\n\nError/Issue: {{error_description}}\n\nCode Context: {{code_snippet}}\n\nExpected Behavior: {{expected}}\nActual Behavior: {{actual}}\n\nPlease:\n1. Analyze the root cause of the issue\n2. Explain why it's happening\n3. Provide a step-by-step fix\n4. Suggest how to prevent similar issues\n5. Recommend testing strategies",
+      "prompt_type": "prompt",
+      "scope": "global",
+      "tags": ["debugging", "troubleshooting", "template"],
+      "variables": ["language", "error_description", "code_snippet", "expected", "actual"],
+      "created_at": "2025-10-14T12:00:00",
+      "updated_at": "2025-10-14T12:00:00",
+      "usage_count": 0,
+      "metadata": {
+        "author": "AI Agent Console",
+        "category": "debugging"
+      }
+    },
+    {
+      "prompt_id": "sample-3",
+      "name": "api-documentation",
+      "description": "Generate API endpoint documentation",
+      "content": "Generate comprehensive API documentation for:\n\nEndpoint: {{endpoint}}\nMethod: {{method}}\nDescription: {{description}}\n\nInclude:\n1. Endpoint URL and method\n2. Authentication requirements\n3. Request parameters (path, query, body)\n4. Request examples (curl, JavaScript, Python)\n5. Response format and status codes\n6. Error responses\n7. Rate limiting information\n8. Example use cases",
+      "prompt_type": "prompt",
+      "scope": "global",
+      "tags": ["api", "documentation", "template"],
+      "variables": ["endpoint", "method", "description"],
+      "created_at": "2025-10-14T12:00:00",
+      "updated_at": "2025-10-14T12:00:00",
+      "usage_count": 0,
+      "metadata": {
+        "author": "AI Agent Console",
+        "category": "documentation"
+      }
+    },
+    {
+      "prompt_id": "sample-4",
+      "name": "test-generation",
+      "description": "Generate comprehensive unit tests",
+      "content": "Generate comprehensive unit tests for the following {{language}} code:\n\n{{code}}\n\nRequirements:\n1. Use {{test_framework}} testing framework\n2. Include tests for:\n   - Normal/happy path cases\n   - Edge cases\n   - Error conditions\n   - Boundary values\n3. Use descriptive test names\n4. Include setup and teardown if needed\n5. Add comments explaining complex test scenarios\n6. Aim for {{coverage}}% code coverage",
+      "prompt_type": "prompt",
+      "scope": "global",
+      "tags": ["testing", "unit-tests", "template"],
+      "variables": ["language", "code", "test_framework", "coverage"],
+      "created_at": "2025-10-14T12:00:00",
+      "updated_at": "2025-10-14T12:00:00",
+      "usage_count": 0,
+      "metadata": {
+        "author": "AI Agent Console",
+        "category": "testing"
+      }
+    },
+    {
+      "prompt_id": "sample-5",
+      "name": "refactoring-guide",
+      "description": "Code refactoring recommendations",
+      "content": "Analyze and refactor the following {{language}} code:\n\n{{code}}\n\nRefactoring Goals:\n- Apply {{design_pattern}} pattern where appropriate\n- Improve code readability and maintainability\n- Reduce complexity and duplication\n- Follow {{style_guide}} style guide\n- Optimize performance where possible\n\nProvide:\n1. Analysis of current code structure\n2. Identified code smells and issues\n3. Refactored code with explanations\n4. Before/after complexity metrics\n5. Additional improvement suggestions",
+      "prompt_type": "prompt",
+      "scope": "global",
+      "tags": ["refactoring", "code-quality", "template"],
+      "variables": ["language", "code", "design_pattern", "style_guide"],
+      "created_at": "2025-10-14T12:00:00",
+      "updated_at": "2025-10-14T12:00:00",
+      "usage_count": 0,
+      "metadata": {
+        "author": "AI Agent Console",
+        "category": "refactoring"
+      }
+    },
+    {
+      "prompt_id": "sample-6",
+      "name": "security-review",
+      "description": "Security vulnerability analysis",
+      "content": "Perform a security review of the following {{language}} code:\n\n{{code}}\n\nSecurity Checklist:\n1. SQL Injection vulnerabilities\n2. Cross-Site Scripting (XSS)\n3. Cross-Site Request Forgery (CSRF)\n4. Input validation and sanitization\n5. Authentication and authorization\n6. Data encryption and sensitive data handling\n7. Secure communication (HTTPS, certificates)\n8. Error handling and information disclosure\n9. Dependency vulnerabilities\n10. Security best practices compliance\n\nProvide:\n- List of identified vulnerabilities with severity ratings\n- Detailed explanations of each issue\n- Recommended fixes with code examples\n- Additional security recommendations",
+      "prompt_type": "prompt",
+      "scope": "global",
+      "tags": ["security", "code-review", "vulnerability"],
+      "variables": ["language", "code"],
+      "created_at": "2025-10-14T12:00:00",
+      "updated_at": "2025-10-14T12:00:00",
+      "usage_count": 0,
+      "metadata": {
+        "author": "AI Agent Console",
+        "category": "security"
+      }
+    },
+    {
+      "prompt_id": "sample-7",
+      "name": "git-commit-message",
+      "description": "Conventional commit message template",
+      "content": "{{type}}({{scope}}): {{subject}}\n\n{{body}}\n\n{{footer}}",
+      "prompt_type": "snippet",
+      "scope": "global",
+      "tags": ["git", "commit", "template"],
+      "variables": ["type", "scope", "subject", "body", "footer"],
+      "created_at": "2025-10-14T12:00:00",
+      "updated_at": "2025-10-14T12:00:00",
+      "usage_count": 0,
+      "metadata": {
+        "author": "AI Agent Console",
+        "category": "version-control",
+        "note": "Types: feat, fix, docs, style, refactor, test, chore"
+      }
+    },
+    {
+      "prompt_id": "sample-8",
+      "name": "bug-report-template",
+      "description": "Comprehensive bug report template",
+      "content": "## Bug Report\n\n**Title:** {{title}}\n\n**Environment:**\n- OS: {{os}}\n- Version: {{version}}\n- Browser/Runtime: {{runtime}}\n\n**Description:**\n{{description}}\n\n**Steps to Reproduce:**\n1. {{step1}}\n2. {{step2}}\n3. {{step3}}\n\n**Expected Behavior:**\n{{expected}}\n\n**Actual Behavior:**\n{{actual}}\n\n**Screenshots/Logs:**\n{{logs}}\n\n**Additional Context:**\n{{context}}",
+      "prompt_type": "snippet",
+      "scope": "global",
+      "tags": ["bug", "issue", "template"],
+      "variables": ["title", "os", "version", "runtime", "description", "step1", "step2", "step3", "expected", "actual", "logs", "context"],
+      "created_at": "2025-10-14T12:00:00",
+      "updated_at": "2025-10-14T12:00:00",
+      "usage_count": 0,
+      "metadata": {
+        "author": "AI Agent Console",
+        "category": "issue-tracking"
+      }
+    },
+    {
+      "prompt_id": "sample-9",
+      "name": "feature-request",
+      "description": "Feature request template",
+      "content": "## Feature Request\n\n**Feature Name:** {{feature_name}}\n\n**Problem Statement:**\n{{problem}}\n\n**Proposed Solution:**\n{{solution}}\n\n**Benefits:**\n- {{benefit1}}\n- {{benefit2}}\n- {{benefit3}}\n\n**Alternative Solutions:**\n{{alternatives}}\n\n**Implementation Considerations:**\n- Complexity: {{complexity}}\n- Dependencies: {{dependencies}}\n- Breaking Changes: {{breaking_changes}}\n\n**Additional Context:**\n{{context}}",
+      "prompt_type": "snippet",
+      "scope": "global",
+      "tags": ["feature", "enhancement", "template"],
+      "variables": ["feature_name", "problem", "solution", "benefit1", "benefit2", "benefit3", "alternatives", "complexity", "dependencies", "breaking_changes", "context"],
+      "created_at": "2025-10-14T12:00:00",
+      "updated_at": "2025-10-14T12:00:00",
+      "usage_count": 0,
+      "metadata": {
+        "author": "AI Agent Console",
+        "category": "feature-planning"
+      }
+    },
+    {
+      "prompt_id": "sample-10",
+      "name": "code-explanation",
+      "description": "Explain code in detail",
+      "content": "Explain the following {{language}} code in detail:\n\n{{code}}\n\nProvide:\n1. High-level overview of what the code does\n2. Step-by-step breakdown of the logic\n3. Explanation of key concepts and algorithms used\n4. Purpose and functionality of each major component\n5. Discussion of design decisions\n6. Potential use cases\n7. Performance characteristics\n8. Possible improvements or alternatives\n\nTarget audience: {{audience}} (beginner/intermediate/advanced)",
+      "prompt_type": "prompt",
+      "scope": "global",
+      "tags": ["explanation", "documentation", "learning"],
+      "variables": ["language", "code", "audience"],
+      "created_at": "2025-10-14T12:00:00",
+      "updated_at": "2025-10-14T12:00:00",
+      "usage_count": 0,
+      "metadata": {
+        "author": "AI Agent Console",
+        "category": "education"
+      }
+    },
+    {
+      "prompt_id": "sample-11",
+      "name": "performance-optimization",
+      "description": "Performance analysis and optimization",
+      "content": "Analyze and optimize the performance of the following {{language}} code:\n\n{{code}}\n\nFocus Areas:\n1. Time complexity analysis\n2. Space complexity analysis\n3. Bottleneck identification\n4. Memory usage optimization\n5. Algorithm efficiency improvements\n6. Caching opportunities\n7. Parallel processing possibilities\n8. Database query optimization (if applicable)\n\nTarget performance goal: {{performance_goal}}\n\nProvide:\n- Current performance metrics\n- Identified bottlenecks\n- Optimized code with explanations\n- Performance improvement estimates\n- Profiling recommendations",
+      "prompt_type": "prompt",
+      "scope": "global",
+      "tags": ["performance", "optimization", "analysis"],
+      "variables": ["language", "code", "performance_goal"],
+      "created_at": "2025-10-14T12:00:00",
+      "updated_at": "2025-10-14T12:00:00",
+      "usage_count": 0,
+      "metadata": {
+        "author": "AI Agent Console",
+        "category": "optimization"
+      }
+    },
+    {
+      "prompt_id": "sample-12",
+      "name": "docker-file-template",
+      "description": "Dockerfile template for applications",
+      "content": "FROM {{base_image}}\n\nWORKDIR /app\n\n# Install dependencies\nCOPY {{dependency_file}} .\nRUN {{install_command}}\n\n# Copy application code\nCOPY . .\n\n# Expose port\nEXPOSE {{port}}\n\n# Set environment variables\nENV {{env_vars}}\n\n# Run application\nCMD [\"{{start_command}}\"]",
+      "prompt_type": "snippet",
+      "scope": "global",
+      "tags": ["docker", "deployment", "template"],
+      "variables": ["base_image", "dependency_file", "install_command", "port", "env_vars", "start_command"],
+      "created_at": "2025-10-14T12:00:00",
+      "updated_at": "2025-10-14T12:00:00",
+      "usage_count": 0,
+      "metadata": {
+        "author": "AI Agent Console",
+        "category": "devops"
+      }
+    }
+  ]
+}

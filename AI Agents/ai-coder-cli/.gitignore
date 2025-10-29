@@ -1,0 +1,113 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+build_venv/  # Build-specific virtual environment
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Environment variables
+.env
+.env.local
+
+# Configuration (if containing secrets)
+config.local.toml
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+coverage.xml
+.coverage.*
+
+# Distribution
+*.whl
+ai-agent-console-windows-*.zip  # Windows binary distribution packages
+
+# Documentation
+*.pdf
+
+# Temporary reports and summaries (keep only core docs)
+CLEANUP_REPORT.md
+COVERAGE_REPORT.md
+DEPRECATED_FILES_GUIDE.md
+FEATURE_SUMMARY.md
+IMPLEMENTATION_SUMMARY.md
+REFACTORING_SUMMARY.md
+TASK_COMPLETION_SUMMARY.md
+VERIFICATION_SUMMARY.md
+commit_summary.md
+test_summary_report.md
+
+# Test output files
+failed_tests.json
+test_failures_detailed.txt
+test_output.txt
+
+# Memory and Storage
+memory_storage/
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# ChromaDB
+chroma_db/
+chromadb_data/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Infrastructure system files
+.project/cache/
+.project/context/status/
+.project/context/error/
+
+# Runtime project data
+chat_history/
+projects/
+{project_name}/

@@ -1,0 +1,116 @@
+{
+  "ai": {
+    "model_path": "llama-cpp/models/llama-3-8b-q4.gguf",
+    "model_type": "llama",
+    "max_tokens": 2048,
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "top_k": 40,
+    "context_length": 8192,
+    "gpu_layers": 0,
+    "threads": 4,
+    "batch_size": 512,
+    "cache_size": 100,
+    "streaming": false
+  },
+  "database": {
+    "path": "data/uaide.db",
+    "backup_enabled": true,
+    "backup_interval": 86400,
+    "backup_path": "data/backups"
+  },
+  "vector_store": {
+    "type": "faiss",
+    "index_path": "data/faiss_index",
+    "embedding_model": "all-MiniLM-L6-v2",
+    "dimension": 384
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "logs/uaide.log",
+    "max_size": 10485760,
+    "backup_count": 5,
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    "console_output": true
+  },
+  "code_generation": {
+    "max_file_length": 500,
+    "auto_format": true,
+    "auto_import": true,
+    "style_guide": "pep8",
+    "add_type_hints": true,
+    "add_docstrings": true,
+    "check_duplicates": true
+  },
+  "testing": {
+    "auto_test": true,
+    "coverage_threshold": 80,
+    "test_framework": "pytest",
+    "generate_fixtures": true,
+    "mock_external_deps": true
+  },
+  "documentation": {
+    "auto_sync": true,
+    "generate_readme": true,
+    "generate_api_docs": true,
+    "docstring_style": "google",
+    "include_examples": true
+  },
+  "refactoring": {
+    "auto_refactor": false,
+    "max_complexity": 10,
+    "max_function_length": 50,
+    "enforce_naming": true,
+    "remove_dead_code": true
+  },
+  "ui": {
+    "theme": "dark",
+    "color_output": true,
+    "show_progress": true,
+    "interactive_mode": true,
+    "auto_save": true
+  },
+  "project": {
+    "default_language": "python",
+    "default_framework": null,
+    "git_auto_init": true,
+    "create_venv": true,
+    "install_deps": true
+  },
+  "rules": {
+    "enforce_global": true,
+    "enforce_project": true,
+    "strict_mode": false
+  },
+  "context": {
+    "max_context_files": 10,
+    "summarize_threshold": 1000,
+    "index_on_save": true,
+    "incremental_indexing": true
+  },
+  "self_improvement": {
+    "enabled": true,
+    "log_all_events": true,
+    "analysis_interval": 86400,
+    "auto_adapt": false,
+    "suggest_improvements": true
+  },
+  "performance": {
+    "async_operations": true,
+    "parallel_processing": true,
+    "max_workers": 4,
+    "cache_responses": true
+  },
+  "security": {
+    "validate_input": true,
+    "sanitize_output": true,
+    "allow_shell_commands": false,
+    "restricted_paths": []
+  },
+  "advanced": {
+    "debug_mode": false,
+    "verbose_output": false,
+    "experimental_features": false,
+    "telemetry": false
+  }
+}

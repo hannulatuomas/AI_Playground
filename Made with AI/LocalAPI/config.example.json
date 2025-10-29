@@ -1,0 +1,51 @@
+{
+  "app": {
+    "name": "LocalAPI",
+    "version": "0.1.0",
+    "dataPath": "./data"
+  },
+  "database": {
+    "filename": "localapi.db",
+    "backup": {
+      "enabled": true,
+      "interval": "daily",
+      "maxBackups": 7
+    }
+  },
+  "server": {
+    "devPort": 5173,
+    "mockServerPortRange": {
+      "start": 3000,
+      "end": 3100
+    }
+  },
+  "request": {
+    "timeout": 30000,
+    "followRedirects": true,
+    "maxRedirects": 5,
+    "validateSSL": true,
+    "maxResponseSize": 10485760
+  },
+  "editor": {
+    "theme": "vs-dark",
+    "fontSize": 14,
+    "tabSize": 2,
+    "wordWrap": true
+  },
+  "ui": {
+    "theme": "dark",
+    "sidebarWidth": 280,
+    "autoSave": true,
+    "autoSaveInterval": 5000
+  },
+  "security": {
+    "encryptSecrets": true,
+    "clearSecretsOnExit": false
+  },
+  "logging": {
+    "level": "info",
+    "file": "logs/app.log",
+    "maxSize": 5242880,
+    "maxFiles": 5
+  }
+}

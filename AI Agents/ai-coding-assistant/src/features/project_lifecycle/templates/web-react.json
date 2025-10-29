@@ -1,0 +1,43 @@
+{
+  "name": "web-react",
+  "description": "Modern React web application with Vite, TypeScript, and best practices",
+  "version": "1.0.0",
+  "variables": {
+    "PROJECT_NAME": {
+      "type": "string",
+      "required": true,
+      "description": "Project name (kebab-case)"
+    },
+    "AUTHOR": {
+      "type": "string",
+      "default": "",
+      "description": "Project author name"
+    },
+    "DESCRIPTION": {
+      "type": "string",
+      "default": "A React application",
+      "description": "Project description"
+    },
+    "LICENSE": {
+      "type": "string",
+      "default": "MIT",
+      "description": "Project license"
+    }
+  },
+  "files": {
+    "package.json": "{\n  \"name\": \"{{PROJECT_NAME}}\",\n  \"private\": true,\n  \"version\": \"0.1.0\",\n  \"type\": \"module\",\n  \"description\": \"{{DESCRIPTION}}\",\n  \"author\": \"{{AUTHOR}}\",\n  \"license\": \"{{LICENSE}}\",\n  \"scripts\": {\n    \"dev\": \"vite\",\n    \"build\": \"tsc && vite build\",\n    \"lint\": \"eslint . --ext ts,tsx\",\n    \"preview\": \"vite preview\"\n  },\n  \"dependencies\": {\n    \"react\": \"^18.2.0\",\n    \"react-dom\": \"^18.2.0\"\n  },\n  \"devDependencies\": {\n    \"@types/react\": \"^18.2.43\",\n    \"@types/react-dom\": \"^18.2.17\",\n    \"@typescript-eslint/eslint-plugin\": \"^6.14.0\",\n    \"@typescript-eslint/parser\": \"^6.14.0\",\n    \"@vitejs/plugin-react\": \"^4.2.1\",\n    \"eslint\": \"^8.55.0\",\n    \"eslint-plugin-react-hooks\": \"^4.6.0\",\n    \"typescript\": \"^5.2.2\",\n    \"vite\": \"^5.0.8\"\n  }\n}",
+    "tsconfig.json": "{\n  \"compilerOptions\": {\n    \"target\": \"ES2020\",\n    \"useDefineForClassFields\": true,\n    \"lib\": [\"ES2020\", \"DOM\", \"DOM.Iterable\"],\n    \"module\": \"ESNext\",\n    \"skipLibCheck\": true,\n    \"moduleResolution\": \"bundler\",\n    \"allowImportingTsExtensions\": true,\n    \"resolveJsonModule\": true,\n    \"isolatedModules\": true,\n    \"noEmit\": true,\n    \"jsx\": \"react-jsx\",\n    \"strict\": true,\n    \"noUnusedLocals\": true,\n    \"noUnusedParameters\": true,\n    \"noFallthroughCasesInSwitch\": true\n  },\n  \"include\": [\"src\"]\n}",
+    "vite.config.ts": "import { defineConfig } from 'vite'\nimport react from '@vitejs/plugin-react'\n\nexport default defineConfig({\n  plugins: [react()],\n  server: {\n    port: 3000,\n    open: true\n  },\n  build: {\n    outDir: 'dist',\n    sourcemap: true\n  }\n})",
+    ".gitignore": "node_modules\ndist\ndist-ssr\n*.local\n.env\n.DS_Store",
+    "index.html": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>{{PROJECT_NAME}}</title>\n  </head>\n  <body>\n    <div id=\"root\"></div>\n    <script type=\"module\" src=\"/src/main.tsx\"></script>\n  </body>\n</html>",
+    "README.md": "# {{PROJECT_NAME}}\n\n{{DESCRIPTION}}\n\n## Getting Started\n\n```bash\nnpm install\nnpm run dev\n```\n\n## Author\n\n{{AUTHOR}}",
+    "src/main.tsx": "import React from 'react'\nimport ReactDOM from 'react-dom/client'\nimport App from './App'\nimport './index.css'\n\nReactDOM.createRoot(document.getElementById('root')!).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n)",
+    "src/App.tsx": "import { useState } from 'react'\n\nfunction App() {\n  const [count, setCount] = useState(0)\n\n  return (\n    <div style={{ textAlign: 'center', padding: '2rem' }}>\n      <h1>{{PROJECT_NAME}}</h1>\n      <p>{{DESCRIPTION}}</p>\n      <button onClick={() => setCount(c => c + 1)}>\n        Count: {count}\n      </button>\n    </div>\n  )\n}\n\nexport default App",
+    "src/index.css": "body {\n  margin: 0;\n  font-family: system-ui, sans-serif;\n  min-height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}",
+    "src/components/.gitkeep": ""
+  },
+  "commands": [
+    "npm install",
+    "npm run dev"
+  ]
+}

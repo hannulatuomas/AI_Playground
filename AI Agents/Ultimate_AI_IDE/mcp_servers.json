@@ -1,0 +1,48 @@
+{
+  "servers": {
+    "filesystem": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "."
+      ],
+      "url": null,
+      "env": {},
+      "enabled": false,
+      "auto_start": false,
+      "description": "File system access MCP server"
+    },
+    "github": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "url": null,
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": ""
+      },
+      "enabled": false,
+      "auto_start": false,
+      "description": "GitHub API MCP server"
+    },
+    "brave-search": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "url": null,
+      "env": {
+        "BRAVE_API_KEY": ""
+      },
+      "enabled": false,
+      "auto_start": false,
+      "description": "Brave Search API MCP server"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+1. This is a generic template for any SaaS project
+2. Because this is generic template, it should be easily extensible, future-proof, robust and suitable for all kind of SaaS Apps
+3. Tech stack is: React, TypeScript, Vite, TailwindCSS, Express
+4. This needs to be an easy starting point to any new SaaS project without a need to clean unnecessary, unneeded or dummy code
+5. Keep 3rd-party packages to minimum and try not to use vulnerable or deprecated packages to future-proof the project
+6. App should have Google login, Stripe integration and 3 tiers of subscription (free, basic and pro)
+7. Make sure you are fully familiar with the codebase’s structure, current features, outstanding gaps, missing features and the main goals of the project before starting to work on it
+8. Before starting to work on the project, thoroughly analyze and become fully familiar with the codebase
+9. Clear all legacy code and duplicate code, remove unnecessary comments, and ensure the code is clean and maintainable
+10. Always follow the best practices of security, performance, and accessibility
+11. Check thoroughly what we have before adding new code
+12. Keep my documentation comprehensive, clean and always up to date
+13. When updating documentation, make sure to update it in all relevant places
+14. When updating code, make sure to update documentation in all relevant places
+15. Before updating documentation, make a comprehensive audit for unnecessary dependencies and code, and remove them
+16. When cleaning the codebase, scan for unused code/functions/exports and check thoroughly for any files not imported anywhere
+17. UI should have responsive, clean and minimalistic design, with scaling based on screen size
+18. I want you to have always up to date memories of the "project status" (what is done), features, codebase structure and next steps & gaps (what needs to be done)
+19. You can find the project status in these files: @CheckList.md @README.md @Saas-FolderStructure.txt @SummaryTable.md

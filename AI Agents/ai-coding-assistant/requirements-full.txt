@@ -1,0 +1,19 @@
+# Full Dependencies for Phase 9.2 and 9.3
+# Install with: pip install -r requirements-full.txt
+
+# Transformers library for CodeBERT and cross-encoder models
+transformers>=4.30.0
+
+# PyTorch (CPU version for compatibility)
+# Note: This will be installed from PyTorch index, not PyPI
+--index-url https://download.pytorch.org/whl/cpu
+torch>=2.0.0
+
+# Note: These packages are LARGE (~2GB total)
+# transformers: ~400MB
+# torch: ~1.5GB
+
+# After installation, the following will work:
+# - Phase 9.2: Full CodeBERT embeddings (no fallback)
+# - Phase 9.3: Advanced cross-encoder reranking  
+# - test_similarity in Phase 9.2 tests (currently skipped)

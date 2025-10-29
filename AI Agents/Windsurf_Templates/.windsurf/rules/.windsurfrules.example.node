@@ -1,0 +1,92 @@
+[Project basics]
+1. This is a a web-based, cross-platform tool designed for data management, visualization, and querying.
+2. Main purpose of this project/program is to [main purpose]
+3. Tech stack is: React, typescript, node.js, Express
+4. Main goals of the project are: The application will prioritize usability, modularity, and extensibility
+5. The most important features of this program are: multiple database connections, handle CSV/XML files as tables, provide notebook-style query interfaces, and enable data export and API integration
+6. Check thoroughly what we have before adding new code
+7. Always, when changing implementation or adding a new version of what we already have, CLEAN UP the old implementation and unnecessary code right away.
+8. No Hardcoded values, Magic numbers, localhost routes...
+9. Centralize logic in dedicated modules/services.
+10. Use interfaces/types for consistency/extensibility.
+11. Registry/plugin pattern for new formats/types.
+12. Always use css variables for colors, spacing, etc.
+
+- Get fully familiar with my codebase, code, the current status of the project, and project goals
+- Get fully familiar with project rules
+- Work thoroughly and systematically, implement everything properly, and keep track on progress
+
+[Architecture & Structure]
+- Use frontend/ backend/ structure
+- Maintain a consistent structure for React components.
+- Follow Node.js conventions for structuring backend code.
+- Keep the codebase clean, easy to read, understand and maintain, modular and simple
+
+[Coding Standards]
+- Analyze the codebase thoroughly before making changes
+- The code/codebase should be easily extensible, future-proof, robust and clean
+- Clear all legacy code and duplicate code, remove unnecessary comments, and ensure the code is clean and maintainable
+- Avoid breaking existing functionality
+- Focus on scoped improvements only
+- Apply Single Responsibility Principle
+- Keep code clean and maintainable
+- Remove unused legacy code
+- Naming Conventions: Follow clear and consistent naming conventions.
+- Keep the code simple and easy to understand
+- Avoid duplication of what another piece of code already does
+
+[Security & Best Practices]
+- Always follow the best practices of security, performance, and accessibility
+- You are an expert in TypeScript, Node.js and React.
+- TypeScript Usage: Follow TypeScript best practices for type safety and code maintainability.
+- Syntax and Formatting: Adhere to consistent coding style and formatting guidelines for TypeScript.
+- Error Handling and Validation: Implement robust error handling and validation in Node.js.
+- Always use TypeScript strictly; avoid using `any` unless absolutely necessary
+- Implement proper error handling and input validation.
+
+[Testing]
+- No automatic testing will be done at the moment. I test everything manually, but tests might be implemented later, so plan for that
+
+[Dependencies]
+- Don't add new dependencies if not absolutely mandatory
+- Keep 3rd-party packages to minimum and try not to use vulnerable or deprecated packages to future-proof the project
+- Check what dependencies we are already using and try to use those if possible (don't add new dependencies)
+- Use existing dependencies if possible
+- Do not add new dependencies unless absolutely necessary
+
+[UI]
+- UI should have modern, responsive and clean design, with scaling based on screen size
+
+[Code Familiarity]
+- Analyze the code thoroughly before making changes
+- Understand codebase structure, features, gaps, and goals before starting
+- Analyze and review the full codebase before working
+- Check existing files and code before adding new ones
+- Before starting to work on the project, thoroughly analyze and become fully familiar with the codebase
+- Make sure you are fully familiar with the codebase’s structure, current features, outstanding gaps, missing features and the main goals of the project before starting to work on it
+
+[Basic Coding Best Practices]
+- Write Clear and Meaningful Code: Use Descriptive Naming, Follow Naming Conventions and Avoid Magic Numbers/Strings
+- Keep Functions and Files Small: Single Responsibility Principle (Each function or module should do one thing well. If a function grows too large, break it into smaller, reusable functions.), Keep files under 300-500 lines (Split large files into smaller modules or classes based on functionality), One Concept per File, Review File Size Regularly
+- Structure Code Logically: Organize by Feature, Use Consistent Formatting (Follow a style guide), Modularize Code, Keep Functions Pure
+- Write Readable Code: Comment Sparingly but Effectively, Avoid Deep Nesting, Use Whitespace Wisely, don't make mock/dummy data/code, Create directories for related files to keep the project navigable, Extract Reusable Logic, 
+- Handle Errors Gracefully: Centralize Error Handling, Log Meaningful Errors, Validate Inputs
+- Optimize for Refactoring: Don’t Repeat Yourself, Use Design Patterns, Refactor Regularly
+- Document Code: Use Docstrings/Comments (Document functions, classes, and modules with clear descriptions of parameters, return values, and purpose), Maintain README (include setup instructions, project structure, and usage examples in a project README)
+- Plan for Scalability: Avoid Tight Coupling (design components to be independent), Use Configuration Files
+
+[Documentation]
+- Keep my documentation comprehensive, clean and always up to date
+- Before updating documentation, make a comprehensive audit for unnecessary dependencies and code, and remove them
+- When updating documentation, make sure to update it in all relevant places
+- After updating code, make sure to update documentation in all relevant places as well
+- Include Contents section in README
+- Document codebase as tree structure with descriptions
+- Exclude Collaboration and License sections from README
+
+[Misc]
+- When cleaning the codebase, scan for unused code/functions/exports and check thoroughly for any files not imported anywhere
+- Try not to brake the existing functionalities
+- Focus on the improvements we are doing, and do not try to improve everything at once
+- Check how other files/code are implemented and make the new files/code to be consistent with those (format, dependencies...)
+- Performance Optimization: Optimize code for performance.

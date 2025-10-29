@@ -1,0 +1,151 @@
+
+# Test Workflow
+# Creates/runs tests, analyzes results, fixes issues if needed
+
+workflow_id: test_workflow
+name: Test Suite Execution
+description: Create or run tests, analyze results, fix issues if needed
+version: 1.0.0
+tags:
+  - testing
+  - quality-assurance
+  - validation
+
+steps:
+  - step_id: detect_test_framework
+    name: Detect Test Framework
+    agent: code_tester
+    action: detect_framework
+    params:
+      project_path: "{{ project_path }}"
+    dependencies: []
+    on_error: continue
+
+  - step_id: check_existing_tests
+    name: Check for Existing Tests
+    agent: code_analyzer
+    action: analyze_test_coverage
+    params:
+      project_path: "{{ project_path }}"
+    dependencies: []
+    on_error: continue
+
+  - step_id: generate_missing_tests
+    name: Generate Missing Tests
+    agent: code_tester
+    action: generate_tests
+    params:
+      project_path: "{{ project_path }}"
+      coverage_analysis: "{{ step_check_existing_tests_result }}"
+      test_framework: "{{ step_detect_test_framework_result.framework }}"
+    dependencies:
+      - detect_test_framework
+      - check_existing_tests
+    condition: "step_check_existing_tests_result.get('coverage', 100) < 80"
+    on_error: continue
+
+  - step_id: run_unit_tests
+    name: Run Unit Tests
+    agent: code_tester
+    action: run_tests
+    params:
+      test_path: "tests/"
+      test_type: "unit"
+      verbose: true
+    dependencies:
+      - generate_missing_tests
+    on_error: continue
+
+  - step_id: run_integration_tests
+    name: Run Integration Tests
+    agent: code_tester
+    action: run_tests
+    params:
+      test_path: "tests/"
+      test_type: "integration"
+      verbose: true
+    dependencies:
+      - run_unit_tests
+    on_error: continue
+
+  - step_id: analyze_test_results
+    name: Analyze Test Results
+    agent: code_analyzer
+    action: analyze_test_results
+    params:
+      unit_results: "{{ step_run_unit_tests_result }}"
+      integration_results: "{{ step_run_integration_tests_result }}"
+    dependencies:
+      - run_unit_tests
+      - run_integration_tests
+    on_error: continue
+
+  - step_id: identify_failures
+    name: Identify Test Failures
+    agent: code_analyzer
+    action: identify_test_failures
+    params:
+      test_results: "{{ step_analyze_test_results_result }}"
+    dependencies:
+      - analyze_test_results
+    condition: "not step_analyze_test_results_result.get('all_passed', False)"
+    on_error: continue
+
+  - step_id: fix_test_failures
+    name: Fix Test Failures
+    agent: debug_agent
+    action: fix_test_failures
+    params:
+      failures: "{{ step_identify_failures_result }}"
+      project_path: "{{ project_path }}"
+    dependencies:
+      - identify_failures
+    condition: "auto_fix | default(False)"
+    on_error: continue
+
+  - step_id: rerun_tests
+    name: Re-run Tests After Fixes
+    agent: code_tester
+    action: run_tests
+    params:
+      test_path: "tests/"
+      verbose: true
+    dependencies:
+      - fix_test_failures
+    condition: "step_fix_test_failures_result.get('fixes_applied', False)"
+    on_error: continue
+
+  - step_id: generate_coverage_report
+    name: Generate Coverage Report
+    agent: code_tester
+    action: generate_coverage_report
+    params:
+      project_path: "{{ project_path }}"
+      output_format: "html"
+    dependencies:
+      - run_integration_tests
+    on_error: continue
+
+  - step_id: git_commit
+    name: Commit Test Changes
+    agent: git_agent
+    action: commit
+    params:
+      message: "test: {{ commit_message | default('Update tests and coverage') }}"
+      description: |
+        Test execution and updates completed.
+        
+        Coverage: {{ step_generate_coverage_report_result.coverage_percent | default('N/A') }}%
+        Unit Tests: {{ step_run_unit_tests_result.passed }}/{{ step_run_unit_tests_result.total }}
+        Integration Tests: {{ step_run_integration_tests_result.passed }}/{{ step_run_integration_tests_result.total }}
+        
+        {% if step_generate_missing_tests_result %}
+        New Tests Generated:
+        {% for test in step_generate_missing_tests_result.tests %}
+        - {{ test }}
+        {% endfor %}
+        {% endif %}
+    dependencies:
+      - generate_coverage_report
+    condition: "commit_changes | default(False)"
+    on_error: continue

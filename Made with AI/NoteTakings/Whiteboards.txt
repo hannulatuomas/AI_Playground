@@ -1,0 +1,50 @@
+https://github.com/tldraw/tldraw/tree/main
+https://tldraw.dev/
+https://www.tldraw.com/
+
+https://github.com/excalidraw/excalidraw/tree/master
+https://excalidraw.com/
+https://docs.excalidraw.com/docs/
+
+https://github.com/jgraph/drawio/tree/dev
+https://www.drawio.com/integrations
+https://app.diagrams.net/
+
+https://www.smartdraw.com/network-diagram/network-diagram-software.htm
+https://app.smartdraw.com/editor.aspx
+
+https://online.visual-paradigm.com/diagrams/solutions/free-network-diagram-software/
+https://online.visual-paradigm.com/app/diagrams/
+
+https://github.com/konvajs/konva
+https://konvajs.org/
+https://konvajs.org/docs/sandbox
+
+https://github.com/fabricjs/fabric.js
+https://fabricjs.com/
+https://fabricjs.com/demos/
+
+https://developers.connectycube.com/js/whiteboard/
+
+https://zwibbler.com/
+
+https://github.com/raimohanska/ourboard
+https://www.ourboard.io/
+
+https://github.com/KainosSoftwareLtd/Whiteboard
+https://kainossoftwareltd.github.io/Whiteboard/background.html
+
+https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
+- EaselJS is an open-source canvas library that makes creating games, generative art, and other highly graphical experiences easy.
+- Fabric.js is an open-source canvas library with SVG parsing capabilities.
+- heatmap.js is an open-source library for creating canvas-based data heat maps.
+- JavaScript InfoVis Toolkit creates interactive data visualizations.
+- Konva.js is a 2D canvas library for desktop and mobile applications.
+- p5.js has a full set of canvas drawing functionality for artists, designers, educators, and beginners.
+- Paper.js is an open-source vector graphics scripting framework that runs on top of the HTML Canvas.
+- Phaser is a fast, free and fun open source framework for Canvas and WebGL powered browser games.
+- Pts.js is a library for creative coding and visualization in canvas and SVG.
+- Rekapi is an animation key-framing API for Canvas.
+- Scrawl-canvas is an open-source JavaScript library for creating and manipulating 2D canvas elements.
+- The ZIM framework provides conveniences, components, and controls for coding creativity on the canvas — includes accessibility and hundreds of colorful tutorials.
+- Sprig is a beginner-friendly, open-source, tile-based game development library that uses Canvas.

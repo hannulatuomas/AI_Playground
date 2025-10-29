@@ -1,0 +1,10 @@
+{
+  "type": "choice",
+  "name": "worker_work_done",
+  "data": {
+    "result": 84
+  },
+  "metadata": {},
+  "created_at": "2025-10-13T18:34:28.190871",
+  "updated_at": "2025-10-13T18:34:28.190880"
+}

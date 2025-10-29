@@ -1,0 +1,277 @@
+# Sensitive files
+.env
+.env.local
+.env.*.local
+*.secret
+*.key
+*.pem
+*.crt
+*.cer
+*.p12
+
+# Visual Studio
+.vscode/
+.vs/
+*.userosscache
+*.sln.docstates
+*.obj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.dll
+*.lib
+*.sbr
+
+# Visual Studio Code
+.vscode/
+
+# C# / .NET
+bin/
+obj/
+*.dll
+*.pdb
+*.exe
+*.app
+*.ipa
+*.appx
+*.appxbundle
+*.msix
+*.msixbundle
+*.builds
+*.log
+*.cache
+*.config
+*.csproj.user
+*.csproj.vspscc
+*.csproj.vssscc
+*.dbmdl
+*.jfm
+*.pfx
+*.publishsettings
+*.pubxml
+*.pubxml.user
+*.rsp
+*.sln.docstates
+*.suo
+*.user
+*.userosscache
+*.vspscc
+*.vssscc
+*.tmp
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist/
+build/
+*.manifest
+*.spec
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.log
+*.properties
+*.project
+*.classpath
+target/
+build/
+
+# Ruby
+*.gem
+*.bundle
+*.log
+*.tmp
+*.pid
+*.rbc
+*.sass-cache
+*.cache
+*.config
+*.coverage
+*.spec
+
+# PHP
+*.log
+*.cache
+*.config
+*.tmp
+*.pid
+*.coverage
+
+# Go
+*.exe
+*.out
+*.log
+*.cache
+*.config
+*.tmp
+
+# Swift
+*.xcworkspace/
+*.xcodeproj/
+*.xcuserdata/
+*.xcuserstate
+*.xcassets/
+*.xcconfig
+*.log
+*.cache
+*.tmp
+
+# Kotlin
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.log
+*.properties
+*.project
+*.classpath
+target/
+build/
+
+# Rust
+target/
+*.rs.bk
+Cargo.lock
+
+# Haskell
+dist/
+*.hi
+*.o
+*.dyn_o
+*.dyn_hi
+
+# Lua
+*.luac
+
+# R
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user
+
+# TeX
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+*.dvi
+*.xdv
+*.pdf
+*.synctex.gz
+*.fdb_latexmk
+*.blg
+*.bbl
+*.run.xml
+
+# General IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.cache
+.config
+.local
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*.bak
+*.old
+*.orig
+
+# Backup files
+*.bak
+*.backup
+*.swp
+*.swo
+
+# Package managers
+node_modules/
+jspm_packages/
+bower_components/
+.venv/
+venv/
+ENV/
+env/
+__pycache__/
+*.egg
+*.egg-info
+dist/
+build/
+*.manifest
+*.spec
+# Compiled files
+*.class
+*.o
+*.so
+*.dll
+*.exe
+*.out
+*.pyc
+*.pyo
+*.pyd
+*.a
+*.lib
+*.dylib
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.log
+*.properties
+*.project
+*.classpath
+target/
+build/

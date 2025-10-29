@@ -1,0 +1,179 @@
+/* Unified global styles for all notebook cells, including chart, markdown, and code cells */
+
+.importModalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+.importModal {
+  background: var(--color-bg);
+  border-radius: 8px;
+  padding: 28px 30px 22px 30px;
+  box-shadow: 0 2px 18px rgba(0,0,0,0.14);
+  min-width: 340px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+@media (max-width: 600px) {
+  .importModal {
+    min-width: 0;
+    width: 96vw;
+    max-width: 98vw;
+    padding: 18px 8px 16px 8px;
+    font-size: 16px;
+  }
+  .importModalClose {
+    font-size: 32px;
+    top: 8px;
+    right: 8px;
+    padding: 8px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    touch-action: manipulation;
+  }
+  .modalPrimaryButton, .modalSecondaryButton {
+    font-size: 18px;
+    padding: 14px 0;
+    width: 100%;
+    margin-bottom: 8px;
+    border-radius: 7px;
+  }
+}
+.importModalClose {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--color-neutral);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+
+.cellContainer {
+  min-height: 0;
+  overflow: visible;
+}
+
+.editor {
+  font-family: monospace;
+  font-size: 15px;
+  min-height: 32px;
+  background: var(--color-bg-secondary);
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.markdownPreview {
+  margin-top: 8px;
+  background: var(--color-bg-tertiary);
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border-light);
+  color: var(--color-text);
+}
+
+.chartToolbar {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chartLabel {
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+/* Schema cell color and button */
+.schemaLabel {
+  font-weight: 500;
+  color: var(--color-warning);
+}
+
+.schemaAddButton {
+  background: var(--color-warning);
+  color: var(--color-text-light);
+  border: none;
+  border-radius: 4px;
+  padding: 3px 12px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-left: 18px;
+}
+
+.schemaRetryButton {
+  background: var(--color-warning);
+  color: var(--color-text-light);
+  border: none;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 13px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background 0.2s, color 0.2s;
+}
+.schemaRetryButton:hover {
+  background: var(--color-warning-dark);
+  color: var(--color-text-light);
+}
+
+.chartSelect {
+  border-radius: 4px;
+  border: 1px solid var(--color-border-accent);
+  padding: 2px 6px;
+}
+
+.chartImportButton {
+  margin-left: 18px;
+  background: var(--color-accent);
+  color: var(--color-text-light);
+  border: none;
+  border-radius: 4px;
+  padding: 3px 12px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* .importModalClose uses a neutral color for close icon */
+
+.chartDataTextarea {
+  width: 100%;
+  min-height: 32px;
+  font-family: monospace;
+  font-size: 15px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-accent);
+  border-radius: 4px;
+  outline: none;
+  padding: 10px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.chartDataContainer {
+  margin-top: 10px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-light);
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.invalidJson {
+  color: var(--color-error);
+}

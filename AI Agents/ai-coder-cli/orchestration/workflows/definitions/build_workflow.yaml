@@ -1,0 +1,156 @@
+
+# Build Workflow
+# Builds project, handles errors, verifies build
+
+workflow_id: build_workflow
+name: Project Build
+description: Build project, handle errors, and verify build artifacts
+version: 1.0.0
+tags:
+  - build
+  - compilation
+  - deployment
+
+steps:
+  - step_id: detect_build_system
+    name: Detect Build System
+    agent: build_agent
+    action: detect_build_system
+    params:
+      project_path: "{{ project_path }}"
+    dependencies: []
+    on_error: fail
+
+  - step_id: check_dependencies
+    name: Check Build Dependencies
+    agent: build_agent
+    action: check_dependencies
+    params:
+      project_path: "{{ project_path }}"
+      build_system: "{{ step_detect_build_system_result.system }}"
+    dependencies:
+      - detect_build_system
+    on_error: fail
+
+  - step_id: install_dependencies
+    name: Install Missing Dependencies
+    agent: build_agent
+    action: install_dependencies
+    params:
+      project_path: "{{ project_path }}"
+      missing_deps: "{{ step_check_dependencies_result.missing }}"
+    dependencies:
+      - check_dependencies
+    condition: "step_check_dependencies_result.get('missing', [])"
+    on_error: fail
+
+  - step_id: pre_build_cleanup
+    name: Pre-Build Cleanup
+    agent: build_agent
+    action: clean
+    params:
+      project_path: "{{ project_path }}"
+      build_system: "{{ step_detect_build_system_result.system }}"
+    dependencies:
+      - install_dependencies
+    on_error: continue
+
+  - step_id: run_build
+    name: Run Build
+    agent: build_agent
+    action: build
+    params:
+      project_path: "{{ project_path }}"
+      build_system: "{{ step_detect_build_system_result.system }}"
+      build_type: "{{ build_type | default('release') }}"
+      verbose: true
+    dependencies:
+      - pre_build_cleanup
+    on_error: fail
+
+  - step_id: analyze_build_output
+    name: Analyze Build Output
+    agent: code_analyzer
+    action: analyze_build_output
+    params:
+      build_output: "{{ step_run_build_result.output }}"
+      build_errors: "{{ step_run_build_result.errors }}"
+    dependencies:
+      - run_build
+    on_error: continue
+
+  - step_id: verify_artifacts
+    name: Verify Build Artifacts
+    agent: build_agent
+    action: verify_artifacts
+    params:
+      project_path: "{{ project_path }}"
+      expected_artifacts: "{{ step_detect_build_system_result.expected_artifacts }}"
+    dependencies:
+      - run_build
+    on_error: fail
+
+  - step_id: run_post_build_tests
+    name: Run Post-Build Tests
+    agent: code_tester
+    action: run_tests
+    params:
+      test_path: "tests/"
+      test_type: "integration"
+    dependencies:
+      - verify_artifacts
+    condition: "run_tests | default(True)"
+    on_error: continue
+
+  - step_id: analyze_build_quality
+    name: Analyze Build Quality
+    agent: code_analyzer
+    action: analyze_build_quality
+    params:
+      build_output: "{{ step_run_build_result }}"
+      test_results: "{{ step_run_post_build_tests_result }}"
+      artifacts: "{{ step_verify_artifacts_result }}"
+    dependencies:
+      - analyze_build_output
+      - verify_artifacts
+      - run_post_build_tests
+    on_error: continue
+
+  - step_id: package_build
+    name: Package Build Artifacts
+    agent: build_agent
+    action: package
+    params:
+      project_path: "{{ project_path }}"
+      build_type: "{{ build_type | default('release') }}"
+      output_path: "{{ output_path | default('dist/') }}"
+    dependencies:
+      - verify_artifacts
+    condition: "package | default(False)"
+    on_error: continue
+
+  - step_id: generate_build_report
+    name: Generate Build Report
+    agent: documentation_generator
+    action: generate_build_report
+    params:
+      build_result: "{{ step_run_build_result }}"
+      quality_analysis: "{{ step_analyze_build_quality_result }}"
+      test_results: "{{ step_run_post_build_tests_result }}"
+      output_path: "{{ report_path | default('build_report.md') }}"
+    dependencies:
+      - analyze_build_quality
+    on_error: continue
+
+  - step_id: git_tag_release
+    name: Tag Release in Git
+    agent: git_agent
+    action: create_tag
+    params:
+      tag_name: "{{ tag_name | default('v' + version) }}"
+      message: "Release build: {{ build_type | default('release') }}"
+    dependencies:
+      - verify_artifacts
+      - run_post_build_tests
+    condition: "create_tag | default(False)"
+    on_error: continue

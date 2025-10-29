@@ -1,0 +1,19 @@
+ICON PLACEHOLDER
+
+To use the custom Frozen Peak Solutions icon, you need to generate a PNG file:
+
+Quick Steps:
+1. Open build/icon.svg in a browser
+2. Right-click and "Save As" or take a screenshot
+3. Save as build/icon.png (512x512 recommended)
+
+OR use an online converter:
+1. Go to https://cloudconvert.com/svg-to-png
+2. Upload build/icon.svg
+3. Set size to 512x512
+4. Download as build/icon.png
+
+OR use ImageMagick:
+convert build/icon.svg -resize 512x512 build/icon.png
+
+Once icon.png exists, the app will use it for the window icon.

@@ -1,0 +1,54 @@
+{
+  "name": "fullstack-react-express",
+  "description": "Full-stack application with React TypeScript frontend and Express backend",
+  "version": "1.0.0",
+  "variables": {
+    "PROJECT_NAME": {
+      "type": "string",
+      "required": true,
+      "description": "Project name (kebab-case)"
+    },
+    "AUTHOR": {
+      "type": "string",
+      "default": "",
+      "description": "Project author name"
+    },
+    "DESCRIPTION": {
+      "type": "string",
+      "default": "A full-stack application",
+      "description": "Project description"
+    },
+    "PORT_FRONTEND": {
+      "type": "string",
+      "default": "3000",
+      "description": "Frontend port"
+    },
+    "PORT_BACKEND": {
+      "type": "string",
+      "default": "5000",
+      "description": "Backend port"
+    }
+  },
+  "files": {
+    "package.json": "{\n  \"name\": \"{{PROJECT_NAME}}\",\n  \"version\": \"1.0.0\",\n  \"description\": \"{{DESCRIPTION}}\",\n  \"author\": \"{{AUTHOR}}\",\n  \"private\": true,\n  \"workspaces\": [\"frontend\", \"backend\"],\n  \"scripts\": {\n    \"install:all\": \"npm install && npm install --workspace=frontend && npm install --workspace=backend\",\n    \"dev\": \"concurrently \\\"npm run dev --workspace=backend\\\" \\\"npm run dev --workspace=frontend\\\"\",\n    \"build\": \"npm run build --workspace=frontend && npm run build --workspace=backend\"\n  },\n  \"devDependencies\": {\n    \"concurrently\": \"^8.2.2\"\n  }\n}",
+    ".gitignore": "node_modules/\ndist/\nbuild/\n.env\n*.log\n.DS_Store",
+    "README.md": "# {{PROJECT_NAME}}\n\n{{DESCRIPTION}}\n\n## Structure\n\n- `frontend/` - React TypeScript frontend\n- `backend/` - Express TypeScript backend\n\n## Setup\n\n```bash\nnpm run install:all\n```\n\n## Development\n\n```bash\nnpm run dev\n```\n\nFrontend: http://localhost:{{PORT_FRONTEND}}\nBackend API: http://localhost:{{PORT_BACKEND}}/api\n\n## Author\n\n{{AUTHOR}}",
+    "frontend/package.json": "{\n  \"name\": \"frontend\",\n  \"type\": \"module\",\n  \"scripts\": {\n    \"dev\": \"vite\",\n    \"build\": \"tsc && vite build\"\n  },\n  \"dependencies\": {\n    \"react\": \"^18.2.0\",\n    \"react-dom\": \"^18.2.0\",\n    \"axios\": \"^1.6.0\"\n  },\n  \"devDependencies\": {\n    \"@types/react\": \"^18.2.43\",\n    \"@types/react-dom\": \"^18.2.17\",\n    \"@vitejs/plugin-react\": \"^4.2.1\",\n    \"typescript\": \"^5.2.2\",\n    \"vite\": \"^5.0.8\"\n  }\n}",
+    "frontend/vite.config.ts": "import { defineConfig } from 'vite'\nimport react from '@vitejs/plugin-react'\n\nexport default defineConfig({\n  plugins: [react()],\n  server: {\n    port: {{PORT_FRONTEND}},\n    proxy: {\n      '/api': 'http://localhost:{{PORT_BACKEND}}'\n    }\n  }\n})",
+    "frontend/tsconfig.json": "{\n  \"compilerOptions\": {\n    \"target\": \"ES2020\",\n    \"lib\": [\"ES2020\", \"DOM\"],\n    \"jsx\": \"react-jsx\",\n    \"module\": \"ESNext\",\n    \"moduleResolution\": \"bundler\",\n    \"strict\": true\n  }\n}",
+    "frontend/index.html": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>{{PROJECT_NAME}}</title>\n  </head>\n  <body>\n    <div id=\"root\"></div>\n    <script type=\"module\" src=\"/src/main.tsx\"></script>\n  </body>\n</html>",
+    "frontend/src/main.tsx": "import React from 'react'\nimport ReactDOM from 'react-dom/client'\nimport App from './App'\n\nReactDOM.createRoot(document.getElementById('root')!).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n)",
+    "frontend/src/App.tsx": "import { useState, useEffect } from 'react'\nimport axios from 'axios'\n\nfunction App() {\n  const [message, setMessage] = useState('')\n  const [count, setCount] = useState(0)\n\n  useEffect(() => {\n    axios.get('/api/message')\n      .then(res => setMessage(res.data.message))\n      .catch(err => console.error(err))\n  }, [])\n\n  return (\n    <div style={{ padding: '2rem', textAlign: 'center' }}>\n      <h1>{{PROJECT_NAME}}</h1>\n      <p>{{DESCRIPTION}}</p>\n      <p>Backend says: {message}</p>\n      <button onClick={() => setCount(c => c + 1)}>Count: {count}</button>\n    </div>\n  )\n}\n\nexport default App",
+    "backend/package.json": "{\n  \"name\": \"backend\",\n  \"type\": \"module\",\n  \"scripts\": {\n    \"dev\": \"tsx watch src/index.ts\",\n    \"build\": \"tsc\",\n    \"start\": \"node dist/index.js\"\n  },\n  \"dependencies\": {\n    \"express\": \"^4.18.2\",\n    \"cors\": \"^2.8.5\",\n    \"dotenv\": \"^16.3.1\"\n  },\n  \"devDependencies\": {\n    \"@types/express\": \"^4.17.21\",\n    \"@types/cors\": \"^2.8.17\",\n    \"@types/node\": \"^20.10.6\",\n    \"typescript\": \"^5.3.3\",\n    \"tsx\": \"^4.7.0\"\n  }\n}",
+    "backend/tsconfig.json": "{\n  \"compilerOptions\": {\n    \"target\": \"ES2022\",\n    \"module\": \"ESNext\",\n    \"moduleResolution\": \"bundler\",\n    \"outDir\": \"./dist\",\n    \"rootDir\": \"./src\",\n    \"strict\": true,\n    \"esModuleInterop\": true\n  }\n}",
+    "backend/.env.example": "PORT={{PORT_BACKEND}}\nNODE_ENV=development",
+    "backend/src/index.ts": "import express from 'express'\nimport cors from 'cors'\nimport dotenv from 'dotenv'\n\ndotenv.config()\n\nconst app = express()\nconst PORT = process.env.PORT || {{PORT_BACKEND}}\n\napp.use(cors())\napp.use(express.json())\n\napp.get('/api/message', (req, res) => {\n  res.json({ message: 'Hello from {{PROJECT_NAME}} backend!' })\n})\n\napp.get('/api/health', (req, res) => {\n  res.json({ status: 'healthy' })\n})\n\napp.listen(PORT, () => {\n  console.log(`Backend running on http://localhost:${PORT}`)\n})",
+    "backend/src/routes/.gitkeep": "",
+    "backend/src/controllers/.gitkeep": "",
+    "backend/src/models/.gitkeep": ""
+  },
+  "commands": [
+    "npm run install:all",
+    "npm run dev"
+  ]
+}

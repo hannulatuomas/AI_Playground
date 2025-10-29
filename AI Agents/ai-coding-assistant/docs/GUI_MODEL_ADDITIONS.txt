@@ -1,0 +1,520 @@
+# Add this to GUI.__init__ after other components
+
+        # Model manager
+        self.model_manager = None
+
+# Add this method to create_widgets() - replace the entire create_widgets method with this enhanced version:
+
+    def create_widgets(self):
+        """Create all GUI widgets with model management tab."""
+        # Main container with padding
+        main_frame = ttk.Frame(self.root, padding="10")
+        main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        
+        # Configure grid weights
+        self.root.columnconfigure(0, weight=1)
+        self.root.rowconfigure(0, weight=1)
+        main_frame.columnconfigure(0, weight=1)
+        main_frame.rowconfigure(1, weight=1)  # Notebook expands
+        
+        # === Header ===
+        header_frame = ttk.Frame(main_frame)
+        header_frame.grid(row=0, column=0, sticky=(tk.W, tk.E), pady=(0, 10))
+        
+        title_label = ttk.Label(
+            header_frame,
+            text="🤖 AI Coding Assistant",
+            font=('Arial', 16, 'bold')
+        )
+        title_label.pack(side=tk.LEFT)
+        
+        subtitle_label = ttk.Label(
+            header_frame,
+            text="Powered by llama.cpp",
+            font=('Arial', 9),
+            foreground='gray'
+        )
+        subtitle_label.pack(side=tk.LEFT, padx=(10, 0))
+        
+        # Status indicator
+        self.status_label = ttk.Label(
+            header_frame,
+            text="● Not initialized",
+            foreground='red'
+        )
+        self.status_label.pack(side=tk.RIGHT)
+        
+        # === Notebook (Tabs) ===
+        self.notebook = ttk.Notebook(main_frame)
+        self.notebook.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        
+        # Create tabs
+        self.create_code_tab()
+        self.create_model_tab()
+    
+    def create_code_tab(self):
+        """Create code generation/debugging tab."""
+        code_frame = ttk.Frame(self.notebook, padding="10")
+        self.notebook.add(code_frame, text="Code Assistant")
+        
+        code_frame.columnconfigure(0, weight=1)
+        code_frame.rowconfigure(2, weight=1)  # Output area expands
+        
+        # Mode Selection
+        mode_frame = ttk.LabelFrame(code_frame, text="Mode", padding="10")
+        mode_frame.grid(row=0, column=0, sticky=(tk.W, tk.E), pady=(0, 10))
+        
+        self.mode_var = tk.StringVar(value="generate")
+        
+        ttk.Radiobutton(
+            mode_frame,
+            text="Code Generation",
+            variable=self.mode_var,
+            value="generate",
+            command=self.on_mode_change
+        ).pack(side=tk.LEFT, padx=(0, 20))
+        
+        ttk.Radiobutton(
+            mode_frame,
+            text="Debugging",
+            variable=self.mode_var,
+            value="debug",
+            command=self.on_mode_change
+        ).pack(side=tk.LEFT)
+        
+        # Input Area
+        input_frame = ttk.LabelFrame(code_frame, text="Input", padding="10")
+        input_frame.grid(row=1, column=0, sticky=(tk.W, tk.E), pady=(0, 10))
+        input_frame.columnconfigure(1, weight=1)
+        
+        # Language selection
+        ttk.Label(input_frame, text="Language:").grid(row=0, column=0, sticky=tk.W, pady=5)
+        
+        self.language_var = tk.StringVar()
+        self.language_combo = ttk.Combobox(
+            input_frame,
+            textvariable=self.language_var,
+            width=20,
+            state='readonly'
+        )
+        self.language_combo.grid(row=0, column=1, sticky=(tk.W, tk.E), pady=5, padx=(5, 0))
+        
+        # Task/Code input
+        self.input_label = ttk.Label(input_frame, text="Task:")
+        self.input_label.grid(row=1, column=0, sticky=(tk.W, tk.N), pady=5)
+        
+        self.input_text = scrolledtext.ScrolledText(
+            input_frame,
+            height=6,
+            wrap=tk.WORD,
+            font=('Consolas', 10)
+        )
+        self.input_text.grid(row=1, column=1, sticky=(tk.W, tk.E), pady=5, padx=(5, 0))
+        
+        # Error message (only for debug mode)
+        self.error_label = ttk.Label(input_frame, text="Error Message:")
+        self.error_entry = ttk.Entry(input_frame)
+        
+        # Action buttons
+        button_frame = ttk.Frame(input_frame)
+        button_frame.grid(row=3, column=0, columnspan=2, pady=(10, 0))
+        
+        self.action_button = ttk.Button(
+            button_frame,
+            text="Generate Code",
+            command=self.on_action,
+            width=20
+        )
+        self.action_button.pack(side=tk.LEFT, padx=5)
+        
+        ttk.Button(
+            button_frame,
+            text="Clear",
+            command=self.on_clear,
+            width=15
+        ).pack(side=tk.LEFT, padx=5)
+        
+        # Output Area
+        output_frame = ttk.LabelFrame(code_frame, text="Output", padding="10")
+        output_frame.grid(row=2, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), pady=(0, 10))
+        output_frame.columnconfigure(0, weight=1)
+        output_frame.rowconfigure(0, weight=1)
+        
+        self.output_text = scrolledtext.ScrolledText(
+            output_frame,
+            wrap=tk.WORD,
+            font=('Consolas', 10),
+            state='disabled'
+        )
+        self.output_text.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        
+        # Add tags for colored output
+        self.output_text.tag_config('success', foreground='green')
+        self.output_text.tag_config('error', foreground='red')
+        self.output_text.tag_config('info', foreground='blue')
+        self.output_text.tag_config('heading', font=('Consolas', 11, 'bold'))
+        
+        # Feedback Area
+        feedback_frame = ttk.LabelFrame(code_frame, text="Feedback", padding="10")
+        feedback_frame.grid(row=3, column=0, sticky=(tk.W, tk.E))
+        
+        ttk.Label(feedback_frame, text="Did this work?").pack(side=tk.LEFT, padx=(0, 10))
+        
+        ttk.Button(
+            feedback_frame,
+            text="✓ Yes",
+            command=lambda: self.on_feedback(True),
+            width=12
+        ).pack(side=tk.LEFT, padx=5)
+        
+        ttk.Button(
+            feedback_frame,
+            text="✗ No",
+            command=lambda: self.on_feedback(False),
+            width=12
+        ).pack(side=tk.LEFT, padx=5)
+        
+        self.feedback_entry = ttk.Entry(feedback_frame, width=40)
+        self.feedback_entry.pack(side=tk.LEFT, padx=(10, 5))
+        ttk.Label(feedback_frame, text="(optional)").pack(side=tk.LEFT)
+    
+    def create_model_tab(self):
+        """Create model management tab."""
+        model_frame = ttk.Frame(self.notebook, padding="10")
+        self.notebook.add(model_frame, text="Models")
+        
+        model_frame.columnconfigure(0, weight=1)
+        model_frame.rowconfigure(1, weight=1)  # Model list expands
+        
+        # === Active Model Display ===
+        active_frame = ttk.LabelFrame(model_frame, text="Active Model", padding="10")
+        active_frame.grid(row=0, column=0, sticky=(tk.W, tk.E), pady=(0, 10))
+        active_frame.columnconfigure(0, weight=1)
+        
+        self.active_model_label = ttk.Label(
+            active_frame,
+            text="No model configured",
+            font=('Arial', 10, 'bold')
+        )
+        self.active_model_label.grid(row=0, column=0, sticky=tk.W)
+        
+        self.active_model_info = ttk.Label(
+            active_frame,
+            text="",
+            foreground='gray'
+        )
+        self.active_model_info.grid(row=1, column=0, sticky=tk.W)
+        
+        # === Model List ===
+        list_frame = ttk.LabelFrame(model_frame, text="Available Models", padding="10")
+        list_frame.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), pady=(0, 10))
+        list_frame.columnconfigure(0, weight=1)
+        list_frame.rowconfigure(0, weight=1)
+        
+        # Create Treeview for models
+        columns = ('Type', 'Description', 'Size')
+        self.model_tree = ttk.Treeview(
+            list_frame,
+            columns=columns,
+            show='tree headings',
+            selectmode='browse'
+        )
+        
+        # Configure columns
+        self.model_tree.heading('#0', text='Model Name')
+        self.model_tree.heading('Type', text='Type')
+        self.model_tree.heading('Description', text='Description')
+        self.model_tree.heading('Size', text='Size (MB)')
+        
+        self.model_tree.column('#0', width=200)
+        self.model_tree.column('Type', width=80)
+        self.model_tree.column('Description', width=300)
+        self.model_tree.column('Size', width=100)
+        
+        # Add scrollbar
+        scrollbar = ttk.Scrollbar(list_frame, orient=tk.VERTICAL, command=self.model_tree.yview)
+        self.model_tree.configure(yscrollcommand=scrollbar.set)
+        
+        self.model_tree.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        scrollbar.grid(row=0, column=1, sticky=(tk.N, tk.S))
+        
+        # === Action Buttons ===
+        button_frame = ttk.Frame(model_frame)
+        button_frame.grid(row=2, column=0, sticky=(tk.W, tk.E))
+        
+        ttk.Button(
+            button_frame,
+            text="Select Model",
+            command=self.on_model_select,
+            width=15
+        ).pack(side=tk.LEFT, padx=5)
+        
+        ttk.Button(
+            button_frame,
+            text="Model Info",
+            command=self.on_model_info,
+            width=15
+        ).pack(side=tk.LEFT, padx=5)
+        
+        ttk.Button(
+            button_frame,
+            text="Refresh List",
+            command=self.on_model_refresh,
+            width=15
+        ).pack(side=tk.LEFT, padx=5)
+        
+        ttk.Button(
+            button_frame,
+            text="Add Model Path",
+            command=self.on_add_model_path,
+            width=15
+        ).pack(side=tk.LEFT, padx=5)
+        
+        # === Statistics ===
+        stats_frame = ttk.Frame(model_frame)
+        stats_frame.grid(row=3, column=0, sticky=(tk.W, tk.E), pady=(10, 0))
+        
+        self.model_stats_label = ttk.Label(
+            stats_frame,
+            text="",
+            foreground='gray'
+        )
+        self.model_stats_label.pack(side=tk.LEFT)
+
+# Add these methods to the GUI class:
+
+    def refresh_model_list(self):
+        """Refresh the model list display."""
+        if not self.model_manager:
+            return
+        
+        # Clear existing items
+        for item in self.model_tree.get_children():
+            self.model_tree.delete(item)
+        
+        # Get models
+        llm_models = self.model_manager.get_llm_models()
+        emb_models = self.model_manager.get_embedding_models()
+        
+        # Get active model
+        active_name = self.model_manager.get_active_llm()
+        
+        # Add LLM models
+        if llm_models:
+            llm_parent = self.model_tree.insert('', 'end', text='LLM Models', open=True)
+            for model in llm_models:
+                name = model.name
+                if model.name == active_name:
+                    name = f"✓ {name} [ACTIVE]"
+                
+                self.model_tree.insert(
+                    llm_parent,
+                    'end',
+                    text=name,
+                    values=(
+                        model.type.upper(),
+                        model.description,
+                        f"{model.size_mb:.1f}"
+                    ),
+                    tags=('active',) if model.name == active_name else ()
+                )
+        
+        # Add embedding models
+        if emb_models:
+            emb_parent = self.model_tree.insert('', 'end', text='Embedding Models', open=True)
+            for model in emb_models:
+                self.model_tree.insert(
+                    emb_parent,
+                    'end',
+                    text=model.name,
+                    values=(
+                        model.type.upper(),
+                        model.description,
+                        f"{model.size_mb:.1f}"
+                    )
+                )
+        
+        # Configure tag for active model
+        self.model_tree.tag_configure('active', background='lightgreen')
+        
+        # Update active model display
+        if active_name:
+            model = self.model_manager.get_model(active_name)
+            if model:
+                self.active_model_label.config(text=f"✓ {model.name}")
+                info_text = f"{model.description} | {model.size_mb:.1f} MB"
+                if model.context_size:
+                    info_text += f" | {model.context_size} tokens"
+                self.active_model_info.config(text=info_text)
+        else:
+            self.active_model_label.config(text="No model configured")
+            self.active_model_info.config(text="Use 'Select Model' to choose one")
+        
+        # Update statistics
+        stats = self.model_manager.get_model_stats()
+        stats_text = f"Total: {stats['total']} models | LLM: {stats['llm']} | Embedding: {stats['embedding']} | Size: {stats['total_size_mb']:.1f} MB"
+        self.model_stats_label.config(text=stats_text)
+    
+    def on_model_select(self):
+        """Handle model selection."""
+        selection = self.model_tree.selection()
+        if not selection:
+            messagebox.showwarning("No Selection", "Please select a model first")
+            return
+        
+        # Get selected item
+        item = selection[0]
+        model_text = self.model_tree.item(item, 'text')
+        
+        # Skip parent items
+        if model_text in ['LLM Models', 'Embedding Models']:
+            messagebox.showinfo("Invalid Selection", "Please select a specific model, not a category")
+            return
+        
+        # Extract model name (remove ✓ and [ACTIVE] if present)
+        model_name = model_text.replace('✓ ', '').replace(' [ACTIVE]', '')
+        
+        # Get model
+        model = self.model_manager.get_model(model_name)
+        if not model:
+            messagebox.showerror("Error", f"Model not found: {model_name}")
+            return
+        
+        # Check if it's an LLM
+        if model.type != 'llm':
+            messagebox.showinfo("Invalid Selection", "Only LLM models can be set as active")
+            return
+        
+        # Confirm selection
+        message = f"Set '{model.name}' as active model?\n\n"
+        message += f"Description: {model.description}\n"
+        message += f"Size: {model.size_mb:.1f} MB\n"
+        if model.context_size:
+            message += f"Context: {model.context_size} tokens\n"
+        message += "\n⚠ You will need to restart the application for changes to take effect."
+        
+        if not messagebox.askyesno("Confirm Model Selection", message):
+            return
+        
+        # Set as active
+        if self.model_manager.set_active_llm(model_name):
+            messagebox.showinfo(
+                "Success",
+                f"Active model set to: {model.name}\n\n⚠ Please restart the application for changes to take effect."
+            )
+            self.refresh_model_list()
+        else:
+            messagebox.showerror("Error", "Failed to set active model")
+    
+    def on_model_info(self):
+        """Show detailed model information."""
+        selection = self.model_tree.selection()
+        if not selection:
+            messagebox.showwarning("No Selection", "Please select a model first")
+            return
+        
+        # Get selected item
+        item = selection[0]
+        model_text = self.model_tree.item(item, 'text')
+        
+        # Skip parent items
+        if model_text in ['LLM Models', 'Embedding Models']:
+            messagebox.showinfo("Invalid Selection", "Please select a specific model")
+            return
+        
+        # Extract model name
+        model_name = model_text.replace('✓ ', '').replace(' [ACTIVE]', '')
+        
+        # Get model
+        model = self.model_manager.get_model(model_name)
+        if not model:
+            messagebox.showerror("Error", f"Model not found: {model_name}")
+            return
+        
+        # Build info message
+        info = f"Model Information:\n\n"
+        info += f"Name: {model.name}\n"
+        info += f"Type: {model.type.upper()}\n"
+        info += f"Description: {model.description}\n"
+        info += f"Size: {model.size_mb:.1f} MB\n"
+        
+        if model.parameters:
+            info += f"Parameters: {model.parameters}\n"
+        if model.quantization:
+            info += f"Quantization: {model.quantization}\n"
+        if model.context_size:
+            info += f"Context Size: {model.context_size} tokens\n"
+        
+        if model.path != 'huggingface':
+            info += f"\nPath: {model.path}\n"
+            info += f"Available: {'Yes' if model.is_available else 'No'}\n"
+        else:
+            info += f"\nSource: Hugging Face\n"
+            info += f"(Downloaded on first use)\n"
+        
+        # Check if active
+        if model.type == 'llm':
+            active = self.model_manager.get_active_llm()
+            if active == model.name:
+                info += f"\nStatus: ACTIVE ✓"
+        
+        messagebox.showinfo("Model Information", info)
+    
+    def on_model_refresh(self):
+        """Refresh model list."""
+        if not self.model_manager:
+            messagebox.showerror("Error", "Model manager not available")
+            return
+        
+        try:
+            self.status_label.config(text="● Scanning...", foreground='orange')
+            self.root.update()
+            
+            self.model_manager.rescan()
+            self.refresh_model_list()
+            
+            stats = self.model_manager.get_model_stats()
+            message = f"Model scan complete!\n\n"
+            message += f"Found {stats['llm']} LLM models\n"
+            message += f"Found {stats['embedding']} embedding models\n"
+            message += f"Total size: {stats['total_size_mb']:.1f} MB"
+            
+            self.status_label.config(text="● Ready", foreground='green')
+            messagebox.showinfo("Scan Complete", message)
+            
+        except Exception as e:
+            self.status_label.config(text="● Error", foreground='red')
+            messagebox.showerror("Error", f"Failed to scan models: {e}")
+    
+    def on_add_model_path(self):
+        """Add a model file path."""
+        filename = filedialog.askopenfilename(
+            title="Select Model File",
+            filetypes=[
+                ("GGUF files", "*.gguf"),
+                ("GGML files", "*.ggml"),
+                ("BIN files", "*.bin"),
+                ("All files", "*.*")
+            ]
+        )
+        
+        if not filename:
+            return
+        
+        try:
+            # Add to registry
+            from pathlib import Path
+            model_path = Path(filename)
+            
+            # Use model manager to add
+            messagebox.showinfo(
+                "Model Path Selected",
+                f"Selected: {model_path.name}\n\n"
+                f"To use this model:\n"
+                f"1. Copy it to data/models/\n"
+                f"2. Click 'Refresh List'\n"
+                f"3. Select it from the list"
+            )
+            
+        except Exception as e:
+            messagebox.showerror("Error", f"Failed to add model: {e}")

@@ -1,0 +1,57 @@
+/* theme.css: Light/Dark mode CSS variables for FrostPeakSolutions DataStudio */
+
+:root {
+  --color-bg: #fff;
+  --color-bg-alt: #f7fafd;
+  --color-bg-secondary: #f8fafc;
+  --color-bg-tertiary: #f8f9fb;
+  --color-panel: #fff;
+  --color-border: #dce6ef;
+  --color-border-light: #e6eaf0;
+  --color-border-accent: #b7d0ea;
+  --color-text: #222;
+  --color-text-light: #fff;
+  --color-primary: #1976d2;
+  --color-primary-light: #bbdefb;
+  --color-primary-dark: #1565c0;
+  --color-secondary: #8e44ad;
+  --color-accent: #16a085;
+  --color-accent-dark: #138d75;
+  --color-warning: #d2691e;
+  --color-warning-dark: #b85c18;
+  --color-error: #c0392b;
+  --color-disabled-bg: #f3f7fa;
+  /* Improved for contrast on light backgrounds (e.g. --color-primary-light) */
+  --color-disabled-text: #4b5c6b;
+  --color-shadow: #1976d220;
+  --color-shadow-accent: #8e44ad20;
+  --color-shadow-accent2: #16a08520;
+}
+
+[data-theme="dark"] {
+  --color-bg: #181a1b;
+  --color-bg-alt: #222426;
+  --color-bg-secondary: #23272a;
+  --color-bg-tertiary: #23272a;
+  --color-panel: #23272a;
+  --color-border: #363b40;
+  --color-border-light: #3a3f44;
+  --color-border-accent: #2c3e50;
+  --color-text: #f7fafc;
+  --color-text-light: #fff;
+  --color-primary: #64b5f6;
+  --color-primary-light: #1976d2;
+  --color-primary-dark: #1565c0;
+  --color-secondary: #b39ddb;
+  --color-accent: #48c9b0;
+  --color-accent-dark: #16a085;
+  --color-warning: #ffb74d;
+  --color-warning-dark: #ffa726;
+  --color-error: #e57373;
+  --color-disabled-bg: #23272a;
+  /* Improved for contrast on --color-primary-light and dark backgrounds */
+  --color-disabled-text: #bfc9d1;
+  --color-shadow: #1976d240;
+  --color-shadow-accent: #8e44ad40;
+  --color-shadow-accent2: #16a08540;
+}

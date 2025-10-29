@@ -1,0 +1,211 @@
+# Configuration for Important Project Documentation Files
+# These files should be kept up-to-date across all code projects managed by the AI Agent Console
+
+# Core Documentation Files
+# These files are essential for project understanding and should be created/updated regularly
+core_documentation:
+  - name: "README.md"
+    description: "Main project documentation and overview"
+    required: true
+    location: "root"
+    update_frequency: "every_major_change"
+    
+  - name: "CHANGELOG.md"
+    description: "Version history and change log"
+    required: true
+    location: "root"
+    update_frequency: "every_version"
+    
+  - name: "VERSION"
+    description: "Current version number"
+    required: true
+    location: "root"
+    update_frequency: "every_version"
+
+# Project Planning and Goals
+planning_files:
+  - name: "Project_Goals.md"
+    description: "Project objectives and success criteria"
+    required: true
+    location: ".project_ai" 
+    update_frequency: "quarterly"
+    
+  - name: "Project_Plan.md"
+    description: "High-level project roadmap and milestones"
+    required: true
+    location: ".project_ai"
+    update_frequency: "monthly"
+    
+  - name: "TODO.md"
+    description: "Active tasks and action items"
+    required: true
+    location: "root"
+    update_frequency: "daily"
+    
+  - name: "Status.md"
+    description: "Current project status and progress"
+    required: false
+    location: "root"
+    update_frequency: "weekly"
+
+# Architecture and Structure
+architecture_files:
+  - name: "STRUCTURE.md"
+    description: "Project directory structure and organization"
+    required: true
+    location: "root"
+    update_frequency: "when_structure_changes"
+    
+  - name: "DESIGN_PRINCIPLES.md"
+    description: "Core design principles and architectural decisions"
+    required: false
+    location: "docs"
+    update_frequency: "when_architecture_changes"
+    
+  - name: "Project_Summary.md"
+    description: "Executive summary of the project"
+    required: false
+    location: ".project_ai"
+    update_frequency: "monthly"
+
+# Development Guidelines
+development_files:
+  - name: "Styling_Guide.md"
+    description: "Code style and formatting guidelines"
+    required: true
+    location: "docs"
+    update_frequency: "rarely"
+    
+  - name: "CONTRIBUTING.md"
+    description: "Contribution guidelines for developers"
+    required: false
+    location: "root"
+    update_frequency: "rarely"
+    
+  - name: "EXTENDING_GUIDE.md"
+    description: "Guide for extending the project"
+    required: false
+    location: "docs"
+    update_frequency: "when_extension_api_changes"
+
+# User Documentation
+user_documentation:
+  - name: "User_Guide.md"
+    description: "End-user documentation"
+    required: true
+    location: "docs"
+    update_frequency: "every_feature_release"
+    
+  - name: "Getting_Started.md"
+    description: "Quick start guide for new users"
+    required: true
+    location: "docs"
+    update_frequency: "every_major_version"
+    
+  - name: "FAQ.md"
+    description: "Frequently asked questions"
+    required: false
+    location: "docs"
+    update_frequency: "as_needed"
+
+# Feature and Enhancement Tracking
+feature_tracking:
+  - name: "Features.md"
+    description: "Current features and capabilities"
+    required: true
+    location: "docs"
+    update_frequency: "every_feature_release"
+    
+  - name: "Future_Improvements.md"
+    description: "Planned improvements and enhancements"
+    required: true
+    location: "docs"
+    update_frequency: "monthly"
+    
+  - name: "ROADMAP.md"
+    description: "Development roadmap"
+    required: false
+    location: "root"
+    update_frequency: "quarterly"
+
+# Configuration for auto-update behavior
+auto_update_settings:
+  # Agents that should check and update these files
+  responsible_agents:
+    - "project_init"
+    - "documentation"
+    - "code_editor"
+    - "code_planner"
+    
+  # When to trigger updates
+  trigger_events:
+    - "project_initialization"
+    - "major_feature_addition"
+    - "version_bump"
+    - "architecture_change"
+    - "before_commit"
+    
+  # Priority levels for updates (1=highest, 5=lowest)
+  update_priorities:
+    critical: ["README.md", "CHANGELOG.md", "VERSION"]
+    high: ["TODO.md", "STRUCTURE.md", "Features.md"]
+    medium: ["Project_Goals.md", "User_Guide.md", "Getting_Started.md"]
+    low: ["Status.md", "Future_Improvements.md", "FAQ.md"]
+    
+  # Files that should be created on project initialization
+  create_on_init:
+    - "README.md"
+    - "VERSION"
+    - "TODO.md"
+    - "STRUCTURE.md"
+    - "Project_Goals.md"
+    - "Getting_Started.md"
+
+# Templates for minimal file contents
+minimal_templates:
+  README.md: |
+    # {{project_name}}
+    
+    {{project_description}}
+    
+    ## Getting Started
+    
+    See [Getting Started Guide](docs/Getting_Started.md) for installation and usage instructions.
+    
+    ## Project Structure
+    
+    See [STRUCTURE.md](STRUCTURE.md) for project organization details.
+    
+    ## License
+    
+    {{license}}
+    
+  VERSION: |
+    0.1.0
+    
+  CHANGELOG.md: |
+    # Changelog
+    
+    All notable changes to this project will be documented in this file.
+    
+    The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+    and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+    
+    ## [0.1.0] - {{date}}
+    
+    ### Added
+    - Initial project setup
+    
+  TODO.md: |
+    # TODO
+    
+    ## Active Tasks
+    
+    - [ ] Set up project structure
+    - [ ] Implement core functionality
+    - [ ] Write tests
+    - [ ] Write documentation
+    
+    ## Completed
+    
+    - [x] Initialize project

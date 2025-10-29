@@ -1,0 +1,109 @@
+
+# New Feature Workflow
+# Complete workflow for implementing a new feature in an existing project
+
+workflow_id: new_feature_workflow
+name: New Feature Implementation
+description: Plan, implement, test, document, and commit a new feature
+version: 1.0.0
+tags:
+  - feature
+  - implementation
+  - development
+
+steps:
+  - step_id: analyze_codebase
+    name: Analyze Existing Codebase
+    agent: code_analyzer
+    action: analyze_project_structure
+    params:
+      project_path: "{{ project_path }}"
+    dependencies: []
+    on_error: continue
+
+  - step_id: plan_feature
+    name: Plan Feature Implementation
+    agent: code_planner
+    action: plan_feature
+    params:
+      feature_description: "{{ feature_description }}"
+      codebase_analysis: "{{ step_analyze_codebase_result }}"
+    dependencies:
+      - analyze_codebase
+    on_error: fail
+
+  - step_id: implement_feature
+    name: Implement Feature Code
+    agent: code_editor
+    action: implement_code
+    params:
+      plan: "{{ step_plan_feature_result }}"
+      project_path: "{{ project_path }}"
+    dependencies:
+      - plan_feature
+    on_error: fail
+
+  - step_id: analyze_implementation
+    name: Analyze Implementation Quality
+    agent: code_analyzer
+    action: analyze_code
+    params:
+      files: "{{ step_implement_feature_result.files }}"
+    dependencies:
+      - implement_feature
+    on_error: continue
+
+  - step_id: write_tests
+    name: Write Unit Tests
+    agent: code_tester
+    action: generate_tests
+    params:
+      code_files: "{{ step_implement_feature_result.files }}"
+      test_framework: "auto"
+    dependencies:
+      - implement_feature
+    on_error: continue
+
+  - step_id: run_tests
+    name: Run Tests
+    agent: code_tester
+    action: run_tests
+    params:
+      test_path: "{{ step_write_tests_result.test_path }}"
+    dependencies:
+      - write_tests
+    condition: "step_write_tests_result.get('success', False)"
+    on_error: continue
+
+  - step_id: update_documentation
+    name: Update Documentation
+    agent: documentation_generator
+    action: update_docs
+    params:
+      feature_description: "{{ feature_description }}"
+      implementation_files: "{{ step_implement_feature_result.files }}"
+    dependencies:
+      - implement_feature
+    on_error: continue
+
+  - step_id: git_commit
+    name: Git Commit
+    agent: git_agent
+    action: commit
+    params:
+      message: "feat: {{ feature_description }}"
+      description: |
+        Implemented new feature: {{ feature_description }}
+        
+        Files modified:
+        {% for file in step_implement_feature_result.files %}
+        - {{ file }}
+        {% endfor %}
+        
+        Tests: {{ 'Added' if step_write_tests_result.success else 'Pending' }}
+        Code Quality Score: {{ step_analyze_implementation_result.score | default('N/A') }}
+    dependencies:
+      - implement_feature
+      - run_tests
+      - update_documentation
+    on_error: continue

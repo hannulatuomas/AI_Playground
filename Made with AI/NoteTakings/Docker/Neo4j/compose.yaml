@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+    neo4j:
+        image: 'neo4j:latest'
+        volumes:
+            - '/$HOME/Git/NoteTakings/Docker/Neo4j/logs:/logs'
+            - '/$HOME/Git/NoteTakings/Docker/Neo4j/data:/data'
+        environment:
+            - NEO4J_AUTH=neo4j/password
+        ports:
+            - '7687:7687' # Bolt interface (neo4j://localhost:7687)
+            - '7474:7474' # Browser interface (http://localhost:7474/browser)
+        restart: unless-stopped
+

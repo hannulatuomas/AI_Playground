@@ -1,0 +1,1094 @@
+{
+  "rules": [
+    {
+      "id": 1,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Follow PEP 8 style guide",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 2,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use type hints for function signatures",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 3,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Maximum line length: 100 characters",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 4,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use f-strings for string formatting",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 5,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use descriptive variable names (no single letters except i, j, k in loops)",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 6,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use snake_case for functions and variables",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 7,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use PascalCase for classes",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 8,
+      "scope": "language",
+      "category": "architecture",
+      "rule_text": "Keep functions under 50 lines",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 9,
+      "scope": "language",
+      "category": "architecture",
+      "rule_text": "Keep files under 500 lines",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 10,
+      "scope": "language",
+      "category": "architecture",
+      "rule_text": "One class per file (except nested classes)",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 11,
+      "scope": "language",
+      "category": "architecture",
+      "rule_text": "Organize imports: standard library, third-party, local",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 12,
+      "scope": "language",
+      "category": "architecture",
+      "rule_text": "Group related functions into classes or modules",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 13,
+      "scope": "language",
+      "category": "architecture",
+      "rule_text": "Use meaningful file and module names",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 14,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use list comprehensions for simple transformations",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 15,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use context managers (with statement) for resources",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 16,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Prefer pathlib over os.path for file operations",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 17,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use enumerate() instead of range(len())",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 18,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use dict.get() with default values",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 19,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Avoid mutable default arguments",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 20,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Add docstrings to all public functions and classes",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 21,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Handle errors explicitly (no bare except)",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 22,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Avoid global variables",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 23,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Use constants for magic numbers",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 24,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Write self-documenting code",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 25,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Add comments only for complex logic",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 26,
+      "scope": "language",
+      "category": "testing",
+      "rule_text": "Write unit tests for all public functions",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 27,
+      "scope": "language",
+      "category": "testing",
+      "rule_text": "Aim for >80% code coverage",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 28,
+      "scope": "language",
+      "category": "testing",
+      "rule_text": "Use descriptive test names",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 29,
+      "scope": "language",
+      "category": "testing",
+      "rule_text": "Follow AAA pattern: Arrange, Act, Assert",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 30,
+      "scope": "language",
+      "category": "testing",
+      "rule_text": "Mock external dependencies",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 31,
+      "scope": "language",
+      "category": "testing",
+      "rule_text": "Test edge cases and error conditions",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 32,
+      "scope": "language",
+      "category": "documentation",
+      "rule_text": "Include module-level docstring",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 33,
+      "scope": "language",
+      "category": "documentation",
+      "rule_text": "Document all public APIs",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 34,
+      "scope": "language",
+      "category": "documentation",
+      "rule_text": "Use Google or NumPy docstring format",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 35,
+      "scope": "language",
+      "category": "documentation",
+      "rule_text": "Include examples in docstrings for complex functions",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 36,
+      "scope": "language",
+      "category": "documentation",
+      "rule_text": "Keep README.md up to date",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 37,
+      "scope": "language",
+      "category": "documentation",
+      "rule_text": "Document breaking changes in CHANGELOG",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 38,
+      "scope": "language",
+      "category": "security",
+      "rule_text": "Never hardcode credentials or API keys",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 39,
+      "scope": "language",
+      "category": "security",
+      "rule_text": "Use environment variables for secrets",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 40,
+      "scope": "language",
+      "category": "security",
+      "rule_text": "Validate all user inputs",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 41,
+      "scope": "language",
+      "category": "security",
+      "rule_text": "Use parameterized queries for SQL",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 42,
+      "scope": "language",
+      "category": "security",
+      "rule_text": "Keep dependencies up to date",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 43,
+      "scope": "language",
+      "category": "security",
+      "rule_text": "Use secure random for cryptographic operations",
+      "priority": 7,
+      "language": "python",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 44,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use const/let, never var",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 45,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use === instead of ==",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 46,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use arrow functions for callbacks",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 47,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use template literals instead of string concatenation",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 48,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use camelCase for variables and functions",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 49,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use PascalCase for classes and components",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 50,
+      "scope": "language",
+      "category": "architecture",
+      "rule_text": "Keep functions under 50 lines",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 51,
+      "scope": "language",
+      "category": "architecture",
+      "rule_text": "Keep files under 500 lines",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 52,
+      "scope": "language",
+      "category": "architecture",
+      "rule_text": "One component per file",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 53,
+      "scope": "language",
+      "category": "architecture",
+      "rule_text": "Organize imports: React, third-party, local",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 54,
+      "scope": "language",
+      "category": "architecture",
+      "rule_text": "Use named exports for utilities",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 55,
+      "scope": "language",
+      "category": "architecture",
+      "rule_text": "Use default exports for components",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 56,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use async/await instead of promise chains",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 57,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use destructuring for objects and arrays",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 58,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use spread operator for copying",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 59,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use optional chaining (?.) for nested properties",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 60,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use nullish coalescing (??) for default values",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 61,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Avoid nested ternary operators",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 62,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Add JSDoc comments for public functions",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 63,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Handle promise rejections",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 64,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Avoid console.log in production",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 65,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Use meaningful variable names",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 66,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Avoid deeply nested code",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 67,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Use early returns to reduce nesting",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 68,
+      "scope": "language",
+      "category": "testing",
+      "rule_text": "Write unit tests with Jest or Vitest",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 69,
+      "scope": "language",
+      "category": "testing",
+      "rule_text": "Test components with React Testing Library",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 70,
+      "scope": "language",
+      "category": "testing",
+      "rule_text": "Mock API calls in tests",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 71,
+      "scope": "language",
+      "category": "testing",
+      "rule_text": "Test user interactions",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 72,
+      "scope": "language",
+      "category": "testing",
+      "rule_text": "Aim for >80% coverage",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 73,
+      "scope": "language",
+      "category": "testing",
+      "rule_text": "Use data-testid for test selectors",
+      "priority": 7,
+      "language": "javascript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 74,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use explicit types for function parameters and returns",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 75,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Avoid using 'any' type",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 76,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use interfaces for object shapes",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 77,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use type aliases for unions and complex types",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 78,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Enable strict mode in tsconfig.json",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 79,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use readonly for immutable properties",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 80,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use type guards for narrowing",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 81,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use generics for reusable components",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 82,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Prefer unknown over any",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 83,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use utility types (Partial, Pick, Omit, etc.)",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 84,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Define types close to usage",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 85,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use enums for fixed sets of values",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 86,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "No implicit any",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 87,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "No unused variables",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 88,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Strict null checks enabled",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 89,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "No non-null assertions unless necessary",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 90,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Use type inference where obvious",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 91,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Document complex types",
+      "priority": 7,
+      "language": "typescript",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 92,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use functional components with hooks",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 93,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use PascalCase for component names",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 94,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Use camelCase for props",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 95,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "One component per file",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 96,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Export component as default",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 97,
+      "scope": "language",
+      "category": "style",
+      "rule_text": "Keep JSX readable with proper indentation",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 98,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use useState for local state",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 99,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use useEffect for side effects",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 100,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use useCallback for event handlers",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 101,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use useMemo for expensive computations",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 102,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Use custom hooks for reusable logic",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 103,
+      "scope": "language",
+      "category": "best_practices",
+      "rule_text": "Avoid prop drilling, use Context or state management",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 104,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Add PropTypes or TypeScript types",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 105,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Use key prop for lists",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 106,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Avoid inline function definitions in JSX",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 107,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Use fragments to avoid extra divs",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 108,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Handle loading and error states",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    },
+    {
+      "id": 109,
+      "scope": "language",
+      "category": "quality",
+      "rule_text": "Implement error boundaries",
+      "priority": 7,
+      "language": "react",
+      "framework": null,
+      "project_id": null
+    }
+  ]
+}

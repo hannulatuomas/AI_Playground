@@ -1,0 +1,228 @@
+# Part 3: Archiving Section Handler Code  
+# Add these methods to the ProjectLifecycleGUI class
+
+# Replace the placeholder create_archiving_section method with this:
+
+def create_archiving_section(self, parent):
+    """Create archiving section."""
+    parent.columnconfigure(0, weight=1)
+    parent.rowconfigure(3, weight=1)
+    
+    # Project selector
+    sel = ttk.LabelFrame(parent, text="Project", padding="10")
+    sel.grid(row=0, column=0, sticky='ew', padx=10, pady=10)
+    sel.columnconfigure(1, weight=1)
+    
+    ttk.Label(sel, text="Path:").grid(row=0, column=0, sticky='w', pady=5)
+    path_frame = ttk.Frame(sel)
+    path_frame.grid(row=0, column=1, sticky='ew', pady=5, padx=(5, 0))
+    path_frame.columnconfigure(0, weight=1)
+    
+    self.arch_path_var = tk.StringVar(value="No project selected")
+    ttk.Entry(path_frame, textvariable=self.arch_path_var, state='readonly').grid(row=0, column=0, sticky='ew')
+    ttk.Button(path_frame, text="Select", command=self.select_arch_project, width=10).grid(row=0, column=1, padx=(5, 0))
+    
+    # Version management
+    ver_frame = ttk.LabelFrame(parent, text="Version Management", padding="15")
+    ver_frame.grid(row=1, column=0, sticky='ew', padx=10, pady=10)
+    ver_frame.columnconfigure(1, weight=1)
+    
+    ttk.Label(ver_frame, text="Current:").grid(row=0, column=0, sticky='w', pady=5)
+    self.curr_ver = ttk.Label(ver_frame, text="Unknown", font=('Arial', 10, 'bold'))
+    self.curr_ver.grid(row=0, column=1, sticky='w', pady=5, padx=(10, 0))
+    
+    ttk.Label(ver_frame, text="Bump:").grid(row=1, column=0, sticky='w', pady=5)
+    bump_frame = ttk.Frame(ver_frame)
+    bump_frame.grid(row=1, column=1, sticky='w', pady=5, padx=(10, 0))
+    ttk.Button(bump_frame, text="Major", command=lambda: self.bump_ver('major'), width=10).pack(side='left', padx=2)
+    ttk.Button(bump_frame, text="Minor", command=lambda: self.bump_ver('minor'), width=10).pack(side='left', padx=2)
+    ttk.Button(bump_frame, text="Patch", command=lambda: self.bump_ver('patch'), width=10).pack(side='left', padx=2)
+    
+    # Release
+    rel_frame = ttk.LabelFrame(parent, text="Release", padding="15")
+    rel_frame.grid(row=2, column=0, sticky='ew', padx=10, pady=10)
+    
+    btn_frame = ttk.Frame(rel_frame)
+    btn_frame.pack(fill='x', pady=5)
+    ttk.Button(btn_frame, text="Generate Changelog", command=self.gen_changelog, width=20).pack(side='left', padx=5)
+    ttk.Button(btn_frame, text="Create Archive", command=self.create_archive, width=18).pack(side='left', padx=5)
+    ttk.Button(btn_frame, text="Generate Docs", command=self.gen_docs, width=18).pack(side='left', padx=5)
+    
+    self.arch_status = ttk.Label(rel_frame, text="", foreground='gray')
+    self.arch_status.pack(pady=5)
+    
+    # Output
+    out_frame = ttk.LabelFrame(parent, text="Output", padding="10")
+    out_frame.grid(row=3, column=0, sticky='nsew', padx=10, pady=10)
+    out_frame.columnconfigure(0, weight=1)
+    out_frame.rowconfigure(0, weight=1)
+    
+    self.arch_output = scrolledtext.ScrolledText(out_frame, wrap='word', font=('Consolas', 9), state='disabled')
+    self.arch_output.grid(row=0, column=0, sticky='nsew')
+
+# Archiving handlers
+def select_arch_project(self):
+    folder = filedialog.askdirectory(title="Select Project")
+    if folder:
+        self.arch_path_var.set(folder)
+        self.current_project_path = Path(folder)
+        self.detect_version()
+
+def detect_version(self):
+    """Detect current version."""
+    if not self.current_project_path:
+        return
+    
+    try:
+        # Try package.json
+        pkg = self.current_project_path / "package.json"
+        if pkg.exists():
+            with open(pkg) as f:
+                data = json.load(f)
+                ver = data.get('version', 'Unknown')
+                self.curr_ver.config(text=ver)
+                return
+        
+        # Try setup.py
+        setup = self.current_project_path / "setup.py"
+        if setup.exists():
+            content = setup.read_text()
+            import re
+            match = re.search(r'version=["\'](.*?)["\']', content)
+            if match:
+                self.curr_ver.config(text=match.group(1))
+                return
+        
+        self.curr_ver.config(text="Unknown")
+    except Exception as e:
+        self.curr_ver.config(text=f"Error: {e}")
+
+def bump_ver(self, bump_type):
+    """Bump version."""
+    if not self.current_project_path:
+        messagebox.showwarning("Warning", "Select a project first")
+        return
+    
+    self.arch_status.config(text=f"Bumping {bump_type}...")
+    self.root.update()
+    
+    try:
+        success, new_ver, msg = self.project_archiver.bump_version(self.current_project_path, bump_type=bump_type)
+        
+        if success:
+            self.curr_ver.config(text=new_ver)
+            self.arch_status.config(text=f"✓ Bumped to {new_ver}")
+            self.arch_log(f"Version bumped: {new_ver}")
+            messagebox.showinfo("Success", f"Version bumped to {new_ver}")
+        else:
+            self.arch_status.config(text="✗ Failed")
+            messagebox.showerror("Error", msg)
+    except Exception as e:
+        self.arch_status.config(text="✗ Error")
+        messagebox.showerror("Error", f"Bump failed: {e}")
+
+def gen_changelog(self):
+    """Generate changelog."""
+    if not self.current_project_path:
+        messagebox.showwarning("Warning", "Select a project first")
+        return
+    
+    self.arch_status.config(text="Generating changelog...")
+    self.root.update()
+    
+    try:
+        success, msg = self.project_archiver.generate_changelog(self.current_project_path)
+        
+        if success:
+            self.arch_status.config(text="✓ Changelog generated")
+            self.arch_log("Changelog generated successfully")
+            
+            # Read and display
+            changelog = self.current_project_path / "CHANGELOG.md"
+            if changelog.exists():
+                content = changelog.read_text()[:500]
+                self.arch_log(f"\n{content}...")
+            
+            messagebox.showinfo("Success", "Changelog generated!")
+        else:
+            self.arch_status.config(text="✗ Failed")
+            messagebox.showerror("Error", msg)
+    except Exception as e:
+        self.arch_status.config(text="✗ Error")
+        messagebox.showerror("Error", f"Generation failed: {e}")
+
+def gen_docs(self):
+    """Generate documentation."""
+    if not self.current_project_path:
+        messagebox.showwarning("Warning", "Select a project first")
+        return
+    
+    self.arch_status.config(text="Generating docs...")
+    self.root.update()
+    
+    try:
+        success, msg = self.project_archiver.generate_full_docs(self.current_project_path)
+        
+        if success:
+            self.arch_status.config(text="✓ Docs generated")
+            self.arch_log("Documentation generated successfully")
+            messagebox.showinfo("Success", f"Documentation generated!\n{msg}")
+        else:
+            self.arch_status.config(text="✗ Failed")
+            messagebox.showerror("Error", msg)
+    except Exception as e:
+        self.arch_status.config(text="✗ Error")
+        messagebox.showerror("Error", f"Doc generation failed: {e}")
+
+def create_archive(self):
+    """Create project archive."""
+    if not self.current_project_path:
+        messagebox.showwarning("Warning", "Select a project first")
+        return
+    
+    # Ask format
+    format_dialog = tk.Toplevel(self.root)
+    format_dialog.title("Archive Format")
+    format_dialog.geometry("300x150")
+    format_dialog.transient(self.root)
+    format_dialog.grab_set()
+    
+    ttk.Label(format_dialog, text="Select archive format:", font=('Arial', 10)).pack(pady=15)
+    
+    format_var = tk.StringVar(value="zip")
+    ttk.Radiobutton(format_dialog, text="ZIP", variable=format_var, value="zip").pack(pady=5)
+    ttk.Radiobutton(format_dialog, text="TAR.GZ", variable=format_var, value="tar.gz").pack(pady=5)
+    
+    def do_archive():
+        fmt = format_var.get()
+        format_dialog.destroy()
+        
+        self.arch_status.config(text=f"Creating {fmt} archive...")
+        self.root.update()
+        
+        try:
+            success, archive_path, msg = self.project_archiver.create_archive(self.current_project_path, format=fmt)
+            
+            if success:
+                self.arch_status.config(text="✓ Archive created")
+                self.arch_log(f"Archive created: {archive_path}")
+                messagebox.showinfo("Success", f"Archive created!\n\n{archive_path}")
+            else:
+                self.arch_status.config(text="✗ Failed")
+                messagebox.showerror("Error", msg)
+        except Exception as e:
+            self.arch_status.config(text="✗ Error")
+            messagebox.showerror("Error", f"Archive failed: {e}")
+    
+    btn_frame = ttk.Frame(format_dialog)
+    btn_frame.pack(pady=10)
+    ttk.Button(btn_frame, text="Create", command=do_archive, width=12).pack(side='left', padx=5)
+    ttk.Button(btn_frame, text="Cancel", command=format_dialog.destroy, width=12).pack(side='left', padx=5)
+
+def arch_log(self, msg):
+    """Log to archive output."""
+    self.arch_output.config(state='normal')
+    self.arch_output.insert('end', msg + '\n')
+    self.arch_output.see('end')
+    self.arch_output.config(state='disabled')
+    self.root.update()

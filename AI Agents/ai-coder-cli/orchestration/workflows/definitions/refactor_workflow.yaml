@@ -1,0 +1,121 @@
+
+# Refactor Workflow
+# Analyzes code, plans refactoring, implements changes, tests, and commits
+
+workflow_id: refactor_workflow
+name: Code Refactoring
+description: Analyze code, plan refactoring, implement changes, test, and commit
+version: 1.0.0
+tags:
+  - refactor
+  - code-quality
+  - improvement
+
+steps:
+  - step_id: analyze_code_quality
+    name: Analyze Code Quality
+    agent: code_analyzer
+    action: analyze_code
+    params:
+      target_path: "{{ target_path }}"
+      include_complexity: true
+      include_security: true
+    dependencies: []
+    on_error: fail
+
+  - step_id: identify_issues
+    name: Identify Refactoring Opportunities
+    agent: code_analyzer
+    action: identify_refactoring_targets
+    params:
+      analysis: "{{ step_analyze_code_quality_result }}"
+      priority: "{{ priority | default('high') }}"
+    dependencies:
+      - analyze_code_quality
+    on_error: fail
+
+  - step_id: plan_refactoring
+    name: Plan Refactoring Strategy
+    agent: code_planner
+    action: plan_refactoring
+    params:
+      issues: "{{ step_identify_issues_result }}"
+      refactor_goal: "{{ refactor_goal }}"
+    dependencies:
+      - identify_issues
+    on_error: fail
+
+  - step_id: backup_code
+    name: Backup Original Code
+    agent: git_agent
+    action: create_branch
+    params:
+      branch_name: "refactor-{{ timestamp }}"
+    dependencies:
+      - plan_refactoring
+    on_error: continue
+
+  - step_id: implement_refactoring
+    name: Implement Refactoring
+    agent: code_editor
+    action: refactor_code
+    params:
+      plan: "{{ step_plan_refactoring_result }}"
+      target_path: "{{ target_path }}"
+    dependencies:
+      - backup_code
+    on_error: fail
+
+  - step_id: verify_tests
+    name: Verify Existing Tests Still Pass
+    agent: code_tester
+    action: run_tests
+    params:
+      test_path: "{{ test_path | default('tests/') }}"
+    dependencies:
+      - implement_refactoring
+    on_error: fail
+
+  - step_id: analyze_improvements
+    name: Analyze Code Improvements
+    agent: code_analyzer
+    action: analyze_code
+    params:
+      target_path: "{{ target_path }}"
+      compare_with: "{{ step_analyze_code_quality_result }}"
+    dependencies:
+      - implement_refactoring
+    on_error: continue
+
+  - step_id: update_documentation
+    name: Update Documentation
+    agent: documentation_generator
+    action: update_docs
+    params:
+      changes: "{{ step_implement_refactoring_result }}"
+      improvements: "{{ step_analyze_improvements_result }}"
+    dependencies:
+      - analyze_improvements
+    on_error: continue
+
+  - step_id: git_commit
+    name: Commit Refactoring
+    agent: git_agent
+    action: commit
+    params:
+      message: "refactor: {{ refactor_goal }}"
+      description: |
+        Refactored code to improve quality and maintainability.
+        
+        Improvements:
+        - Code Quality Score: {{ step_analyze_code_quality_result.score }} → {{ step_analyze_improvements_result.score }}
+        - Complexity Reduction: {{ step_analyze_improvements_result.complexity_reduction | default('N/A') }}
+        
+        Changes:
+        {% for change in step_implement_refactoring_result.changes %}
+        - {{ change }}
+        {% endfor %}
+    dependencies:
+      - verify_tests
+      - update_documentation
+    on_error: continue

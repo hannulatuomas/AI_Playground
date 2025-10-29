@@ -1,0 +1,237 @@
+# AI Agent Console - Python Dependencies
+# 
+# This file lists all required dependencies for the AI Agent Console.
+# Install with: pip install -r requirements.txt
+
+# ============================================================================
+# Core Dependencies
+# ============================================================================
+
+# CLI framework
+typer[all]==0.12.3
+click==8.1.7  # Pin to 8.1.7 for compatibility with typer 0.12.3 (versions >=8.3.0 are incompatible)
+typing-extensions==4.9.0
+
+# Configuration and validation
+# FIXED: Updated to avoid Rust compilation issues
+pydantic>=2.6.0  # Changed from 2.10.0 to avoid Rust requirement
+pydantic-settings>=2.1.0  # Changed from 2.6.0 for compatibility
+
+# YAML configuration file support (preferred format)
+pyyaml>=6.0
+
+# TOML configuration file support (legacy, for backward compatibility)
+# Python 3.11+ has built-in tomllib, but we include tomli for older versions
+tomli==2.0.1; python_version < '3.11'
+
+# LLM providers
+ollama==0.2.1
+openai==1.12.0
+# llama-cpp-python is installed separately with pre-built wheels by build script
+# DO NOT uncomment the line below - it will try to compile from source
+# llama-cpp-python>=0.2.0
+
+# To install llama-cpp-python manually:
+# CPU (default, no CUDA required):
+#   pip install llama-cpp-python --only-binary llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+#
+# CUDA 12.1:
+#   pip install llama-cpp-python --only-binary llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu121
+#
+# CUDA 12.2:
+#   pip install llama-cpp-python --only-binary llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu122
+#
+# NOTE: Build scripts will prompt you to choose CPU or CUDA version
+
+# Utilities
+python-dotenv==1.0.1
+
+# Rich console output (for enhanced UI)
+rich>=13.0.0
+
+
+# ============================================================================
+# Agent and Tool System Dependencies (Phase 2)
+# ============================================================================
+
+# Git operations (for git tool and git_agent)
+gitpython==3.1.40
+
+# Web fetching with async support (for web_fetch tool)
+httpx>=0.25.0
+
+# HTML parsing (for web_data agent)
+beautifulsoup4==4.12.2
+lxml==5.1.0
+
+# Fallback for web requests (if httpx not available)
+requests==2.31.0
+
+
+# ============================================================================
+# Data Analysis Agent Dependencies
+# ============================================================================
+
+# Core data analysis libraries
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Excel file support for pandas
+openpyxl>=3.1.0
+
+# Advanced statistical functions
+scipy>=1.10.0
+
+# Optional: for faster data processing
+# pyarrow>=12.0.0  # For Parquet file support
+
+
+# ============================================================================
+# Cybersecurity Agent Dependencies (Optional)
+# ============================================================================
+
+# Note: These are optional and should be installed separately if needed
+# Some tools may not be available on all platforms or may require 
+# additional system dependencies
+
+# For port scanning (requires nmap installed on system)
+# python-nmap>=0.7.1
+
+# For password strength estimation (advanced)
+# zxcvbn>=4.4.28
+
+# For Python code security analysis
+# bandit>=1.7.5
+
+# For dependency vulnerability checking
+# safety>=2.3.5
+
+# For more advanced security headers checking
+# httpx>=0.25.0  # Already included above for web_fetch
+
+
+# ============================================================================
+# Windows Admin Agent Dependencies
+# ============================================================================
+
+# Note: Windows-specific dependencies are optional
+# Only needed when running WindowsAdminAgent on Windows systems
+
+# Windows API access (Windows only)
+# pywin32>=305; sys_platform == 'win32'
+
+# Windows Management Instrumentation (Windows only)
+# wmi>=1.5.1; sys_platform == 'win32'
+
+
+# ============================================================================
+# Web Search Agent Dependencies
+# ============================================================================
+
+# DuckDuckGo search (privacy-friendly, no API key required)
+duckduckgo-search>=4.0.0
+
+# Already included above:
+# httpx>=0.25.0  # For HTTP requests
+# requests==2.31.0  # Fallback HTTP library
+
+
+# ============================================================================
+# Database Agent Dependencies
+# ============================================================================
+
+# SQLite support (built-in with Python)
+# No additional package needed for SQLite
+
+# MySQL/MariaDB support
+pymysql>=1.1.0
+
+# PostgreSQL support
+psycopg2-binary>=2.9.9
+
+# MongoDB support
+pymongo>=4.6.0
+
+# Redis support
+redis>=5.0.0
+
+# Neo4j graph database support (optional)
+neo4j>=5.14.0
+
+# MS SQL Server support (optional, requires ODBC driver installed on system)
+# pyodbc>=5.0.0  # Uncomment if using MS SQL Server
+
+# Alternative MS SQL Server support (pure Python)
+# pymssql>=2.2.10  # Uncomment as alternative to pyodbc
+
+
+# ============================================================================
+# Optional Dependencies
+# ============================================================================
+
+# For MCP (Model Context Protocol) SSE transport
+# sseclient-py==1.8.0  # Uncomment if using SSE transport
+
+
+# ============================================================================
+# Development Dependencies (optional, install separately)
+# ============================================================================
+# pytest==7.4.3
+# pytest-asyncio==0.21.1
+# pytest-cov==4.1.0
+# black==23.12.1
+# flake8==7.0.0
+# mypy==1.8.0
+
+
+# ============================================================================
+# Vector Database Dependencies (ChromaDB)
+# ============================================================================
+# ChromaDB for vector database and semantic search
+chromadb>=0.4.20
+
+# Additional chromadb dependencies (usually auto-installed)
+# hnswlib>=0.7.0  # Fast approximate nearest neighbor search
+# pydantic>=2.0.0  # Already included above
+
+
+# ============================================================================
+# Development Dependencies (optional, install separately)
+# ============================================================================
+# Type checking
+mypy==1.8.0
+mypy-extensions==1.0.0
+
+# Testing
+# pytest==7.4.3
+# pytest-asyncio==0.21.1
+# pytest-cov==4.1.0
+
+# Code quality
+# black==23.12.1
+# flake8==7.0.0
+# isort==5.13.2
+
+
+# Note: Standard library modules used (no additional deps required):
+# - logging (built-in)
+# - pathlib (built-in)
+# - json (built-in)
+# - time (built-in)
+# - os (built-in)
+# - subprocess (built-in)
+# - asyncio (built-in)
+# - difflib (built-in)
+# - enum (built-in)
+# - socket (built-in)
+# - ssl (built-in)
+# - hashlib (built-in)
+# - urllib (built-in)
+# - datetime (built-in)
+# - re (built-in)
+# - io (built-in)
+# - uuid (built-in)

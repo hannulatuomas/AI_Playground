@@ -1,0 +1,74 @@
+https://github.com/JefMari/awesome-wysiwyg-editors?tab=readme-ov-file#for-react
+https://daext.com/blog/how-to-create-a-markdown-editor-with-javascript/
+https://editorjs.io/
+https://simplemde.com/
+https://jefago.github.io/tiny-markdown-editor/
+https://stackblitz.com/edit/easymde?file=index.html
+https://mdxeditor.dev/editor/demo
+https://uiwjs.github.io/react-md-editor/
+https://github.com/nhn/tui.editor
+
+---------------------------------------
+
+(https://mdxeditor.dev/editor/demo)
+
+---------------------------------------
+
+Bold
+Italic
+Underline
+Strikethrough
+Inline code
+Code block
+Superscript
+Subscript
+Bullet list
+Number list
+Check list
+Quote
+Header
+Link
+Image
+Table
+Break line
+Info block
+Frontmatter
+Comment
+(Document link)
+
+---------------------------------------
+
+https://github.com/mdx-editor/mdx-editor-in-vite
+https://github.com/mdx-editor/mdx-editor-in-cra
+https://mdxeditor.dev/editor/docs/getting-started
+
+https://github.com/mdx-editor/editor?tab=readme-ov-file
+https://mdxeditor.dev/editor/demo
+https://mdxeditor.dev/editor/docs/code-blocks
+https://mdxeditor.dev/editor/api/variables/codeMirrorAutoLoadLanguageSupport$
+https://uiwjs.github.io/react-codemirror/#/extensions/languages
+
+https://uiwjs.github.io/react-md-editor/
+https://github.com/nhn/tui.editor
+
+---------------------------------------
+
+https://ladle.dev/docs/setup
+https://vite.dev/guide/
+https://astro.build/
+
+---------------------------------------
+
+npm install @ladle/react
+src/**/*.stories.{js,jsx,ts,tsx,mdx}
+npx ladle serve
+npx ladle build
+npx ladle preview
+
+mkdir my-ladle
+cd my-ladle
+npm init --yes
+npm install @ladle/react react react-dom
+mkdir src
+echo "export const World = () => <p>Hey</p>;" > src/hello.stories.tsx
+npx ladle serve

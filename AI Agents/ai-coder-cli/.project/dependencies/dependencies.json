@@ -1,0 +1,3668 @@
+{
+  "generated_at": "2025-10-13T18:34:29.259992",
+  "root_directory": ".",
+  "statistics": {
+    "total_files": 207,
+    "language_breakdown": {
+      "python": {
+        "file_count": 207,
+        "avg_imports": 0.65,
+        "avg_dependents": 0.54
+      }
+    },
+    "orphaned_files_count": 89,
+    "circular_dependencies_count": 0,
+    "max_imports_per_file": 10,
+    "avg_imports_per_file": 0.65,
+    "max_dependents_per_file": 7,
+    "avg_dependents_per_file": 0.54,
+    "hub_files": [
+      {
+        "file": "core/config.py",
+        "dependent_count": 7,
+        "language": "python"
+      },
+      {
+        "file": "core/llm_router.py",
+        "dependent_count": 6,
+        "language": "python"
+      },
+      {
+        "file": "agents/git_agent.py",
+        "dependent_count": 5,
+        "language": "python"
+      },
+      {
+        "file": "agents/base/agent_base.py",
+        "dependent_count": 5,
+        "language": "python"
+      },
+      {
+        "file": "tools/registry.py",
+        "dependent_count": 5,
+        "language": "python"
+      },
+      {
+        "file": "tools/file_operations.py",
+        "dependent_count": 5,
+        "language": "python"
+      },
+      {
+        "file": "tools/git.py",
+        "dependent_count": 5,
+        "language": "python"
+      },
+      {
+        "file": "tools/base.py",
+        "dependent_count": 4,
+        "language": "python"
+      },
+      {
+        "file": "tools/web_fetch.py",
+        "dependent_count": 4,
+        "language": "python"
+      },
+      {
+        "file": "core/memory.py",
+        "dependent_count": 4,
+        "language": "python"
+      }
+    ],
+    "complex_files": [
+      {
+        "file": "core/engine.py",
+        "import_count": 10,
+        "language": "python"
+      },
+      {
+        "file": "tests/integration/tools/test_tool_integration.py",
+        "import_count": 8,
+        "language": "python"
+      },
+      {
+        "file": "tests/unit/agents/test_specialized_agent_coverage.py",
+        "import_count": 7,
+        "language": "python"
+      },
+      {
+        "file": "tests/integration/plugins/test_plugin_integration.py",
+        "import_count": 7,
+        "language": "python"
+      },
+      {
+        "file": "tests/unit/tools/test_specific_tools.py",
+        "import_count": 6,
+        "language": "python"
+      },
+      {
+        "file": "tests/integration/core/test_core_tools_integration.py",
+        "import_count": 6,
+        "language": "python"
+      },
+      {
+        "file": "benchmarks/benchmark_runner.py",
+        "import_count": 5,
+        "language": "python"
+      },
+      {
+        "file": "tests/unit/agents/test_generic_agents.py",
+        "import_count": 5,
+        "language": "python"
+      },
+      {
+        "file": "tests/integration/agents/test_agent_tool_integration.py",
+        "import_count": 5,
+        "language": "python"
+      },
+      {
+        "file": "benchmarks/agent_benchmarks.py",
+        "import_count": 4,
+        "language": "python"
+      }
+    ],
+    "errors_count": 0
+  },
+  "dependencies": {
+    "main.py": {
+      "language": "python",
+      "local_imports": [
+        "core"
+      ],
+      "external_imports": [
+        "rich.progress",
+        "rich.table",
+        "logging",
+        "json",
+        "rich.markdown",
+        "rich.syntax",
+        "sys",
+        "rich.logging",
+        "typer",
+        "rich.json",
+        "typing",
+        "rich.text",
+        "rich.console",
+        "pathlib",
+        "rich.panel",
+        "typing_extensions",
+        "rich",
+        "rich.prompt"
+      ],
+      "references": [],
+      "size_bytes": 39647,
+      "last_modified": "2025-10-13T17:50:50.260000",
+      "imported_by": [
+        "test_rich_ui.py"
+      ]
+    },
+    "setup_verify.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "importlib",
+        "sys"
+      ],
+      "references": [
+        "core/config.py",
+        "main.py",
+        "core/engine.py",
+        "core/__init__.py",
+        "core/llm_router.py"
+      ],
+      "size_bytes": 2557,
+      "last_modified": "2025-10-12T22:08:44.201000",
+      "imported_by": []
+    },
+    "check_types.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "typing",
+        "pathlib",
+        "subprocess",
+        "sys"
+      ],
+      "references": [],
+      "size_bytes": 3612,
+      "last_modified": "2025-10-12T22:08:46.708000",
+      "imported_by": []
+    },
+    "test_rich_ui.py": {
+      "language": "python",
+      "local_imports": [
+        "main"
+      ],
+      "external_imports": [
+        "rich.table",
+        "time",
+        "traceback",
+        "sys",
+        "rich.progress",
+        "rich.text",
+        "rich.console",
+        "pathlib",
+        "rich.panel",
+        "rich",
+        "rich.prompt"
+      ],
+      "references": [],
+      "size_bytes": 5849,
+      "last_modified": "2025-10-12T22:08:46.724000",
+      "imported_by": []
+    },
+    "test_config_phase3.py": {
+      "language": "python",
+      "local_imports": [
+        "core.config"
+      ],
+      "external_imports": [
+        "pathlib",
+        "traceback",
+        "sys"
+      ],
+      "references": [],
+      "size_bytes": 7101,
+      "last_modified": "2025-10-12T22:08:47.583000",
+      "imported_by": []
+    },
+    "agents/registry.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "re",
+        "logging",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 10114,
+      "last_modified": "2025-10-13T17:22:51.560000",
+      "imported_by": [
+        "tests/unit/agents/test_agent_registry.py",
+        "tests/integration/plugins/test_plugin_integration.py",
+        "core/plugin_loader.py"
+      ]
+    },
+    "agents/data_analysis.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base",
+        "json",
+        "pandas",
+        "numpy",
+        "matplotlib.pyplot",
+        "typing",
+        "pathlib",
+        "matplotlib"
+      ],
+      "references": [],
+      "size_bytes": 13002,
+      "last_modified": "2025-10-12T22:08:44.394000",
+      "imported_by": [
+        "tests/unit/agents/test_specialized_agents.py",
+        "tests/unit/agents/test_specialized_agent_coverage.py"
+      ]
+    },
+    "agents/cybersecurity.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "socket",
+        "time",
+        "base",
+        "datetime",
+        "typing",
+        "re",
+        "ssl",
+        "pathlib",
+        "hashlib"
+      ],
+      "references": [],
+      "size_bytes": 9297,
+      "last_modified": "2025-10-12T22:08:44.413000",
+      "imported_by": [
+        "tests/unit/agents/test_specialized_agent_coverage.py"
+      ]
+    },
+    "agents/database.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "logging",
+        "json",
+        "base",
+        "psycopg2.extras",
+        "pyodbc",
+        "sqlite3",
+        "re",
+        "pymongo",
+        "typing",
+        "neo4j",
+        "pathlib",
+        "psycopg2",
+        "redis",
+        "pymysql"
+      ],
+      "references": [],
+      "size_bytes": 25570,
+      "last_modified": "2025-10-12T22:08:44.434000",
+      "imported_by": [
+        "tests/unit/agents/test_specialized_agents.py",
+        "tests/unit/agents/test_specialized_agent_coverage.py"
+      ]
+    },
+    "agents/base.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "abc",
+        "base.agent_base",
+        "logging",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 13651,
+      "last_modified": "2025-10-12T22:08:44.453000",
+      "imported_by": [
+        ".project/examples/agent_integration_example.py"
+      ]
+    },
+    "agents/windows_admin.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "platform",
+        "subprocess",
+        "base",
+        "json",
+        "enum",
+        "re",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 35251,
+      "last_modified": "2025-10-12T22:08:44.476000",
+      "imported_by": [
+        "tests/unit/agents/test_specialized_agent_coverage.py"
+      ]
+    },
+    "agents/web_search.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "duckduckgo_search",
+        "urllib.parse",
+        "logging",
+        "time",
+        "json",
+        "base",
+        "httpx",
+        "typing",
+        "requests"
+      ],
+      "references": [],
+      "size_bytes": 38340,
+      "last_modified": "2025-10-12T22:08:44.497000",
+      "imported_by": [
+        "tests/unit/agents/test_specialized_agents.py",
+        "tests/integration/agents/test_agent_tool_integration.py"
+      ]
+    },
+    "agents/web_data.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "re",
+        "base",
+        "urllib.parse",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 5902,
+      "last_modified": "2025-10-12T22:08:44.514000",
+      "imported_by": [
+        "tests/unit/agents/test_web_data_agent.py",
+        "core/engine.py"
+      ]
+    },
+    "agents/git_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "base",
+        "re",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 11013,
+      "last_modified": "2025-10-12T22:08:44.595000",
+      "imported_by": [
+        "tests/unit/agents/test_specialized_agents.py",
+        "core/engine.py",
+        "tests/integration/agents/test_agent_tool_integration.py",
+        "tests/unit/agents/test_git_agent.py",
+        ".project/examples/agent_integration_example.py"
+      ]
+    },
+    "agents/prompt_refiner.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 9022,
+      "last_modified": "2025-10-12T22:08:44.861000",
+      "imported_by": [
+        "tests/unit/agents/test_specialized_agent_coverage.py"
+      ]
+    },
+    "agents/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "windows_admin",
+        "languages.cpp",
+        "web_data",
+        "cybersecurity",
+        "prompt_refiner",
+        "git_agent",
+        "web_search",
+        "api_agent",
+        "languages.csharp",
+        "base",
+        "languages.powershell",
+        "languages.web",
+        "languages.batch",
+        "languages.shell",
+        "registry",
+        "languages.python",
+        "generic",
+        "data_analysis",
+        "linux_admin",
+        "database"
+      ],
+      "references": [],
+      "size_bytes": 3468,
+      "last_modified": "2025-10-12T22:08:45.085000",
+      "imported_by": []
+    },
+    "agents/linux_admin.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "platform",
+        "subprocess",
+        "base",
+        "re",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 16076,
+      "last_modified": "2025-10-12T22:08:46.112000",
+      "imported_by": [
+        "tests/unit/agents/test_specialized_agent_coverage.py"
+      ]
+    },
+    "agents/api_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "urllib.parse",
+        "base",
+        "logging",
+        "json",
+        "base64",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 18762,
+      "last_modified": "2025-10-12T22:08:46.133000",
+      "imported_by": [
+        "tests/unit/agents/test_specialized_agent_coverage.py"
+      ]
+    },
+    "agents/utils/context_optimizer.py": {
+      "language": "python",
+      "local_imports": [
+        "tools.embeddings",
+        "tools.vector_db"
+      ],
+      "external_imports": [
+        "logging",
+        "dataclasses",
+        "typing",
+        "pathlib",
+        "hashlib"
+      ],
+      "references": [],
+      "size_bytes": 14682,
+      "last_modified": "2025-10-12T22:08:44.534000",
+      "imported_by": []
+    },
+    "agents/utils/codebase_awareness.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "datetime",
+        "logging",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 31572,
+      "last_modified": "2025-10-12T22:08:44.556000",
+      "imported_by": []
+    },
+    "agents/utils/clarification_templates.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "enum",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 10276,
+      "last_modified": "2025-10-12T22:08:44.575000",
+      "imported_by": []
+    },
+    "agents/generic/generic_debug_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "re",
+        "os",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 4649,
+      "last_modified": "2025-10-12T22:08:44.614000",
+      "imported_by": [
+        "tests/unit/agents/test_generic_agents.py"
+      ]
+    },
+    "agents/generic/specification_extraction.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "logging",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 7127,
+      "last_modified": "2025-10-12T22:08:44.633000",
+      "imported_by": []
+    },
+    "agents/generic/generic_code_tester.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "re",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 10066,
+      "last_modified": "2025-10-12T22:08:44.653000",
+      "imported_by": []
+    },
+    "agents/generic/generic_code_editor.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "json",
+        "os",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 5452,
+      "last_modified": "2025-10-12T22:08:44.670000",
+      "imported_by": [
+        "tests/unit/agents/test_generic_agents.py",
+        "tests/integration/agents/test_agent_tool_integration.py"
+      ]
+    },
+    "agents/generic/context_manager.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "logging",
+        "json",
+        "datetime",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 11025,
+      "last_modified": "2025-10-12T22:08:44.689000",
+      "imported_by": []
+    },
+    "agents/generic/task_decomposition.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "uuid",
+        "logging",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 9568,
+      "last_modified": "2025-10-12T22:08:44.708000",
+      "imported_by": [
+        "tests/unit/orchestration/test_task_orchestrator.py"
+      ]
+    },
+    "agents/generic/generic_build_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "base",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 6707,
+      "last_modified": "2025-10-12T22:08:44.725000",
+      "imported_by": [
+        "tests/unit/agents/test_generic_agents.py"
+      ]
+    },
+    "agents/generic/task_orchestrator.py": {
+      "language": "python",
+      "local_imports": [
+        "core.vector_memory"
+      ],
+      "external_imports": [
+        "uuid",
+        "base",
+        "logging",
+        "datetime",
+        "context_manager",
+        "task_decomposition",
+        "specification_extraction",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 26684,
+      "last_modified": "2025-10-12T22:08:44.745000",
+      "imported_by": [
+        "tests/unit/orchestration/test_task_orchestrator.py"
+      ]
+    },
+    "agents/generic/generic_code_planner.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 6628,
+      "last_modified": "2025-10-12T22:08:44.763000",
+      "imported_by": [
+        "tests/unit/agents/test_generic_agents.py"
+      ]
+    },
+    "agents/generic/generic_documentation.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base.documentation_agent",
+        "logging",
+        "datetime",
+        "re",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 19468,
+      "last_modified": "2025-10-12T22:08:44.784000",
+      "imported_by": [
+        "tests/unit/agents/test_generic_agents.py"
+      ]
+    },
+    "agents/generic/generic_project_init.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 10849,
+      "last_modified": "2025-10-12T22:08:44.803000",
+      "imported_by": []
+    },
+    "agents/generic/generic_code_analyzer.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "json",
+        "re",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 15144,
+      "last_modified": "2025-10-12T22:08:44.826000",
+      "imported_by": []
+    },
+    "agents/generic/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "generic_code_tester",
+        "generic_debug_agent",
+        "generic_code_editor",
+        "generic_build_agent",
+        "generic_code_analyzer",
+        "task_orchestrator",
+        "generic_code_planner",
+        "generic_project_init"
+      ],
+      "references": [],
+      "size_bytes": 891,
+      "last_modified": "2025-10-12T22:08:44.843000",
+      "imported_by": []
+    },
+    "agents/base/agent_base.py": {
+      "language": "python",
+      "local_imports": [
+        "core.agent_capabilities"
+      ],
+      "external_imports": [
+        "abc",
+        "logging",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 21373,
+      "last_modified": "2025-10-13T17:25:28.817000",
+      "imported_by": [
+        "tests/integration/plugins/test_plugin_integration.py",
+        "plugins/example_plugin/plugin.py",
+        "tests/unit/agents/test_agent_registry.py",
+        "core/plugin_base.py",
+        "tests/unit/agents/test_agent_base.py"
+      ]
+    },
+    "agents/base/code_tester_base.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "agent_base",
+        "re",
+        "typing",
+        "abc",
+        "utils.codebase_awareness",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 11912,
+      "last_modified": "2025-10-12T22:08:44.904000",
+      "imported_by": []
+    },
+    "agents/base/code_editor_base.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "agent_base",
+        "re",
+        "typing",
+        "abc",
+        "utils.codebase_awareness",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 15999,
+      "last_modified": "2025-10-12T22:08:44.929000",
+      "imported_by": []
+    },
+    "agents/base/debug_agent_base.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "agent_base",
+        "re",
+        "typing",
+        "abc",
+        "utils.codebase_awareness",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 13737,
+      "last_modified": "2025-10-12T22:08:44.949000",
+      "imported_by": []
+    },
+    "agents/base/code_analyzer_base.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "ast",
+        "agent_base",
+        "re",
+        "typing",
+        "abc",
+        "utils.codebase_awareness",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 14139,
+      "last_modified": "2025-10-12T22:08:44.968000",
+      "imported_by": []
+    },
+    "agents/base/project_init_base.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "agent_base",
+        "logging",
+        "datetime",
+        "typing",
+        "abc",
+        "utils.codebase_awareness",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 26432,
+      "last_modified": "2025-10-12T22:08:44.989000",
+      "imported_by": []
+    },
+    "agents/base/code_planner_base.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "agent_base",
+        "json",
+        "typing",
+        "abc",
+        "utils.codebase_awareness",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 12759,
+      "last_modified": "2025-10-12T22:08:45.010000",
+      "imported_by": []
+    },
+    "agents/base/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "code_tester_base",
+        "agent_base",
+        "code_planner_base",
+        "documentation_agent",
+        "code_analyzer_base",
+        "debug_agent_base",
+        "code_editor_base",
+        "build_agent_base",
+        "project_init_base"
+      ],
+      "references": [],
+      "size_bytes": 796,
+      "last_modified": "2025-10-12T22:08:45.027000",
+      "imported_by": []
+    },
+    "agents/base/build_agent_base.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "agent_base",
+        "typing",
+        "abc",
+        "utils.codebase_awareness",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 10789,
+      "last_modified": "2025-10-12T22:08:45.046000",
+      "imported_by": []
+    },
+    "agents/base/documentation_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "agent_base",
+        "logging",
+        "datetime",
+        "typing",
+        "abc",
+        "utils.codebase_awareness",
+        "pathlib"
+      ],
+      "references": [
+        "setup.py"
+      ],
+      "size_bytes": 41507,
+      "last_modified": "2025-10-12T22:08:45.067000",
+      "imported_by": []
+    },
+    "agents/languages/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [],
+      "references": [],
+      "size_bytes": 428,
+      "last_modified": "2025-10-12T22:08:46.094000",
+      "imported_by": []
+    },
+    "agents/languages/shell/code_tester.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 2660,
+      "last_modified": "2025-10-12T22:06:27.264000",
+      "imported_by": []
+    },
+    "agents/languages/shell/code_editor.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base",
+        "re",
+        "stat",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 14181,
+      "last_modified": "2025-10-12T22:06:17.493000",
+      "imported_by": []
+    },
+    "agents/languages/shell/debug_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "base",
+        "json",
+        "re",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 15675,
+      "last_modified": "2025-10-12T22:06:27.399000",
+      "imported_by": []
+    },
+    "agents/languages/shell/code_planner.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 2419,
+      "last_modified": "2025-10-12T22:06:27.149000",
+      "imported_by": []
+    },
+    "agents/languages/shell/build_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "logging",
+        "json",
+        "base",
+        "re",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 17838,
+      "last_modified": "2025-10-12T22:06:26.924000",
+      "imported_by": []
+    },
+    "agents/languages/shell/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "code_editor",
+        "project_init_agent",
+        "debug_agent",
+        "code_tester",
+        "code_planner",
+        "build_agent",
+        "documentation_agent",
+        "code_analyzer"
+      ],
+      "references": [],
+      "size_bytes": 727,
+      "last_modified": "2025-10-12T22:06:10.583000",
+      "imported_by": []
+    },
+    "agents/languages/shell/code_analyzer.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 4166,
+      "last_modified": "2025-10-12T22:06:27.037000",
+      "imported_by": []
+    },
+    "agents/languages/shell/project_init_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 8939,
+      "last_modified": "2025-10-12T22:06:27.646000",
+      "imported_by": []
+    },
+    "agents/languages/shell/documentation_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base.documentation_agent",
+        "logging",
+        "re",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 5502,
+      "last_modified": "2025-10-12T22:09:25.224000",
+      "imported_by": []
+    },
+    "agents/languages/batch/code_tester.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 2638,
+      "last_modified": "2025-10-12T22:08:45.104000",
+      "imported_by": []
+    },
+    "agents/languages/batch/code_editor.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "re",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 7795,
+      "last_modified": "2025-10-12T22:08:45.121000",
+      "imported_by": []
+    },
+    "agents/languages/batch/debug_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "base",
+        "json",
+        "re",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 9594,
+      "last_modified": "2025-10-12T22:08:45.142000",
+      "imported_by": []
+    },
+    "agents/languages/batch/code_planner.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 2436,
+      "last_modified": "2025-10-12T22:08:45.159000",
+      "imported_by": []
+    },
+    "agents/languages/batch/build_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "logging",
+        "json",
+        "base",
+        "re",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 10189,
+      "last_modified": "2025-10-12T22:08:45.179000",
+      "imported_by": []
+    },
+    "agents/languages/batch/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "code_editor",
+        "project_init_agent",
+        "debug_agent",
+        "code_tester",
+        "code_planner",
+        "build_agent",
+        "documentation_agent",
+        "code_analyzer"
+      ],
+      "references": [],
+      "size_bytes": 698,
+      "last_modified": "2025-10-12T22:08:45.196000",
+      "imported_by": []
+    },
+    "agents/languages/batch/code_analyzer.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 4180,
+      "last_modified": "2025-10-12T22:08:45.216000",
+      "imported_by": []
+    },
+    "agents/languages/batch/project_init_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 7429,
+      "last_modified": "2025-10-12T22:08:45.233000",
+      "imported_by": []
+    },
+    "agents/languages/batch/documentation_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base.documentation_agent",
+        "logging",
+        "re",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 5499,
+      "last_modified": "2025-10-12T22:08:45.251000",
+      "imported_by": []
+    },
+    "agents/languages/python/code_tester.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "base",
+        "re",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 8622,
+      "last_modified": "2025-10-12T22:08:45.272000",
+      "imported_by": []
+    },
+    "agents/languages/python/code_editor.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "ast",
+        "base",
+        "re",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 13850,
+      "last_modified": "2025-10-12T22:08:45.292000",
+      "imported_by": []
+    },
+    "agents/languages/python/debug_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "base",
+        "json",
+        "ipdb",
+        "re",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 15608,
+      "last_modified": "2025-10-12T22:08:45.312000",
+      "imported_by": []
+    },
+    "agents/languages/python/code_planner.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [
+        "__init__.py",
+        "setup.py"
+      ],
+      "size_bytes": 5924,
+      "last_modified": "2025-10-12T22:08:45.329000",
+      "imported_by": []
+    },
+    "agents/languages/python/build_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "logging",
+        "json",
+        "base",
+        "tomli",
+        "re",
+        "shutil",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [
+        "setup.py",
+        "conftest.py"
+      ],
+      "size_bytes": 18566,
+      "last_modified": "2025-10-12T22:08:45.353000",
+      "imported_by": []
+    },
+    "agents/languages/python/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "code_editor",
+        "project_init_agent",
+        "debug_agent",
+        "code_tester",
+        "code_planner",
+        "build_agent",
+        "documentation_agent",
+        "code_analyzer"
+      ],
+      "references": [],
+      "size_bytes": 746,
+      "last_modified": "2025-10-12T22:08:45.370000",
+      "imported_by": []
+    },
+    "agents/languages/python/code_analyzer.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "ast",
+        "base",
+        "re",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 16029,
+      "last_modified": "2025-10-12T22:08:45.389000",
+      "imported_by": []
+    },
+    "agents/languages/python/project_init_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base",
+        "typing"
+      ],
+      "references": [
+        "app/main.py",
+        "tests/test_basic.py",
+        "setup.py",
+        "app/__init__.py",
+        "app/api/__init__.py",
+        "tests/__init__.py",
+        "app/api/endpoints.py"
+      ],
+      "size_bytes": 16890,
+      "last_modified": "2025-10-12T22:08:45.408000",
+      "imported_by": []
+    },
+    "agents/languages/python/documentation_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base.documentation_agent",
+        "logging",
+        "re",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 5798,
+      "last_modified": "2025-10-12T22:08:45.425000",
+      "imported_by": []
+    },
+    "agents/languages/web/code_tester.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 2734,
+      "last_modified": "2025-10-12T22:08:45.443000",
+      "imported_by": []
+    },
+    "agents/languages/web/code_editor.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base",
+        "json",
+        "re",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 14503,
+      "last_modified": "2025-10-12T22:08:45.460000",
+      "imported_by": []
+    },
+    "agents/languages/web/debug_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "base",
+        "json",
+        "re",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 17483,
+      "last_modified": "2025-10-12T22:08:45.479000",
+      "imported_by": []
+    },
+    "agents/languages/web/code_planner.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 2792,
+      "last_modified": "2025-10-12T22:08:45.494000",
+      "imported_by": []
+    },
+    "agents/languages/web/build_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "logging",
+        "json",
+        "base",
+        "re",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 22283,
+      "last_modified": "2025-10-12T22:08:45.515000",
+      "imported_by": []
+    },
+    "agents/languages/web/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "code_editor",
+        "project_init_agent",
+        "debug_agent",
+        "code_tester",
+        "code_planner",
+        "build_agent",
+        "documentation_agent",
+        "code_analyzer"
+      ],
+      "references": [],
+      "size_bytes": 742,
+      "last_modified": "2025-10-12T22:08:45.532000",
+      "imported_by": []
+    },
+    "agents/languages/web/code_analyzer.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 4258,
+      "last_modified": "2025-10-12T22:08:45.548000",
+      "imported_by": []
+    },
+    "agents/languages/web/project_init_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 11279,
+      "last_modified": "2025-10-12T22:08:45.570000",
+      "imported_by": []
+    },
+    "agents/languages/web/documentation_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base.documentation_agent",
+        "logging",
+        "re",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 5518,
+      "last_modified": "2025-10-12T22:08:45.587000",
+      "imported_by": []
+    },
+    "agents/languages/csharp/code_tester.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 2683,
+      "last_modified": "2025-10-12T22:08:45.605000",
+      "imported_by": []
+    },
+    "agents/languages/csharp/code_editor.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "re",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 10461,
+      "last_modified": "2025-10-12T22:08:45.625000",
+      "imported_by": []
+    },
+    "agents/languages/csharp/debug_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "base",
+        "json",
+        "re",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 14325,
+      "last_modified": "2025-10-12T22:08:45.645000",
+      "imported_by": []
+    },
+    "agents/languages/csharp/code_planner.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 2689,
+      "last_modified": "2025-10-12T22:08:45.662000",
+      "imported_by": []
+    },
+    "agents/languages/csharp/build_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "logging",
+        "json",
+        "base",
+        "re",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 16311,
+      "last_modified": "2025-10-12T22:08:45.682000",
+      "imported_by": []
+    },
+    "agents/languages/csharp/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "code_editor",
+        "project_init_agent",
+        "debug_agent",
+        "code_tester",
+        "code_planner",
+        "build_agent",
+        "documentation_agent",
+        "code_analyzer"
+      ],
+      "references": [],
+      "size_bytes": 716,
+      "last_modified": "2025-10-12T22:08:45.700000",
+      "imported_by": []
+    },
+    "agents/languages/csharp/code_analyzer.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 4195,
+      "last_modified": "2025-10-12T22:08:45.716000",
+      "imported_by": []
+    },
+    "agents/languages/csharp/project_init_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 10718,
+      "last_modified": "2025-10-12T22:08:45.736000",
+      "imported_by": []
+    },
+    "agents/languages/csharp/documentation_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base.documentation_agent",
+        "logging",
+        "re",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 5700,
+      "last_modified": "2025-10-12T22:08:45.753000",
+      "imported_by": []
+    },
+    "agents/languages/powershell/code_tester.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 2730,
+      "last_modified": "2025-10-12T22:08:45.771000",
+      "imported_by": []
+    },
+    "agents/languages/powershell/code_editor.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "re",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 9133,
+      "last_modified": "2025-10-12T22:08:45.789000",
+      "imported_by": []
+    },
+    "agents/languages/powershell/debug_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "base",
+        "json",
+        "re",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 12765,
+      "last_modified": "2025-10-12T22:08:45.809000",
+      "imported_by": []
+    },
+    "agents/languages/powershell/code_planner.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 2745,
+      "last_modified": "2025-10-12T22:08:45.827000",
+      "imported_by": []
+    },
+    "agents/languages/powershell/build_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "logging",
+        "json",
+        "base",
+        "re",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 12696,
+      "last_modified": "2025-10-12T22:08:45.846000",
+      "imported_by": []
+    },
+    "agents/languages/powershell/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "code_editor",
+        "project_init_agent",
+        "debug_agent",
+        "code_tester",
+        "code_planner",
+        "build_agent",
+        "documentation_agent",
+        "code_analyzer"
+      ],
+      "references": [],
+      "size_bytes": 788,
+      "last_modified": "2025-10-12T22:08:45.863000",
+      "imported_by": []
+    },
+    "agents/languages/powershell/code_analyzer.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 4255,
+      "last_modified": "2025-10-12T22:08:45.879000",
+      "imported_by": []
+    },
+    "agents/languages/powershell/project_init_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 9269,
+      "last_modified": "2025-10-12T22:08:45.898000",
+      "imported_by": []
+    },
+    "agents/languages/powershell/documentation_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base.documentation_agent",
+        "logging",
+        "re",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 5666,
+      "last_modified": "2025-10-12T22:08:45.915000",
+      "imported_by": []
+    },
+    "agents/languages/cpp/code_tester.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 2672,
+      "last_modified": "2025-10-12T22:08:45.933000",
+      "imported_by": []
+    },
+    "agents/languages/cpp/code_editor.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "re",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 11075,
+      "last_modified": "2025-10-12T22:08:45.951000",
+      "imported_by": []
+    },
+    "agents/languages/cpp/debug_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "base",
+        "json",
+        "re",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 13975,
+      "last_modified": "2025-10-12T22:08:45.971000",
+      "imported_by": []
+    },
+    "agents/languages/cpp/code_planner.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 2721,
+      "last_modified": "2025-10-12T22:08:45.988000",
+      "imported_by": []
+    },
+    "agents/languages/cpp/build_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "logging",
+        "json",
+        "base",
+        "re",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 18054,
+      "last_modified": "2025-10-12T22:08:46.007000",
+      "imported_by": []
+    },
+    "agents/languages/cpp/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "code_editor",
+        "project_init_agent",
+        "debug_agent",
+        "code_tester",
+        "code_planner",
+        "build_agent",
+        "documentation_agent",
+        "code_analyzer"
+      ],
+      "references": [],
+      "size_bytes": 662,
+      "last_modified": "2025-10-12T22:08:46.025000",
+      "imported_by": []
+    },
+    "agents/languages/cpp/code_analyzer.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 4150,
+      "last_modified": "2025-10-12T22:08:46.042000",
+      "imported_by": []
+    },
+    "agents/languages/cpp/project_init_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 9161,
+      "last_modified": "2025-10-12T22:08:46.060000",
+      "imported_by": []
+    },
+    "agents/languages/cpp/documentation_agent.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base.documentation_agent",
+        "logging",
+        "re",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 5493,
+      "last_modified": "2025-10-12T22:08:46.077000",
+      "imported_by": []
+    },
+    "plugins/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [],
+      "references": [],
+      "size_bytes": 173,
+      "last_modified": "2025-10-13T17:23:50.923000",
+      "imported_by": []
+    },
+    "plugins/example_plugin/plugin.py": {
+      "language": "python",
+      "local_imports": [
+        "tools.base",
+        "core.plugin_base",
+        "agents.base.agent_base"
+      ],
+      "external_imports": [
+        "logging",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 8316,
+      "last_modified": "2025-10-12T22:08:46.175000",
+      "imported_by": []
+    },
+    "plugins/example_plugin/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "plugin"
+      ],
+      "references": [],
+      "size_bytes": 214,
+      "last_modified": "2025-10-12T22:08:46.192000",
+      "imported_by": []
+    },
+    "benchmarks/orchestration_benchmarks.py": {
+      "language": "python",
+      "local_imports": [
+        "core.config"
+      ],
+      "external_imports": [
+        "statistics",
+        "orchestration.task_orchestrator",
+        "time",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 5078,
+      "last_modified": "2025-10-12T22:08:46.251000",
+      "imported_by": [
+        "benchmarks/benchmark_runner.py"
+      ]
+    },
+    "benchmarks/llm_benchmarks.py": {
+      "language": "python",
+      "local_imports": [
+        "core.config",
+        "core.llm_router"
+      ],
+      "external_imports": [
+        "statistics",
+        "time",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 4060,
+      "last_modified": "2025-10-12T22:08:46.268000",
+      "imported_by": [
+        "benchmarks/benchmark_runner.py"
+      ]
+    },
+    "benchmarks/memory_benchmarks.py": {
+      "language": "python",
+      "local_imports": [
+        "core.config"
+      ],
+      "external_imports": [
+        "core.memory.vector_memory",
+        "time",
+        "statistics",
+        "core.memory.memory_manager",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 6071,
+      "last_modified": "2025-10-12T22:08:46.283000",
+      "imported_by": [
+        "benchmarks/benchmark_runner.py"
+      ]
+    },
+    "benchmarks/agent_benchmarks.py": {
+      "language": "python",
+      "local_imports": [
+        "tools.registry",
+        "core.config",
+        "agents.languages.python",
+        "core.llm_router"
+      ],
+      "external_imports": [
+        "pathlib",
+        "statistics",
+        "time",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 4670,
+      "last_modified": "2025-10-12T22:08:46.300000",
+      "imported_by": [
+        "benchmarks/benchmark_runner.py"
+      ]
+    },
+    "benchmarks/benchmark_runner.py": {
+      "language": "python",
+      "local_imports": [
+        "benchmarks.memory_benchmarks",
+        "core.config",
+        "benchmarks.orchestration_benchmarks",
+        "benchmarks.agent_benchmarks",
+        "benchmarks.llm_benchmarks"
+      ],
+      "external_imports": [
+        "pathlib",
+        "datetime",
+        "argparse",
+        "sys"
+      ],
+      "references": [],
+      "size_bytes": 5734,
+      "last_modified": "2025-10-12T22:08:46.317000",
+      "imported_by": []
+    },
+    "benchmarks/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [],
+      "references": [],
+      "size_bytes": 118,
+      "last_modified": "2025-10-12T22:08:46.333000",
+      "imported_by": []
+    },
+    "tools/registry.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "logging",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 4764,
+      "last_modified": "2025-10-13T00:02:34.041000",
+      "imported_by": [
+        "tests/integration/plugins/test_plugin_integration.py",
+        "tests/unit/tools/test_tool_registry.py",
+        "core/plugin_loader.py",
+        "tests/integration/tools/test_tool_integration.py",
+        "tests/integration/core/test_core_tools_integration.py"
+      ]
+    },
+    "tools/base.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "abc",
+        "time",
+        "logging",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 6544,
+      "last_modified": "2025-10-12T22:08:46.385000",
+      "imported_by": [
+        "tests/integration/plugins/test_plugin_integration.py",
+        "tests/unit/tools/test_tool_registry.py",
+        "tests/unit/tools/test_tool_base.py",
+        "core/plugin_base.py"
+      ]
+    },
+    "tools/file_operations.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base",
+        "shutil",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 22679,
+      "last_modified": "2025-10-12T22:08:46.405000",
+      "imported_by": [
+        "tests/unit/tools/test_specific_tools.py",
+        "tests/integration/tools/test_tool_integration.py",
+        "tests/unit/tools/test_file_tools.py",
+        "tests/integration/agents/test_agent_tool_integration.py",
+        "tests/integration/core/test_core_tools_integration.py"
+      ]
+    },
+    "tools/web_fetch.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "asyncio",
+        "bs4",
+        "base",
+        "httpx",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 6018,
+      "last_modified": "2025-10-12T22:08:46.422000",
+      "imported_by": [
+        "tests/integration/core/test_core_tools_integration.py",
+        "core/engine.py",
+        "tests/unit/tools/test_specific_tools.py",
+        "tests/integration/tools/test_tool_integration.py"
+      ]
+    },
+    "tools/file_io.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "os",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 15577,
+      "last_modified": "2025-10-12T22:08:46.441000",
+      "imported_by": [
+        "tests/unit/tools/test_file_tools.py",
+        "tests/integration/tools/test_tool_integration.py"
+      ]
+    },
+    "tools/embeddings.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "ollama",
+        "logging",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 8053,
+      "last_modified": "2025-10-12T22:08:46.460000",
+      "imported_by": [
+        "core/vector_memory.py"
+      ]
+    },
+    "tools/shell_exec.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "platform",
+        "tempfile",
+        "subprocess",
+        "base",
+        "stat",
+        "typing",
+        "os",
+        "shlex"
+      ],
+      "references": [],
+      "size_bytes": 11230,
+      "last_modified": "2025-10-12T22:08:46.592000",
+      "imported_by": [
+        "tests/unit/tools/test_specific_tools.py",
+        "tests/integration/tools/test_tool_integration.py"
+      ]
+    },
+    "tools/git.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "git",
+        "base",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 8524,
+      "last_modified": "2025-10-12T22:08:46.612000",
+      "imported_by": [
+        "tests/unit/tools/test_specific_tools.py",
+        "tests/integration/tools/test_tool_integration.py",
+        "core/engine.py",
+        "tests/integration/agents/test_agent_tool_integration.py",
+        "tests/integration/core/test_core_tools_integration.py"
+      ]
+    },
+    "tools/ollama_manager.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "time",
+        "json",
+        "logging",
+        "base",
+        "typing",
+        "requests",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 26480,
+      "last_modified": "2025-10-12T22:44:49.790000",
+      "imported_by": [
+        "tests/unit/tools/test_specific_tools.py",
+        "core/llm_router.py"
+      ]
+    },
+    "tools/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base",
+        "mcp",
+        "vector_db",
+        "file_operations",
+        "web_fetch",
+        "shell_exec",
+        "git",
+        "file_io",
+        "registry"
+      ],
+      "references": [],
+      "size_bytes": 691,
+      "last_modified": "2025-10-12T23:22:01.283000",
+      "imported_by": []
+    },
+    "tools/mcp.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "asyncio",
+        "subprocess",
+        "time",
+        "json",
+        "base",
+        "httpx",
+        "enum",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 19767,
+      "last_modified": "2025-10-12T22:08:46.669000",
+      "imported_by": [
+        "core/engine.py",
+        "tests/unit/tools/test_mcp_tool.py"
+      ]
+    },
+    "tools/vector_db.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "uuid",
+        "logging",
+        "base",
+        "embeddings",
+        "chromadb",
+        "chromadb.api.types",
+        "typing",
+        "chromadb.config",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 23546,
+      "last_modified": "2025-10-12T23:21:38.438000",
+      "imported_by": [
+        "core/vector_memory.py",
+        "tests/unit/tools/test_specific_tools.py",
+        "tests/integration/tools/test_tool_integration.py"
+      ]
+    },
+    "tools/development/dev_tools_manager.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "logging",
+        "static_analyzer_tool",
+        "formatter_tool",
+        "linter_tool",
+        "typing",
+        "pathlib",
+        "code_quality_tool"
+      ],
+      "references": [],
+      "size_bytes": 12079,
+      "last_modified": "2025-10-12T22:08:46.479000",
+      "imported_by": []
+    },
+    "tools/development/formatter_tool.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pathlib",
+        "subprocess",
+        "logging",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 8307,
+      "last_modified": "2025-10-12T22:08:46.498000",
+      "imported_by": []
+    },
+    "tools/development/linter_tool.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "logging",
+        "json",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 10215,
+      "last_modified": "2025-10-12T22:08:46.518000",
+      "imported_by": []
+    },
+    "tools/development/static_analyzer_tool.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "logging",
+        "json",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 10846,
+      "last_modified": "2025-10-12T22:08:46.538000",
+      "imported_by": []
+    },
+    "tools/development/code_quality_tool.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "logging",
+        "json",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 11995,
+      "last_modified": "2025-10-12T22:08:46.559000",
+      "imported_by": []
+    },
+    "tools/development/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "dev_tools_manager",
+        "static_analyzer_tool",
+        "formatter_tool",
+        "linter_tool",
+        "code_quality_tool"
+      ],
+      "references": [],
+      "size_bytes": 506,
+      "last_modified": "2025-10-12T22:08:46.575000",
+      "imported_by": []
+    },
+    "core/memory.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "uuid",
+        "logging",
+        "json",
+        "dataclasses",
+        "datetime",
+        "enum",
+        "shutil",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 36531,
+      "last_modified": "2025-10-13T17:48:08.189000",
+      "imported_by": [
+        "tests/integration/core/test_memory_integration.py",
+        "tests/unit/core/test_engine.py",
+        "tests/integration/test_project_chat_integration.py",
+        "tests/unit/core/test_memory.py"
+      ]
+    },
+    "core/plugin_base.py": {
+      "language": "python",
+      "local_imports": [
+        "tools.base",
+        "agents.base.agent_base"
+      ],
+      "external_imports": [
+        "abc",
+        "dataclasses",
+        "logging",
+        "typing"
+      ],
+      "references": [],
+      "size_bytes": 7433,
+      "last_modified": "2025-10-12T22:08:46.762000",
+      "imported_by": [
+        "tests/integration/plugins/test_plugin_integration.py",
+        "core/plugin_loader.py"
+      ]
+    },
+    "core/project_manager.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "uuid",
+        "logging",
+        "json",
+        "dataclasses",
+        "datetime",
+        "shutil",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 21148,
+      "last_modified": "2025-10-13T17:45:34.087000",
+      "imported_by": [
+        "tests/unit/core/test_project_manager.py",
+        "tests/integration/test_project_chat_integration.py"
+      ]
+    },
+    "core/chat_history.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "uuid",
+        "logging",
+        "json",
+        "dataclasses",
+        "datetime",
+        "enum",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 30160,
+      "last_modified": "2025-10-13T17:47:09.542000",
+      "imported_by": [
+        "tests/unit/core/test_chat_history.py",
+        "tests/integration/test_project_chat_integration.py"
+      ]
+    },
+    "core/llm_router.py": {
+      "language": "python",
+      "local_imports": [
+        "tools.ollama_manager"
+      ],
+      "external_imports": [
+        "ollama",
+        "logging",
+        "time",
+        "config",
+        "enum",
+        "typing",
+        "abc",
+        "openai"
+      ],
+      "references": [],
+      "size_bytes": 21753,
+      "last_modified": "2025-10-12T22:31:19.268000",
+      "imported_by": [
+        "tests/e2e/test_complete_scenarios.py",
+        "tests/unit/core/test_engine.py",
+        "tests/conftest.py",
+        "tests/unit/core/test_llm_router.py",
+        "tests/integration/core/test_llm_router_integration.py",
+        "tests/integration/core/test_engine_integration.py"
+      ]
+    },
+    "core/plugin_loader.py": {
+      "language": "python",
+      "local_imports": [
+        "tools.registry",
+        "core.config",
+        "core.plugin_base",
+        "agents.registry"
+      ],
+      "external_imports": [
+        "inspect",
+        "logging",
+        "importlib",
+        "sys",
+        "typing",
+        "packaging",
+        "pathlib",
+        "importlib.util"
+      ],
+      "references": [
+        "__init__.py",
+        "plugin.py"
+      ],
+      "size_bytes": 13998,
+      "last_modified": "2025-10-13T17:31:16.663000",
+      "imported_by": [
+        "tests/integration/plugins/test_plugin_integration.py",
+        "core/engine.py"
+      ]
+    },
+    "core/vector_memory.py": {
+      "language": "python",
+      "local_imports": [
+        "tools.vector_db",
+        "tools.embeddings"
+      ],
+      "external_imports": [
+        "uuid",
+        "logging",
+        "datetime",
+        "typing",
+        "memory",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 30264,
+      "last_modified": "2025-10-12T22:45:12.607000",
+      "imported_by": [
+        "tests/unit/core/test_vector_memory.py",
+        "tests/integration/core/test_memory_integration.py"
+      ]
+    },
+    "core/database_enhanced.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "time",
+        "logging",
+        "dataclasses",
+        "collections",
+        "re",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 18071,
+      "last_modified": "2025-10-12T22:08:46.841000",
+      "imported_by": []
+    },
+    "core/config.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "logging",
+        "yaml",
+        "tomli",
+        "pydantic",
+        "tomllib",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 25906,
+      "last_modified": "2025-10-12T22:08:46.862000",
+      "imported_by": [
+        "tests/integration/plugins/test_plugin_integration.py",
+        "tests/unit/core/test_engine.py",
+        "tests/unit/core/test_config.py",
+        "tests/conftest.py",
+        "tests/integration/core/test_llm_router_integration.py",
+        "tests/integration/core/test_engine_integration.py",
+        "tests/integration/core/test_core_tools_integration.py"
+      ]
+    },
+    "core/engine.py": {
+      "language": "python",
+      "local_imports": [
+        "core.plugin_loader",
+        "orchestration.workflows.workflow_manager",
+        "tools.git",
+        "agents.web_data",
+        "agents.generic",
+        "tools.web_fetch",
+        "tools.mcp",
+        "tools",
+        "agents.git_agent",
+        "agents"
+      ],
+      "external_imports": [
+        "rich.progress",
+        "rich.table",
+        "memory",
+        "logging",
+        "json",
+        "config",
+        "project_manager",
+        "rich.logging",
+        "llm_router",
+        "chat_history",
+        "rich.status",
+        "typing",
+        "rich.text",
+        "rich.console",
+        "pathlib",
+        "rich.panel",
+        "rich",
+        "rich.prompt"
+      ],
+      "references": [],
+      "size_bytes": 44934,
+      "last_modified": "2025-10-13T17:49:55.832000",
+      "imported_by": [
+        "tests/integration/core/test_engine_integration.py",
+        "tests/integration/core/test_core_tools_integration.py",
+        "tests/unit/core/test_engine.py"
+      ]
+    },
+    "core/cache.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "pickle",
+        "time",
+        "logging",
+        "json",
+        "dataclasses",
+        "datetime",
+        "collections",
+        "typing",
+        "re",
+        "hashlib",
+        "abc",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 15511,
+      "last_modified": "2025-10-12T22:44:36.719000",
+      "imported_by": [
+        "tests/unit/core/test_cache.py",
+        "tests/integration/core/test_memory_integration.py",
+        "tests/integration/tools/test_tool_integration.py"
+      ]
+    },
+    "core/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "config",
+        "engine",
+        "project_manager",
+        "chat_history",
+        "llm_router",
+        "memory",
+        "vector_memory"
+      ],
+      "references": [],
+      "size_bytes": 1728,
+      "last_modified": "2025-10-13T17:48:34.904000",
+      "imported_by": []
+    },
+    "core/agent_capabilities.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "logging",
+        "json",
+        "datetime",
+        "re",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 23595,
+      "last_modified": "2025-10-13T17:25:05.766000",
+      "imported_by": []
+    },
+    "orchestration/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "workflows.workflow_manager",
+        "workflows.base_workflow"
+      ],
+      "references": [],
+      "size_bytes": 267,
+      "last_modified": "2025-10-12T22:08:47.007000",
+      "imported_by": []
+    },
+    "orchestration/workflows/base_workflow.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "logging",
+        "yaml",
+        "datetime",
+        "typing",
+        "abc",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 11756,
+      "last_modified": "2025-10-12T22:08:46.953000",
+      "imported_by": [
+        "tests/unit/orchestration/test_workflow_manager.py"
+      ]
+    },
+    "orchestration/workflows/workflow_manager.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base_workflow",
+        "logging",
+        "datetime",
+        "typing",
+        "yaml",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 16176,
+      "last_modified": "2025-10-12T22:08:46.974000",
+      "imported_by": [
+        "tests/unit/orchestration/test_workflow_manager.py",
+        "tests/integration/orchestration/test_workflow_integration.py",
+        "tests/unit/orchestration/test_task_orchestrator.py"
+      ]
+    },
+    "orchestration/workflows/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "base_workflow",
+        "workflow_manager"
+      ],
+      "references": [],
+      "size_bytes": 234,
+      "last_modified": "2025-10-12T22:08:46.991000",
+      "imported_by": []
+    },
+    ".project/git_commit_enhancer.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "subprocess",
+        "argparse",
+        "datetime",
+        "sys",
+        "re",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 18003,
+      "last_modified": "2025-10-13T18:13:34.460000",
+      "imported_by": []
+    },
+    ".project/context_manager.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "json",
+        "datetime",
+        "sys",
+        "enum",
+        "typing",
+        "pathlib",
+        "os",
+        "hashlib"
+      ],
+      "references": [],
+      "size_bytes": 16546,
+      "last_modified": "2025-10-13T18:11:07.680000",
+      "imported_by": []
+    },
+    ".project/dependency_tracker.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "ast",
+        "json",
+        "datetime",
+        "collections",
+        "sys",
+        "re",
+        "typing",
+        "pathlib",
+        "os"
+      ],
+      "references": [
+        "__init__.py",
+        "main.py",
+        "setup_verify.py",
+        "setup.py",
+        "check_types.py"
+      ],
+      "size_bytes": 34732,
+      "last_modified": "2025-10-13T18:31:48.742000",
+      "imported_by": []
+    },
+    ".project/agent_integration.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "context_integration",
+        "context_manager",
+        "sys",
+        "git_commit_enhancer",
+        "typing",
+        "pathlib",
+        "dependency_tracker"
+      ],
+      "references": [],
+      "size_bytes": 13495,
+      "last_modified": "2025-10-13T18:32:47.999000",
+      "imported_by": []
+    },
+    ".project/dependency_cli.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "argparse",
+        "json",
+        "sys",
+        "pathlib",
+        "dependency_tracker"
+      ],
+      "references": [],
+      "size_bytes": 6527,
+      "last_modified": "2025-10-13T18:09:48.677000",
+      "imported_by": []
+    },
+    ".project/context_integration.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "json",
+        "datetime",
+        "context_manager",
+        "functools",
+        "typing",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 11831,
+      "last_modified": "2025-10-13T18:11:49.106000",
+      "imported_by": []
+    },
+    ".project/examples/agent_integration_example.py": {
+      "language": "python",
+      "local_imports": [
+        "agents.base",
+        "agents.git_agent"
+      ],
+      "external_imports": [
+        "context_integration",
+        "time",
+        "context_manager",
+        "sys",
+        "git_commit_enhancer",
+        "agent_integration",
+        "pathlib",
+        "dependency_tracker"
+      ],
+      "references": [
+        "core/config.py",
+        "agents/git_agent.py"
+      ],
+      "size_bytes": 15461,
+      "last_modified": "2025-10-13T18:33:54.120000",
+      "imported_by": []
+    },
+    ".project/examples/example_context_usage.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [
+        "context_integration",
+        "time",
+        "context_manager",
+        "sys",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 7538,
+      "last_modified": "2025-10-13T18:17:50.524000",
+      "imported_by": []
+    },
+    "tests/conftest.py": {
+      "language": "python",
+      "local_imports": [
+        "core.config",
+        "core.llm_router"
+      ],
+      "external_imports": [
+        "tempfile",
+        "pytest",
+        "logging",
+        "unittest.mock",
+        "shutil",
+        "typing",
+        "pathlib"
+      ],
+      "references": [
+        "main.py"
+      ],
+      "size_bytes": 11725,
+      "last_modified": "2025-10-12T23:23:42.708000",
+      "imported_by": []
+    },
+    "tests/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [],
+      "references": [],
+      "size_bytes": 40,
+      "last_modified": "2025-10-12T22:08:47.544000",
+      "imported_by": []
+    },
+    "tests/unit/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [],
+      "references": [],
+      "size_bytes": 51,
+      "last_modified": "2025-10-12T22:08:47.309000",
+      "imported_by": []
+    },
+    "tests/unit/agents/test_git_agent.py": {
+      "language": "python",
+      "local_imports": [
+        "agents.git_agent"
+      ],
+      "external_imports": [
+        "pathlib",
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [
+        "test.py"
+      ],
+      "size_bytes": 16259,
+      "last_modified": "2025-10-13T05:46:16.772000",
+      "imported_by": []
+    },
+    "tests/unit/agents/test_generic_agents.py": {
+      "language": "python",
+      "local_imports": [
+        "agents.generic.generic_code_planner",
+        "agents.generic.generic_debug_agent",
+        "agents.generic.generic_build_agent",
+        "agents.generic.generic_code_editor",
+        "agents.generic.generic_documentation"
+      ],
+      "external_imports": [
+        "pathlib",
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 6370,
+      "last_modified": "2025-10-13T05:47:07.330000",
+      "imported_by": []
+    },
+    "tests/unit/agents/test_specialized_agents.py": {
+      "language": "python",
+      "local_imports": [
+        "agents.web_search",
+        "agents.git_agent",
+        "agents.database",
+        "agents.data_analysis"
+      ],
+      "external_imports": [
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 4767,
+      "last_modified": "2025-10-13T05:47:07.268000",
+      "imported_by": []
+    },
+    "tests/unit/agents/test_specialized_agent_coverage.py": {
+      "language": "python",
+      "local_imports": [
+        "agents.cybersecurity",
+        "agents.linux_admin",
+        "agents.api_agent",
+        "agents.windows_admin",
+        "agents.prompt_refiner",
+        "agents.database",
+        "agents.data_analysis"
+      ],
+      "external_imports": [
+        "pathlib",
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 13624,
+      "last_modified": "2025-10-13T06:09:08.382000",
+      "imported_by": []
+    },
+    "tests/unit/agents/test_agent_registry.py": {
+      "language": "python",
+      "local_imports": [
+        "agents.base.agent_base",
+        "agents.registry"
+      ],
+      "external_imports": [
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 7459,
+      "last_modified": "2025-10-12T22:08:47.062000",
+      "imported_by": []
+    },
+    "tests/unit/agents/test_web_data_agent.py": {
+      "language": "python",
+      "local_imports": [
+        "agents.web_data"
+      ],
+      "external_imports": [
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 19628,
+      "last_modified": "2025-10-13T05:46:59.570000",
+      "imported_by": []
+    },
+    "tests/unit/agents/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [],
+      "references": [],
+      "size_bytes": 30,
+      "last_modified": "2025-10-12T22:08:47.078000",
+      "imported_by": []
+    },
+    "tests/unit/agents/test_agent_base.py": {
+      "language": "python",
+      "local_imports": [
+        "agents.base.agent_base"
+      ],
+      "external_imports": [
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 3678,
+      "last_modified": "2025-10-12T22:08:47.094000",
+      "imported_by": []
+    },
+    "tests/unit/tools/test_tool_registry.py": {
+      "language": "python",
+      "local_imports": [
+        "tools.base",
+        "tools.registry"
+      ],
+      "external_imports": [
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 5397,
+      "last_modified": "2025-10-12T22:08:47.111000",
+      "imported_by": []
+    },
+    "tests/unit/tools/test_specific_tools.py": {
+      "language": "python",
+      "local_imports": [
+        "tools.git",
+        "tools.web_fetch",
+        "tools.ollama_manager",
+        "tools.file_operations",
+        "tools.vector_db",
+        "tools.shell_exec"
+      ],
+      "external_imports": [
+        "pathlib",
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 6568,
+      "last_modified": "2025-10-12T23:23:35.303000",
+      "imported_by": []
+    },
+    "tests/unit/tools/test_file_tools.py": {
+      "language": "python",
+      "local_imports": [
+        "tools.file_operations",
+        "tools.file_io"
+      ],
+      "external_imports": [
+        "tempfile",
+        "pytest",
+        "unittest.mock",
+        "pathlib",
+        "os"
+      ],
+      "references": [],
+      "size_bytes": 22737,
+      "last_modified": "2025-10-13T05:19:22.845000",
+      "imported_by": []
+    },
+    "tests/unit/tools/test_tool_base.py": {
+      "language": "python",
+      "local_imports": [
+        "tools.base"
+      ],
+      "external_imports": [
+        "pytest",
+        "unittest.mock",
+        "time"
+      ],
+      "references": [],
+      "size_bytes": 5786,
+      "last_modified": "2025-10-12T22:08:47.146000",
+      "imported_by": []
+    },
+    "tests/unit/tools/test_mcp_tool.py": {
+      "language": "python",
+      "local_imports": [
+        "tools.mcp"
+      ],
+      "external_imports": [
+        "asyncio",
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 7534,
+      "last_modified": "2025-10-13T06:09:31.893000",
+      "imported_by": []
+    },
+    "tests/unit/tools/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [],
+      "references": [],
+      "size_bytes": 29,
+      "last_modified": "2025-10-12T22:08:47.164000",
+      "imported_by": []
+    },
+    "tests/unit/core/test_config.py": {
+      "language": "python",
+      "local_imports": [
+        "core.config"
+      ],
+      "external_imports": [
+        "pathlib",
+        "pytest",
+        "unittest.mock",
+        "yaml"
+      ],
+      "references": [],
+      "size_bytes": 2980,
+      "last_modified": "2025-10-13T00:31:28.141000",
+      "imported_by": []
+    },
+    "tests/unit/core/test_engine.py": {
+      "language": "python",
+      "local_imports": [
+        "core.engine",
+        "core.config",
+        "core.llm_router",
+        "core.memory"
+      ],
+      "external_imports": [
+        "rich.table",
+        "pytest",
+        "logging",
+        "unittest.mock",
+        "typing",
+        "pathlib",
+        "rich.panel"
+      ],
+      "references": [],
+      "size_bytes": 32902,
+      "last_modified": "2025-10-13T05:15:17.356000",
+      "imported_by": []
+    },
+    "tests/unit/core/test_cache.py": {
+      "language": "python",
+      "local_imports": [
+        "core.cache"
+      ],
+      "external_imports": [
+        "pytest",
+        "unittest.mock",
+        "time"
+      ],
+      "references": [],
+      "size_bytes": 3254,
+      "last_modified": "2025-10-12T22:08:47.197000",
+      "imported_by": []
+    },
+    "tests/unit/core/test_vector_memory.py": {
+      "language": "python",
+      "local_imports": [
+        "core.vector_memory"
+      ],
+      "external_imports": [
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 3999,
+      "last_modified": "2025-10-12T23:11:21.252000",
+      "imported_by": []
+    },
+    "tests/unit/core/test_llm_router.py": {
+      "language": "python",
+      "local_imports": [
+        "core.llm_router"
+      ],
+      "external_imports": [
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 9989,
+      "last_modified": "2025-10-12T23:01:46.019000",
+      "imported_by": []
+    },
+    "tests/unit/core/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [],
+      "references": [],
+      "size_bytes": 39,
+      "last_modified": "2025-10-12T22:08:47.245000",
+      "imported_by": []
+    },
+    "tests/unit/core/test_chat_history.py": {
+      "language": "python",
+      "local_imports": [
+        "core.chat_history"
+      ],
+      "external_imports": [
+        "tempfile",
+        "pytest",
+        "unittest.mock",
+        "datetime",
+        "shutil",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 18342,
+      "last_modified": "2025-10-13T17:53:00.522000",
+      "imported_by": []
+    },
+    "tests/unit/core/test_project_manager.py": {
+      "language": "python",
+      "local_imports": [
+        "core.project_manager"
+      ],
+      "external_imports": [
+        "tempfile",
+        "pytest",
+        "json",
+        "datetime",
+        "shutil",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 16297,
+      "last_modified": "2025-10-13T17:51:54.719000",
+      "imported_by": []
+    },
+    "tests/unit/core/test_memory.py": {
+      "language": "python",
+      "local_imports": [
+        "core.memory"
+      ],
+      "external_imports": [
+        "pytest",
+        "unittest.mock",
+        "datetime"
+      ],
+      "references": [],
+      "size_bytes": 6558,
+      "last_modified": "2025-10-12T23:58:12.916000",
+      "imported_by": []
+    },
+    "tests/unit/orchestration/test_task_orchestrator.py": {
+      "language": "python",
+      "local_imports": [
+        "orchestration.workflows.workflow_manager",
+        "agents.generic.task_orchestrator",
+        "agents.generic.task_decomposition"
+      ],
+      "external_imports": [
+        "asyncio",
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 5058,
+      "last_modified": "2025-10-13T00:12:54.955000",
+      "imported_by": []
+    },
+    "tests/unit/orchestration/test_workflow_manager.py": {
+      "language": "python",
+      "local_imports": [
+        "orchestration.workflows.base_workflow",
+        "orchestration.workflows.workflow_manager"
+      ],
+      "external_imports": [
+        "asyncio",
+        "pytest",
+        "unittest.mock",
+        "datetime",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 34152,
+      "last_modified": "2025-10-13T05:17:00.227000",
+      "imported_by": []
+    },
+    "tests/unit/orchestration/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [],
+      "references": [],
+      "size_bytes": 44,
+      "last_modified": "2025-10-12T22:08:47.294000",
+      "imported_by": []
+    },
+    "tests/integration/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [],
+      "references": [],
+      "size_bytes": 47,
+      "last_modified": "2025-10-12T22:08:47.437000",
+      "imported_by": []
+    },
+    "tests/integration/test_project_chat_integration.py": {
+      "language": "python",
+      "local_imports": [
+        "core.memory",
+        "core.chat_history",
+        "core.project_manager"
+      ],
+      "external_imports": [
+        "tempfile",
+        "pytest",
+        "unittest.mock",
+        "shutil",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 16161,
+      "last_modified": "2025-10-13T17:54:02.512000",
+      "imported_by": []
+    },
+    "tests/integration/agents/test_agent_tool_integration.py": {
+      "language": "python",
+      "local_imports": [
+        "tools.git",
+        "agents.web_search",
+        "agents.generic.generic_code_editor",
+        "tools.file_operations",
+        "agents.git_agent"
+      ],
+      "external_imports": [
+        "pathlib",
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 4742,
+      "last_modified": "2025-10-13T05:47:07.392000",
+      "imported_by": []
+    },
+    "tests/integration/agents/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [],
+      "references": [],
+      "size_bytes": 37,
+      "last_modified": "2025-10-12T22:08:47.344000",
+      "imported_by": []
+    },
+    "tests/integration/plugins/test_plugin_integration.py": {
+      "language": "python",
+      "local_imports": [
+        "core.plugin_loader",
+        "tools.registry",
+        "agents.base.agent_base",
+        "agents.registry",
+        "core.config",
+        "core.plugin_base",
+        "tools.base"
+      ],
+      "external_imports": [
+        "tempfile",
+        "pytest",
+        "unittest.mock",
+        "shutil",
+        "typing",
+        "pathlib"
+      ],
+      "references": [
+        "__init__.py",
+        "plugin.py"
+      ],
+      "size_bytes": 20282,
+      "last_modified": "2025-10-12T23:59:04.449000",
+      "imported_by": []
+    },
+    "tests/integration/plugins/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [],
+      "references": [],
+      "size_bytes": 49,
+      "last_modified": "2025-10-12T22:08:47.381000",
+      "imported_by": []
+    },
+    "tests/integration/tools/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [],
+      "references": [],
+      "size_bytes": 0,
+      "last_modified": "2025-10-12T23:30:28.251000",
+      "imported_by": []
+    },
+    "tests/integration/tools/test_tool_integration.py": {
+      "language": "python",
+      "local_imports": [
+        "tools.registry",
+        "tools.git",
+        "tools.web_fetch",
+        "core.cache",
+        "tools.file_operations",
+        "tools.vector_db",
+        "tools.shell_exec",
+        "tools.file_io"
+      ],
+      "external_imports": [
+        "pathlib",
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [
+        "file1.py",
+        "file2.py"
+      ],
+      "size_bytes": 9429,
+      "last_modified": "2025-10-12T23:33:18.319000",
+      "imported_by": []
+    },
+    "tests/integration/core/test_memory_integration.py": {
+      "language": "python",
+      "local_imports": [
+        "core.memory",
+        "core.vector_memory",
+        "core.cache"
+      ],
+      "external_imports": [
+        "pathlib",
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 6344,
+      "last_modified": "2025-10-12T23:58:34.137000",
+      "imported_by": []
+    },
+    "tests/integration/core/test_core_tools_integration.py": {
+      "language": "python",
+      "local_imports": [
+        "tools.registry",
+        "tools.git",
+        "core.config",
+        "tools.web_fetch",
+        "core.engine",
+        "tools.file_operations"
+      ],
+      "external_imports": [
+        "tempfile",
+        "pytest",
+        "agents.code_agent",
+        "unittest.mock",
+        "pathlib"
+      ],
+      "references": [],
+      "size_bytes": 18740,
+      "last_modified": "2025-10-13T06:00:30.895000",
+      "imported_by": []
+    },
+    "tests/integration/core/test_llm_router_integration.py": {
+      "language": "python",
+      "local_imports": [
+        "core.config",
+        "core.llm_router"
+      ],
+      "external_imports": [
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 18434,
+      "last_modified": "2025-10-13T06:04:54.390000",
+      "imported_by": []
+    },
+    "tests/integration/core/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [],
+      "references": [],
+      "size_bytes": 0,
+      "last_modified": "2025-10-12T23:30:28.246000",
+      "imported_by": []
+    },
+    "tests/integration/core/test_engine_integration.py": {
+      "language": "python",
+      "local_imports": [
+        "core.engine",
+        "core.config",
+        "core.llm_router"
+      ],
+      "external_imports": [
+        "tempfile",
+        "pathlib",
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 29647,
+      "last_modified": "2025-10-13T06:28:44.473000",
+      "imported_by": []
+    },
+    "tests/integration/orchestration/test_workflow_integration.py": {
+      "language": "python",
+      "local_imports": [
+        "orchestration.workflows.workflow_manager"
+      ],
+      "external_imports": [
+        "asyncio",
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 3021,
+      "last_modified": "2025-10-12T22:32:56.810000",
+      "imported_by": []
+    },
+    "tests/integration/orchestration/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [],
+      "references": [],
+      "size_bytes": 44,
+      "last_modified": "2025-10-12T22:08:47.420000",
+      "imported_by": []
+    },
+    "tests/e2e/test_complete_scenarios.py": {
+      "language": "python",
+      "local_imports": [
+        "core.llm_router"
+      ],
+      "external_imports": [
+        "pytest",
+        "unittest.mock"
+      ],
+      "references": [],
+      "size_bytes": 1556,
+      "last_modified": "2025-10-12T22:08:47.461000",
+      "imported_by": []
+    },
+    "tests/e2e/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [],
+      "references": [],
+      "size_bytes": 46,
+      "last_modified": "2025-10-12T22:08:47.483000",
+      "imported_by": []
+    },
+    "tests/fixtures/__init__.py": {
+      "language": "python",
+      "local_imports": [],
+      "external_imports": [],
+      "references": [],
+      "size_bytes": 58,
+      "last_modified": "2025-10-12T22:08:47.502000",
+      "imported_by": []
+    }
+  },
+  "orphaned_files": [
+    ".project/agent_integration.py",
+    ".project/context_integration.py",
+    ".project/context_manager.py",
+    ".project/dependency_cli.py",
+    ".project/dependency_tracker.py",
+    ".project/examples/agent_integration_example.py",
+    ".project/examples/example_context_usage.py",
+    ".project/git_commit_enhancer.py",
+    "agents/base/build_agent_base.py",
+    "agents/base/code_analyzer_base.py",
+    "agents/base/code_editor_base.py",
+    "agents/base/code_planner_base.py",
+    "agents/base/code_tester_base.py",
+    "agents/base/debug_agent_base.py",
+    "agents/base/documentation_agent.py",
+    "agents/base/project_init_base.py",
+    "agents/generic/context_manager.py",
+    "agents/generic/generic_code_analyzer.py",
+    "agents/generic/generic_code_tester.py",
+    "agents/generic/generic_project_init.py",
+    "agents/generic/specification_extraction.py",
+    "agents/languages/batch/build_agent.py",
+    "agents/languages/batch/code_analyzer.py",
+    "agents/languages/batch/code_editor.py",
+    "agents/languages/batch/code_planner.py",
+    "agents/languages/batch/code_tester.py",
+    "agents/languages/batch/debug_agent.py",
+    "agents/languages/batch/documentation_agent.py",
+    "agents/languages/batch/project_init_agent.py",
+    "agents/languages/cpp/build_agent.py",
+    "agents/languages/cpp/code_analyzer.py",
+    "agents/languages/cpp/code_editor.py",
+    "agents/languages/cpp/code_planner.py",
+    "agents/languages/cpp/code_tester.py",
+    "agents/languages/cpp/debug_agent.py",
+    "agents/languages/cpp/documentation_agent.py",
+    "agents/languages/cpp/project_init_agent.py",
+    "agents/languages/csharp/build_agent.py",
+    "agents/languages/csharp/code_analyzer.py",
+    "agents/languages/csharp/code_editor.py",
+    "agents/languages/csharp/code_planner.py",
+    "agents/languages/csharp/code_tester.py",
+    "agents/languages/csharp/debug_agent.py",
+    "agents/languages/csharp/documentation_agent.py",
+    "agents/languages/csharp/project_init_agent.py",
+    "agents/languages/powershell/build_agent.py",
+    "agents/languages/powershell/code_analyzer.py",
+    "agents/languages/powershell/code_editor.py",
+    "agents/languages/powershell/code_planner.py",
+    "agents/languages/powershell/code_tester.py",
+    "agents/languages/powershell/debug_agent.py",
+    "agents/languages/powershell/documentation_agent.py",
+    "agents/languages/powershell/project_init_agent.py",
+    "agents/languages/python/build_agent.py",
+    "agents/languages/python/code_analyzer.py",
+    "agents/languages/python/code_editor.py",
+    "agents/languages/python/code_planner.py",
+    "agents/languages/python/code_tester.py",
+    "agents/languages/python/debug_agent.py",
+    "agents/languages/python/documentation_agent.py",
+    "agents/languages/python/project_init_agent.py",
+    "agents/languages/shell/build_agent.py",
+    "agents/languages/shell/code_analyzer.py",
+    "agents/languages/shell/code_editor.py",
+    "agents/languages/shell/code_planner.py",
+    "agents/languages/shell/code_tester.py",
+    "agents/languages/shell/debug_agent.py",
+    "agents/languages/shell/documentation_agent.py",
+    "agents/languages/shell/project_init_agent.py",
+    "agents/languages/web/build_agent.py",
+    "agents/languages/web/code_analyzer.py",
+    "agents/languages/web/code_editor.py",
+    "agents/languages/web/code_planner.py",
+    "agents/languages/web/code_tester.py",
+    "agents/languages/web/debug_agent.py",
+    "agents/languages/web/documentation_agent.py",
+    "agents/languages/web/project_init_agent.py",
+    "agents/utils/clarification_templates.py",
+    "agents/utils/codebase_awareness.py",
+    "agents/utils/context_optimizer.py",
+    "benchmarks/benchmark_runner.py",
+    "core/agent_capabilities.py",
+    "core/database_enhanced.py",
+    "plugins/example_plugin/plugin.py",
+    "tools/development/code_quality_tool.py",
+    "tools/development/dev_tools_manager.py",
+    "tools/development/formatter_tool.py",
+    "tools/development/linter_tool.py",
+    "tools/development/static_analyzer_tool.py"
+  ],
+  "circular_dependencies": [],
+  "errors": []
+}

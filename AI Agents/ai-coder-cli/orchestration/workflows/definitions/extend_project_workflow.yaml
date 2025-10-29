@@ -1,0 +1,139 @@
+
+# Extend Project Workflow
+# Analyzes existing code, plans extension, implements, tests, and commits
+
+workflow_id: extend_project_workflow
+name: Extend Existing Project
+description: Analyze existing code, plan extension, implement, test, document, and commit
+version: 1.0.0
+tags:
+  - extend
+  - enhancement
+  - development
+
+steps:
+  - step_id: analyze_project
+    name: Analyze Project Structure
+    agent: code_analyzer
+    action: analyze_project_structure
+    params:
+      project_path: "{{ project_path }}"
+      deep_analysis: true
+    dependencies: []
+    on_error: fail
+
+  - step_id: identify_integration_points
+    name: Identify Integration Points
+    agent: code_planner
+    action: identify_integration_points
+    params:
+      extension_description: "{{ extension_description }}"
+      project_analysis: "{{ step_analyze_project_result }}"
+    dependencies:
+      - analyze_project
+    on_error: fail
+
+  - step_id: plan_extension
+    name: Plan Extension Strategy
+    agent: code_planner
+    action: plan_extension
+    params:
+      extension_description: "{{ extension_description }}"
+      integration_points: "{{ step_identify_integration_points_result }}"
+      existing_architecture: "{{ step_analyze_project_result }}"
+    dependencies:
+      - identify_integration_points
+    on_error: fail
+
+  - step_id: implement_extension
+    name: Implement Extension
+    agent: code_editor
+    action: implement_code
+    params:
+      plan: "{{ step_plan_extension_result }}"
+      project_path: "{{ project_path }}"
+    dependencies:
+      - plan_extension
+    on_error: fail
+
+  - step_id: update_dependencies
+    name: Update Project Dependencies
+    agent: build_agent
+    action: update_dependencies
+    params:
+      new_dependencies: "{{ step_plan_extension_result.dependencies }}"
+      project_path: "{{ project_path }}"
+    dependencies:
+      - implement_extension
+    condition: "step_plan_extension_result.get('dependencies')"
+    on_error: continue
+
+  - step_id: write_tests
+    name: Write Tests for Extension
+    agent: code_tester
+    action: generate_tests
+    params:
+      code_files: "{{ step_implement_extension_result.files }}"
+      test_framework: "auto"
+    dependencies:
+      - implement_extension
+    on_error: continue
+
+  - step_id: run_all_tests
+    name: Run All Tests
+    agent: code_tester
+    action: run_tests
+    params:
+      test_path: "tests/"
+    dependencies:
+      - write_tests
+    on_error: fail
+
+  - step_id: analyze_integration
+    name: Analyze Integration Quality
+    agent: code_analyzer
+    action: analyze_code
+    params:
+      files: "{{ step_implement_extension_result.files }}"
+      focus: "integration"
+    dependencies:
+      - implement_extension
+    on_error: continue
+
+  - step_id: update_documentation
+    name: Update Documentation
+    agent: documentation_generator
+    action: update_docs
+    params:
+      extension_description: "{{ extension_description }}"
+      implementation_files: "{{ step_implement_extension_result.files }}"
+      integration_points: "{{ step_identify_integration_points_result }}"
+    dependencies:
+      - implement_extension
+    on_error: continue
+
+  - step_id: git_commit
+    name: Commit Extension
+    agent: git_agent
+    action: commit
+    params:
+      message: "feat: Extend project - {{ extension_description }}"
+      description: |
+        Extended project with: {{ extension_description }}
+        
+        Integration Points:
+        {% for point in step_identify_integration_points_result %}
+        - {{ point }}
+        {% endfor %}
+        
+        New Files:
+        {% for file in step_implement_extension_result.files %}
+        - {{ file }}
+        {% endfor %}
+        
+        Tests: {{ 'Passed' if step_run_all_tests_result.success else 'Failed' }}
+        Integration Quality: {{ step_analyze_integration_result.score | default('N/A') }}
+    dependencies:
+      - run_all_tests
+      - update_documentation
+    on_error: continue

@@ -1,0 +1,91 @@
+
+# New Project Workflow
+# Initializes a new project with proper structure, initial files, and documentation
+
+workflow_id: new_project_workflow
+name: New Project Initialization
+description: Initialize a new project with proper structure, configuration, and initial files
+version: 1.0.0
+tags:
+  - project
+  - initialization
+  - setup
+
+steps:
+  - step_id: detect_language
+    name: Detect Project Language
+    agent: code_planner
+    action: detect_language_and_framework
+    params:
+      prompt: "{{ task_description }}"
+    dependencies: []
+    on_error: fail
+
+  - step_id: plan_structure
+    name: Plan Project Structure
+    agent: code_planner
+    action: plan_project_structure
+    params:
+      language: "{{ step_detect_language_result.language }}"
+      framework: "{{ step_detect_language_result.framework }}"
+      project_name: "{{ project_name }}"
+    dependencies:
+      - detect_language
+    on_error: fail
+
+  - step_id: initialize_project
+    name: Initialize Project
+    agent: project_init
+    action: initialize_project
+    params:
+      project_name: "{{ project_name }}"
+      language: "{{ step_detect_language_result.language }}"
+      structure: "{{ step_plan_structure_result }}"
+    dependencies:
+      - plan_structure
+    on_error: fail
+
+  - step_id: create_readme
+    name: Create README
+    agent: documentation_writer
+    action: create_readme
+    params:
+      project_name: "{{ project_name }}"
+      description: "{{ project_description }}"
+      language: "{{ step_detect_language_result.language }}"
+    dependencies:
+      - initialize_project
+    on_error: continue
+
+  - step_id: create_gitignore
+    name: Create .gitignore
+    agent: git_agent
+    action: create_gitignore
+    params:
+      language: "{{ step_detect_language_result.language }}"
+      framework: "{{ step_detect_language_result.framework }}"
+    dependencies:
+      - initialize_project
+    on_error: continue
+
+  - step_id: git_init
+    name: Initialize Git Repository
+    agent: git_agent
+    action: init_repository
+    params:
+      project_path: "{{ project_path }}"
+    dependencies:
+      - create_gitignore
+      - create_readme
+    on_error: continue
+
+  - step_id: initial_commit
+    name: Initial Git Commit
+    agent: git_agent
+    action: commit
+    params:
+      message: "Initial commit: Project setup"
+      description: "Initialized {{ project_name }} project with {{ step_detect_language_result.language }} structure"
+    dependencies:
+      - git_init
+    on_error: continue
